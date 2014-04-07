@@ -76,24 +76,24 @@ public class BoardingCalendar {
 		frmBoardingCalendar.getContentPane().add(btnWeeklyFood);
 		
 		JButton btnBack = new JButton("Back");
-/*		btnBack.addMouseListener(new MouseAdapter() {
+		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				exitBoardScreen();
+//				exitBoardScreen();
 			}
 		});
-*/		btnBack.setFont(new Font("Dialog", Font.BOLD, 20));
+		btnBack.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnBack.setBounds(10, 420, 210, 44);
 		frmBoardingCalendar.getContentPane().add(btnBack);
 	}
-/*	
+	
 	//This method will restart the main screen and destroy this instance of the boarders menu
-	private void exitManagerScreen() {
+/*	private void exitBoardScreen() {
 		
 		
-		Main_Screen Main_GUI_Instance = new Main_Screen();
-		Main_GUI_Instance.frmMAIN.setVisible(true);
+		Main_Menu Main_GUI_Instance = new Main_Menu();
+		Main_GUI_Instance.frmMainMenu.setVisible(true);
 		frmBoardingCalendar.dispose();		
 	}
 */

@@ -103,7 +103,7 @@ public class Food_Screen {
 					c.setTime(start);
 					Calendar c2 = Calendar.getInstance();
 					c.setTime(end);
-					if (c.before(end) && c.after(start))
+					if (c.before(c2) && c.after(c1))
 						vector.add(id1);
 				}
 			}

@@ -1,19 +1,31 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
 import java.awt.Toolkit;
+
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.UIManager;
+
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.UIManager.*;
+
+
+
 
 public class Main_Menu {
+	
+	
 
 	private JFrame frmMainMenu;
 
@@ -37,6 +49,17 @@ public class Main_Menu {
 	 * Create the application.
 	 */
 	public Main_Menu() {
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
+		
 		initialize();
 	}
 

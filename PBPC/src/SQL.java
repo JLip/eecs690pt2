@@ -1,66 +1,68 @@
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import com.mysql.jdbc.Statement;
 
 
 
 public class SQL {
 
-public static java.sql.Connection connection;
+public static Connection connection;
 public static Statement statement;
 
 
 public static void ExecuteQuery(String query){
-		connection = Connection.con;
-		statement = Connection.stmt;
+	
+	java.sql.Connection c = Connection.con;
+	java.sql.Statement stmt = Connection.stmt;
+    
+      try {
+		stmt = c.createStatement();
+		  stmt.executeQuery(query);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+   
 
-		try {
-			statement = (Statement) ((java.sql.Connection) connection).createStatement();	
-			statement.executeUpdate(query);
+	
+	
+}
 
+public static ResultSet ExecuteResultSet(String query){
+	
+	ResultSet rs = null;	
+	java.sql.Connection c = Connection.con;
+	java.sql.Statement stmt = Connection.stmt;
+	
+	 try {
+			stmt = c.createStatement();
+			  rs = stmt.executeQuery(query);
 		} catch (SQLException e) {
-
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
-	}
-
-
-
-	public static ResultSet ExecuteResultSet(String query){
-		ResultSet rs = null;	
-		connection = Connection.con;
-		statement = Connection.stmt;
-		try{
-			statement = (Statement) ((java.sql.Connection) connection).createStatement();
-			rs = statement.executeQuery(query);			
-
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}	
-
-
-
-		return rs;
-
-
-	}
-
-
+	   
+	return rs;
+	
+	
+}
 
 	public static void UpdateResultSet(String query){
 
-		connection = Connection.con;
-		statement = Connection.stmt;
-		try{
-			statement = (Statement) ((java.sql.Connection) connection).createStatement();
-			statement.executeUpdate(query);			
-
-		}catch (SQLException e) {
+		
+		java.sql.Connection c = Connection.con;
+		java.sql.Statement stmt = Connection.stmt;
+	    
+	      try {
+			stmt = c.createStatement();
+			  stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+	   
 
 
 	}

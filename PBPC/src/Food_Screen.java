@@ -114,14 +114,13 @@ public class Food_Screen {
 		
 		
 		String animal;
-		String size;
+		double size;
 		Date birth;
-		//TODO proper ages for dogs and cats per category
-		int sdy = 7;
-		int ady = 4;
-		int scy = 5;
-		int acy = 2;
-		double pound = 0;
+		int sdy = 8;
+		int ady = 1;
+		int scy = 11;
+		int acy = 1;
+		double cup = 0;
 		Calendar cSD = Calendar.getInstance();
 		cSD.set(year-sdy, month, day+6);
 		Calendar cAD = Calendar.getInstance();
@@ -139,69 +138,55 @@ public class Food_Screen {
 				rs = SQL.ExecuteResultSet(CommandText);
 				while (rs.next()) {
 					animal = rs.getString("Animal");
-					size = rs.getString("Size");
+					size = rs.getDouble("Size");
 					birth = rs.getDate("DOB");
 					Calendar age = Calendar.getInstance();
 					age.setTime(birth);
 					
-					//TODO proper food weight values for each size and age
 					if(animal.equalsIgnoreCase("dog")){
+						if (size >= 100)
+							cup = 4.5;
+						else if (size >= 80)
+							cup = 4.0;
+						else if (size >= 60)
+							cup = 3.25;
+						else if (size >= 40)
+							cup = 2.5;
+						else if (size >= 30)
+							cup = 2.0;
+						else if (size >= 20)
+							cup = 1.5;
+						else if (size >= 10)
+							cup = 1.0;
+						else
+							cup = 0.5;
+						
 						if(age.before(cSD)){
-							if(size.equalsIgnoreCase("large"))
-								pound = 5.0;
-							else if (size.equalsIgnoreCase("medium"))
-								pound = 3.5;
-							else
-								pound = 2.0;
-							snrDog += pound;
+							snrDog += cup;
 						}
 						else if (age.before(cAD)){
-							if(size.equalsIgnoreCase("large"))
-								pound = 4.5;
-							else if (size.equalsIgnoreCase("medium"))
-								pound = 3.0;
-							else
-								pound = 1.5;
-							adlDog += pound;
+							adlDog += cup;
 						}
 						else{
-							if(size.equalsIgnoreCase("large"))
-								pound = 4.0;
-							else if (size.equalsIgnoreCase("medium"))
-								pound = 2.5;
-							else
-								pound = 1.0;
-							yngDog += pound;
+							yngDog += cup;
 						}
 					}
-					//TODO proper food weight values for each size and age
-					else{
+					else{	//cat
+						if (size >= 10)
+							cup = 1.0;
+						else if (size >= 5)
+							cup = 0.75;
+						else
+							cup = 0.5;
+						
 						if(age.before(cSC)){
-							if(size.equalsIgnoreCase("large"))
-								pound = 5.0;
-							else if (size.equalsIgnoreCase("medium"))
-								pound = 3.5;
-							else
-								pound = 2.0;
-							snrCat += pound;
+							snrCat += cup;
 						}
 						else if (age.before(cAC)){
-							if(size.equalsIgnoreCase("large"))
-								pound = 4.5;
-							else if (size.equalsIgnoreCase("medium"))
-								pound = 3.0;
-							else
-								pound = 1.5;
-							adlCat += pound;
+							adlCat += cup;
 						}
 						else{
-							if(size.equalsIgnoreCase("large"))
-								pound = 4.0;
-							else if (size.equalsIgnoreCase("medium"))
-								pound = 2.5;
-							else
-								pound = 1.0;
-							yngCat += pound;
+							yngCat += cup;
 						}
 					}
 				}
@@ -211,12 +196,12 @@ public class Food_Screen {
 			}
 		}
 
-		String snrD = String.format("%d lbs.", snrDog);
-		String adlD = String.format("%d lbs.", adlDog);
-		String yngD = String.format("%d lbs.", yngDog);
-		String snrC = String.format("%d lbs.", snrCat);
-		String adlC = String.format("%d lbs.", adlCat);
-		String yngC = String.format("%d lbs.", yngCat);
+		String snrD = String.format("%d cups", snrDog);
+		String adlD = String.format("%d cups", adlDog);
+		String yngD = String.format("%d cups", yngDog);
+		String snrC = String.format("%d cups", snrCat);
+		String adlC = String.format("%d cups", adlCat);
+		String yngC = String.format("%d cups", yngCat);
 		
 		JLabel lblComingSoon = new JLabel("Senior Dog Food:");
 		lblComingSoon.setFont(new Font("Dialog", Font.BOLD, 20));

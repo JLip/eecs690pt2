@@ -92,6 +92,7 @@ public class Main_Menu {
 			public void mouseClicked(MouseEvent e) {
 			}
 		});
+		btnBoarderCalender.setText("<html><center>"+"Boarder"+"<br>"+"Calender"+"</center></html>");
 		btnBoarderCalender.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnBoarderCalender.setBounds(525, 353, 187, 118);
 		frmMainMenu.getContentPane().add(btnBoarderCalender);

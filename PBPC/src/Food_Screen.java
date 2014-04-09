@@ -90,7 +90,6 @@ public class Food_Screen {
 		for (int i = 0; i < 7; i++){
 			c.set(year, month, day+i);
 			
-			//TODO this needs to be changed once the SQL methods have been made
 			String CommandText = "SELECT StartDate, EndDate, PETID from Boarding ";
 			
 			try{
@@ -131,7 +130,6 @@ public class Food_Screen {
 		cSD.set(year-acy, month, day+6);
 		
 		for (int i = 0; i < vector.size(); i++){
-			//TODO this needs to be changed once the SQL methods have been made
 			String CommandText = "SELECT Animal, Size, DOB from PetRecord WHERE PetID = " + vector.get(i);
 			
 			try{

@@ -17,16 +17,17 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
+import javax.swing.JCheckBox;
 
 
 public class Boarder_List {
 
 	JFrame frmBoarderList;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField textField_animal;
+	private JTextField textField_size;
+	private JTextField textField_owner;
+	private JTextField textField_strtDate;
+	private JTextField textField_endDate;
 
 	/**
 	 * Launch the application.
@@ -123,12 +124,6 @@ public class Boarder_List {
 		lblNewLabel.setBounds(344, 13, 140, 44);
 		frmBoarderList.getContentPane().add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField.setBounds(564, 10, 210, 44);
-		frmBoarderList.getContentPane().add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblSize = new JLabel("Size");
 		lblSize.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblSize.setBounds(344, 68, 140, 44);
@@ -139,17 +134,23 @@ public class Boarder_List {
 		lblOwner.setBounds(344, 123, 140, 44);
 		frmBoarderList.getContentPane().add(lblOwner);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField_1.setColumns(10);
-		textField_1.setBounds(564, 65, 210, 44);
-		frmBoarderList.getContentPane().add(textField_1);
+		textField_animal = new JTextField();
+		textField_animal.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_animal.setBounds(564, 10, 210, 44);
+		frmBoarderList.getContentPane().add(textField_animal);
+		textField_animal.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField_2.setColumns(10);
-		textField_2.setBounds(564, 123, 210, 44);
-		frmBoarderList.getContentPane().add(textField_2);
+		textField_size = new JTextField();
+		textField_size.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_size.setColumns(10);
+		textField_size.setBounds(564, 65, 210, 44);
+		frmBoarderList.getContentPane().add(textField_size);
+		
+		textField_owner = new JTextField();
+		textField_owner.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_owner.setColumns(10);
+		textField_owner.setBounds(564, 123, 210, 44);
+		frmBoarderList.getContentPane().add(textField_owner);
 		
 		JLabel lblStartDate = new JLabel("Start Date");
 		lblStartDate.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -176,17 +177,17 @@ public class Boarder_List {
 		lblComments.setBounds(344, 423, 140, 44);
 		frmBoarderList.getContentPane().add(lblComments);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField_3.setColumns(10);
-		textField_3.setBounds(564, 178, 210, 44);
-		frmBoarderList.getContentPane().add(textField_3);
+		textField_strtDate = new JTextField();
+		textField_strtDate.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_strtDate.setColumns(10);
+		textField_strtDate.setBounds(564, 178, 210, 44);
+		frmBoarderList.getContentPane().add(textField_strtDate);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField_4.setColumns(10);
-		textField_4.setBounds(564, 233, 210, 44);
-		frmBoarderList.getContentPane().add(textField_4);
+		textField_endDate = new JTextField();
+		textField_endDate.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_endDate.setColumns(10);
+		textField_endDate.setBounds(564, 233, 210, 44);
+		frmBoarderList.getContentPane().add(textField_endDate);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(494, 423, 280, 67);
@@ -196,12 +197,17 @@ public class Boarder_List {
 		txtrCommentText.setText("Sample comment text.");
 		scrollPane_1.setViewportView(txtrCommentText);
 		
-		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(494, 345, 280, 67);
-		frmBoarderList.getContentPane().add(scrollPane_2);
+		JCheckBox chckbxPlayTime = new JCheckBox("Extra Play Time");
+		chckbxPlayTime.setBounds(564, 343, 210, 23);
+		frmBoarderList.getContentPane().add(chckbxPlayTime);
 		
-		JList list_1 = new JList();
-		scrollPane_2.setViewportView(list_1);
+		JCheckBox chckbxBathing = new JCheckBox("Bathing/Grooming");
+		chckbxBathing.setBounds(564, 369, 210, 23);
+		frmBoarderList.getContentPane().add(chckbxBathing);
+		
+		JCheckBox chckbxDental = new JCheckBox("Dental Cleaning");
+		chckbxDental.setBounds(564, 395, 210, 23);
+		frmBoarderList.getContentPane().add(chckbxDental);
 	}
 	
 	//This method will restart the main screen and destroy this instance of the boarders menu

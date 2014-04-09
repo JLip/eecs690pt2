@@ -477,7 +477,7 @@ public class Owner_Record_View {
 	
 	protected void createPetList(int ID) {
 		//select all pets names and ID and create pet list
-		String commandStr = "SELECT PetID, Name FROM PetRecord WHERE ID ="+ ID+" ORDER BY Name;";
+		String commandStr = "SELECT PetID, Name FROM PetRecord WHERE OwnerID ="+ ID+" ORDER BY Name;";
 		
 		//TODO this needs to be changed once the SQL methods have been made
 		java.sql.Connection c;

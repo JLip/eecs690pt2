@@ -93,6 +93,7 @@ public class Main_Menu {
 				
 				//Launch an instance of new client screen
 				New_Client.run();
+				frmMainMenu.dispose();
 			}
 		});
 		btnNewClient.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -106,6 +107,7 @@ public class Main_Menu {
 				
 				//Launch an instance of the Pet_Owner screen
 				Pet_Owner_List.run();
+				frmMainMenu.dispose();
 				
 			}
 		});
@@ -117,6 +119,8 @@ public class Main_Menu {
 		btnProductSale.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
+				//frmMainMenu.dispose();
 			}
 		});
 		btnProductSale.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -129,8 +133,8 @@ public class Main_Menu {
 			public void mouseClicked(MouseEvent e) {				
 				
 				//Launch an instance of the boarding calendar screen
-				BoardingCalendar BoardingCalendar_Instance = new BoardingCalendar();
-				BoardingCalendar_Instance.frmBoardingCalendar.setVisible(true);
+				BoardingCalendar.run();
+				frmMainMenu.dispose();
 			}
 		});
 		btnBoarderCalender.setText("<html><center>"+"Boarder"+"<br>"+"Calender"+"</center></html>");
@@ -142,6 +146,8 @@ public class Main_Menu {
 		btnAppointments.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
+				//frmMainMenu.dispose();
 			}
 		});
 		btnAppointments.setFont(new Font("Tahoma", Font.PLAIN, 20));

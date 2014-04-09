@@ -17,9 +17,8 @@ public class BoardingCalendar {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+
+public static void run() {
 				try {
 					BoardingCalendar window = new BoardingCalendar();
 					window.frmBoardingCalendar.setVisible(false);
@@ -27,8 +26,7 @@ public class BoardingCalendar {
 					e.printStackTrace();
 				}
 			}
-		});
-	}
+
 
 	/**
 	 * Create the application.

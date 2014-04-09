@@ -289,8 +289,11 @@ public static void run() {
 			public void mouseClicked(MouseEvent arg0) {
 				//open owner record view for selected owner's record.
 				ownerItem temp = filteredOwners.get(ownerList.getSelectedIndex());
-				Owner_Record_View Owner_Record_Instance = new Owner_Record_View(temp.ID);
-				Owner_Record_Instance.frmOwnerRecordView.setVisible(true);
+				
+				Main_Menu.OwnerID = temp.ID; //update owner ID variable.
+				Owner_Record_View.run();
+				//Owner_Record_View Owner_Record_Instance = new Owner_Record_View(temp.ID);				
+				//Owner_Record_Instance.frmOwnerRecordView.setVisible(true);
 			}
 		});
 		

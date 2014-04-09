@@ -42,8 +42,6 @@ public class Pet_Owner_List {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//TODO: remove once DB methods have been made
-					Connection.Connect();
 					Pet_Owner_List window = new Pet_Owner_List();
 					window.frmPetOwnerList.setVisible(true);
 				} catch (Exception e) {
@@ -85,13 +83,8 @@ public class Pet_Owner_List {
 		//select all pets names and ID and create pet list
 		String commandStr = "SELECT PetID, Name FROM PetRecord ORDER BY Name;";
 		
-		//TODO this needs to be changed once the SQL methods have been made
-		java.sql.Connection c;
-	    Statement stmt;
 	    try {
-	        Class.forName("org.sqlite.JDBC");        
-	        stmt = Connection.con.createStatement();
-	        ResultSet rs = stmt.executeQuery( commandStr );
+	        ResultSet rs = SQL.ExecuteResultSet(commandStr);
 	      
 	        //Iterate through the results and populate pet's tempList
 	        while ( rs.next() ) {
@@ -100,8 +93,6 @@ public class Pet_Owner_List {
 	        	petItem tempItem = new petItem(tempName, tempID);
 	        	pets.add(tempItem);
 	        }
-	        rs.close();
-	        stmt.close();
 	        
 	      } catch ( Exception e ) {
 	        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -116,14 +107,9 @@ public class Pet_Owner_List {
 		//select all owners FirstNames, LastNames, and IDs and create a owner list
 		
 		String commandStr = "SELECT FirstName, LastName, OwnerID FROM PetOwner ORDER BY LastName;";
-		
-		//TODO this needs to be changed once the SQL methods have been made
-		java.sql.Connection c;
-	    Statement stmt;
+
 	    try {
-	        Class.forName("org.sqlite.JDBC");        
-	        stmt = Connection.con.createStatement();
-	        ResultSet rs = stmt.executeQuery( commandStr );
+	        ResultSet rs = SQL.ExecuteResultSet(commandStr);
 	        
 	        //Iterate through the results and populate owner's tempList
 	        while ( rs.next() ) {
@@ -134,7 +120,6 @@ public class Pet_Owner_List {
 	        	owners.add(tempItem);
 	        }
 	        rs.close();
-	        stmt.close();
 	        
 	      } catch ( Exception e ) {
 	        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -293,7 +278,10 @@ public class Pet_Owner_List {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//Open record view of selected animal's record
-				petList.getSelectedValue();
+				petItem temp = filteredPets.get(petList.getSelectedIndex());
+				Pet_Record_View Pet_Record_Instance = new Pet_Record_View(temp.ID);
+				Pet_Record_Instance.frmPetRecordView.setVisible(true);
+				
 			}
 		});
 		
@@ -302,8 +290,23 @@ public class Pet_Owner_List {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				//open owner record view for selected owner's record.
+				ownerItem temp = filteredOwners.get(ownerList.getSelectedIndex());
+				Owner_Record_View Owner_Record_Instance = new Owner_Record_View(temp.ID);
+				Owner_Record_Instance.frmOwnerRecordView.setVisible(true);
 			}
 		});
+		
+		transferToFiltered();
+	}
+
+	private void transferToFiltered() {
+		for(int i = 0; i < owners.size(); ++i){
+			filteredOwners.addElement(owners.get(i));
+		}
+		for(int j = 0; j < pets.size(); ++j){
+			filteredPets.addElement(pets.get(j));
+		}
+		
 	}
 
 	protected void filterLists(String text) {

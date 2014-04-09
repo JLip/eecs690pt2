@@ -35,6 +35,7 @@ public class Main_Menu {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					Connection.Connect();
 					Main_Menu window = new Main_Menu();
 					window.frmMainMenu.setVisible(true);
 				} catch (Exception e) {

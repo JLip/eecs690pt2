@@ -91,7 +91,7 @@ public class Food_Screen {
 			c.set(year, month, day+i);
 			
 			//TODO this needs to be changed once the SQL methods have been made
-			String CommandText = "SELECT StartDate, EndDate, PetID from Boarding ";
+			String CommandText = "SELECT StartDate, EndDate, PETID from Boarding ";
 			
 			try{
 				rs = SQL.ExecuteResultSet(CommandText);

@@ -106,7 +106,7 @@ public class Pet_Owner_List {
 	protected void createOwnerList() {
 		//select all owners FirstNames, LastNames, and IDs and create a owner list
 		
-		String commandStr = "SELECT FirstName, LastName, ID FROM PetOwner ORDER BY LastName;";
+		String commandStr = "SELECT FirstName, LastName, `ID` FROM PetOwner ORDER BY LastName;";
 
 	    try {
 	        ResultSet rs = SQL.ExecuteResultSet(commandStr);

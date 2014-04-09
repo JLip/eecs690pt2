@@ -38,9 +38,8 @@ public class Pet_Owner_List {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+
+public static void run() {
 				try {
 					Pet_Owner_List window = new Pet_Owner_List();
 					window.frmPetOwnerList.setVisible(true);
@@ -48,8 +47,7 @@ public class Pet_Owner_List {
 					e.printStackTrace();
 				}
 			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.

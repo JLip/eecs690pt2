@@ -30,9 +30,8 @@ public class New_Client {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+
+public static void run() {
 				try {
 					New_Client window = new New_Client();
 					window.frmNewClient.setVisible(true);
@@ -40,8 +39,7 @@ public class New_Client {
 					e.printStackTrace();
 				}
 			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.

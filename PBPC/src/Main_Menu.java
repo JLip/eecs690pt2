@@ -92,8 +92,7 @@ public class Main_Menu {
 			public void mouseClicked(MouseEvent e) {
 				
 				//Launch an instance of new client screen
-				New_Client New_Client_GUI_Instance = new New_Client();
-				New_Client_GUI_Instance.frmNewClient.setVisible(true);
+				New_Client.run();
 			}
 		});
 		btnNewClient.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -106,8 +105,7 @@ public class Main_Menu {
 			public void mouseClicked(MouseEvent arg0) {
 				
 				//Launch an instance of the Pet_Owner screen
-				Pet_Owner_List Pet_Owner_List_Instance = new Pet_Owner_List();
-				Pet_Owner_List_Instance.frmPetOwnerList.setVisible(true);
+				Pet_Owner_List.run();
 				
 			}
 		});

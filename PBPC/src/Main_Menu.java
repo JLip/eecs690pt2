@@ -6,8 +6,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JButton;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 import java.awt.Font;
 
 import javax.swing.JLabel;
@@ -75,24 +74,29 @@ public class Main_Menu {
 		frmMainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMainMenu.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("New Client");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		JButton btnNewClient = new JButton("New Client");
+		btnNewClient.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
+				//Launch an instance of new client screen
+				New_Client New_Client_GUI_Instance = new New_Client();
+				New_Client_GUI_Instance.frmNewClient.setVisible(true);
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton.setBounds(412, 211, 187, 118);
-		frmMainMenu.getContentPane().add(btnNewButton);
+		btnNewClient.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewClient.setBounds(412, 211, 187, 118);
+		frmMainMenu.getContentPane().add(btnNewClient);
 		
 		JButton btnExsistingClient = new JButton("Exsisting Client");
 		btnExsistingClient.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				
+				//Launch an instance of the Pet_Owner screen
+				Pet_Owner_List Pet_Owner_List_Instance = new Pet_Owner_List();
+				Pet_Owner_List_Instance.frmPetOwnerList.setVisible(true);
+				
 			}
 		});
 		btnExsistingClient.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -112,7 +116,11 @@ public class Main_Menu {
 		JButton btnBoarderCalender = new JButton("Boarder Calender");
 		btnBoarderCalender.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) {				
+				
+				//Launch an instance of the boarding calendar screen
+				BoardingCalendar BoardingCalendar_Instance = new BoardingCalendar();
+				BoardingCalendar_Instance.frmBoardingCalendar.setVisible(true);
 			}
 		});
 		btnBoarderCalender.setText("<html><center>"+"Boarder"+"<br>"+"Calender"+"</center></html>");

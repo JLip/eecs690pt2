@@ -28,7 +28,7 @@ import java.util.Vector;
 
 public class Pet_Owner_List {
 
-	private JFrame frmPetOwnerList;
+	JFrame frmPetOwnerList;
 	private JTextField searchBar;
 	public Vector<ownerItem> owners = new Vector<ownerItem>();
 	public Vector<petItem> pets = new Vector<petItem>();
@@ -278,11 +278,13 @@ public class Pet_Owner_List {
 		btnReturnToMain.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//TODO:When Main menu is created this will take you back to that
+				
+				frmPetOwnerList.dispose();
+				
 			}
 		});
-		btnReturnToMain.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnReturnToMain.setBounds(542, 520, 183, 31);
+		btnReturnToMain.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnReturnToMain.setBounds(23, 520, 225, 31);
 		frmPetOwnerList.getContentPane().add(btnReturnToMain);
 		
 		

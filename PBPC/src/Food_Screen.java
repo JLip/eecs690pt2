@@ -217,7 +217,7 @@ public class Food_Screen {
 			}
 		});
 		btnBack.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnBack.setBounds(288, 479, 210, 44);
+		btnBack.setBounds(22, 485, 210, 44);
 		frmFoodScreen.getContentPane().add(btnBack);
 		
 		JLabel lblAdultDogFood = new JLabel("Adult Dog Food:");
@@ -277,11 +277,8 @@ public class Food_Screen {
 	}
 	
 	//This method will restart the boarders screen and destroy this instance of the food screen
-	private void exitFoodScreen() {
-		
-		
-		BoardingCalendar Board_GUI_Instance = new BoardingCalendar();
-		Board_GUI_Instance.frmBoardingCalendar.setVisible(true);
+	private void exitFoodScreen() {			
+
 		frmFoodScreen.dispose();		
 	}
 }

@@ -106,7 +106,7 @@ public class Pet_Owner_List {
 	protected void createOwnerList() {
 		//select all owners FirstNames, LastNames, and IDs and create a owner list
 		
-		String commandStr = "SELECT FirstName, LastName, OwnerID FROM PetOwner ORDER BY LastName;";
+		String commandStr = "SELECT FirstName, LastName, `ID` FROM PetOwner ORDER BY LastName;";
 
 	    try {
 	        ResultSet rs = SQL.ExecuteResultSet(commandStr);
@@ -115,7 +115,7 @@ public class Pet_Owner_List {
 	        while ( rs.next() ) {
 	        	String tempFirst = rs.getString("FirstName");
 	        	String tempLast = rs.getString("LastName");
-	        	int tempID = rs.getInt("OwnerID");
+	        	int tempID = rs.getInt("ID");
 	        	ownerItem tempItem = new ownerItem(tempFirst, tempLast, tempID);
 	        	owners.add(tempItem);
 	        }

@@ -87,6 +87,7 @@ public class Owner_Record_View {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("rawtypes")
 	private void initialize(final int ID) {
 		frmOwnerRecordView = new JFrame();
 		frmOwnerRecordView.getContentPane().setBackground(Color.WHITE);
@@ -141,7 +142,8 @@ public class Owner_Record_View {
 		petScroll.setBounds(10, 56, 241, 430);
 		frmOwnerRecordView.getContentPane().add(petScroll);
 		
-		JList petList = new JList();
+		@SuppressWarnings("rawtypes")
+		final JList petList = new JList();
 		createPetList(ID);
 		petList.setModel(new AbstractListModel() {
 			public int getSize() {
@@ -241,11 +243,23 @@ public class Owner_Record_View {
 		txtPhoneNum.setColumns(10);
 		
 		btnBack = new JButton("Back");
+		btnBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				frmOwnerRecordView.dispose();
+			}
+		});
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnBack.setBounds(639, 501, 135, 37);
 		frmOwnerRecordView.getContentPane().add(btnBack);
 		
 		btnViewPet = new JButton("View Pet");
+		btnViewPet.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Pet_Record_View Pet_Record_Instance = new Pet_Record_View(pets.get((petList.getSelectedIndex())).ID);
+			}
+		});
 		btnViewPet.setEnabled(false);
 		btnViewPet.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnViewPet.setBounds(68, 497, 121, 37);
@@ -260,7 +274,7 @@ public class Owner_Record_View {
 						+ ", `City`=\""+txtCity.getText()+"\", `State`=\""+txtState.getText()+"\", "
 						+ " `FirstName`=\""+txtFirstName.getText()+"\", `LastName`=\""+ txtLastName.getText()
 						+ "\", `Address`=\""+txtAddress.getText()+"\", `Phone`=\""+txtPhoneNum.getText()+"\""
-						+ " WHERE `OwnerID`="+ ID +";";
+						+ " WHERE `ID`="+ ID +";";
 					exitEditMode();
 					//update DB and lbls
 					SQL.UpdateResultSet(commandText);
@@ -384,7 +398,7 @@ public class Owner_Record_View {
 
 	private void populateLabels(int iD) {
 		// TODO Auto-generated method stub
-		String CommandText = "SELECT * FROM `PetOwner` WHERE `OwnerID`=" + iD;
+		String CommandText = "SELECT * FROM `PetOwner` WHERE `ID`=" + iD;
 		ResultSet rs = SQL.ExecuteResultSet(CommandText);
 		
 		try {
@@ -393,7 +407,7 @@ public class Owner_Record_View {
 				lblLastName.setText(rs.getString("LastName"));
 				lblCity.setText(rs.getString("City"));
 				lblState.setText(rs.getString("State"));
-				lblZip.setText(Integer.toString(rs.getInt("Zip")));
+				lblZip.setText(Integer.toString(rs.getInt("ZipCode")));
 				lblAddress.setText(rs.getString("Address"));
 				lblPhoneNum.setText(rs.getString("Phone"));
 			}

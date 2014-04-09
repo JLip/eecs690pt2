@@ -1,13 +1,17 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class New_Client {
@@ -97,7 +101,9 @@ public class New_Client {
 		btnNext.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				InsertRecord();
+				CheckValues();
+				
+				//InsertRecord();
 			}
 		});
 		btnNext.setBounds(650, 518, 110, 33);
@@ -145,6 +151,81 @@ public class New_Client {
 		frmNewClient.getContentPane().add(btnNewButton);
 	}
 	
+	public void CheckValues()
+	{
+		if(txt_FirstName.getText().isEmpty())
+		{
+			JOptionPane.showMessageDialog(null, "First Name is Required.");
+			txt_FirstName.setBackground(Color.red);
+			return;
+		}
+		else if(txt_LastName.getText().isEmpty())
+		{
+			txt_LastName.setBackground(Color.red);
+			JOptionPane.showMessageDialog(null, "Last Name is Required.");
+			return;
+		}		
+		else if(txt_Address.getText().isEmpty())
+		{
+			txt_Address.setBackground(Color.red);
+			JOptionPane.showMessageDialog(null, "Address is Required.");
+			return;
+		}
+		else if (txt_City.getText().isEmpty())
+		{
+			txt_City.setBackground(Color.red);
+			JOptionPane.showMessageDialog(null, "City is Required.");
+			return;
+		}
+		else if (txt_State.getText().isEmpty())
+		{
+			txt_State.setBackground(Color.red);
+			JOptionPane.showMessageDialog(null, "State is Required.");
+			return;
+		}
+		else if (txt_ZipCode.getText().isEmpty())
+		{
+			txt_ZipCode.setBackground(Color.red);
+			JOptionPane.showMessageDialog(null, "Zip Code is Required.");
+			return;
+			
+		}
+		else if (txt_Phone.getText().isEmpty())
+		{
+			txt_Phone.setBackground(Color.red);
+			JOptionPane.showMessageDialog(null, "Phone Number is Required.");
+			return;
+			
+		}
+		else
+		{
+			InsertRecord();
+		}
+		
+	}
+	
+	public void GetID()
+	{
+		
+		String commandText = "SELECT ID FROM PetOwner ORDER BY ID desc LIMIT 1";
+		ResultSet rs = SQL.ExecuteResultSet(commandText);
+		
+		try
+		{
+			while ((rs!=null) && (rs.next()))
+			{
+				Main_Menu.OwnerID = rs.getInt("ID");
+			}
+		}
+		catch (SQLException e)
+		{
+			JOptionPane.showMessageDialog(null, e.toString());		
+		}
+		New_Pet.run();
+		frmNewClient.dispose();
+		
+	}
+	
 	public void InsertRecord()
 	{
 		Connection.Connect();		
@@ -163,6 +244,6 @@ public class New_Client {
 				
 		SQL.UpdateResultSet(commandText);
 
-		
+		GetID();
 	}
 }

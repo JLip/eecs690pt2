@@ -1,8 +1,10 @@
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.util.Date;
 import java.util.Locale;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
@@ -22,7 +24,7 @@ import java.awt.event.MouseEvent;
 
 
 public class New_Pet {
-	public static String OwnerID = "22";
+	
 	private JFrame frame;
 	private static JTextField txt_PetName;
 	private static JTextField txt_Breed;
@@ -40,18 +42,16 @@ public class New_Pet {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					New_Pet window = new New_Pet();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
+public static void run() {
+	try {
+		New_Pet window = new New_Pet();
+		window.frame.setVisible(true);
+		} catch (Exception e) {
+		e.printStackTrace();
+		}
+}
+		
 
 	/**
 	 * Create the application.
@@ -127,8 +127,9 @@ public class New_Pet {
 		btnOkay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				InsertRecord();
-				frame.dispose();
+				//InsertRecord();
+				//frame.dispose();
+				CheckValues();
 			}
 		});
 		btnOkay.setBounds(508, 427, 89, 23);
@@ -167,6 +168,40 @@ public class New_Pet {
 		frame.getContentPane().add(lblComments);
 	}
 	
+	public void CheckValues()
+	{
+		
+		if(txt_PetName.getText().isEmpty())
+		{
+			txt_PetName.setBackground(Color.red);
+			JOptionPane.showMessageDialog(null, "Pet Name is Required.");		
+			return;
+		}
+		else if (txt_Breed.getText().isEmpty())
+		{
+			txt_Breed.setBackground(Color.red);
+			JOptionPane.showMessageDialog(null, "Breed is Required.");		
+			return;
+			
+		}
+		else if (txt_Color.getText().isEmpty())
+		{
+			txt_Color.setBackground(Color.red);
+			JOptionPane.showMessageDialog(null, "Color is required is Required.");		
+			return;
+		}
+		else if(DOB.getDate() == null)
+		{
+			DOB.setBackground(Color.red);
+			JOptionPane.showMessageDialog(null, "Date of Birth is Required.");		
+			return;
+		}
+		else
+		{
+			
+			InsertRecord();
+		}
+	}
 	
 	
 	public void InsertRecord()
@@ -196,20 +231,21 @@ public class New_Pet {
 			Sex = "Male";
 		}
 		else
-		{
-			
+		{			
 			Sex = "Female";
 		}
 		String Size = combo_size.getSelectedItem().toString();
 		
 	
 		String commandText = "INSERT INTO 'PetRecord'('OwnerID','Name','Animal','Sex','Breed','Size','Color','DOB','Comments') VALUES (" +
-							OwnerID + " ," + "'" + Name + "' ," + "'" + Animal + "' ," + "'" + Sex + "' ,"
+							Main_Menu.OwnerID + " ," + "'" + Name + "' ," + "'" + Animal + "' ," + "'" + Sex + "' ,"
 							+ "'" + Breed + "' ," + "'" + Size + "' ," + "'" + Color + "' ," + "'" + DOB + "' ," + "'" + Comments + "')";
 				
 				
 		SQL.UpdateResultSet(commandText);
-
+		
+		Main_Menu.run();
+		frame.dispose();
 		
 	}
 }

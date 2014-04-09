@@ -274,7 +274,7 @@ public class Owner_Record_View {
 						+ ", `City`=\""+txtCity.getText()+"\", `State`=\""+txtState.getText()+"\", "
 						+ " `FirstName`=\""+txtFirstName.getText()+"\", `LastName`=\""+ txtLastName.getText()
 						+ "\", `Address`=\""+txtAddress.getText()+"\", `Phone`=\""+txtPhoneNum.getText()+"\""
-						+ " WHERE `OwnerID`="+ ID +";";
+						+ " WHERE `ID`="+ ID +";";
 					exitEditMode();
 					//update DB and lbls
 					SQL.UpdateResultSet(commandText);
@@ -398,7 +398,7 @@ public class Owner_Record_View {
 
 	private void populateLabels(int iD) {
 		// TODO Auto-generated method stub
-		String CommandText = "SELECT * FROM `PetOwner` WHERE `OwnerID`=" + iD;
+		String CommandText = "SELECT * FROM `PetOwner` WHERE `ID`=" + iD;
 		ResultSet rs = SQL.ExecuteResultSet(CommandText);
 		
 		try {
@@ -477,7 +477,7 @@ public class Owner_Record_View {
 	
 	protected void createPetList(int ID) {
 		//select all pets names and ID and create pet list
-		String commandStr = "SELECT PetID, Name FROM PetRecord WHERE OwnerID ="+ ID+" ORDER BY Name;";
+		String commandStr = "SELECT PetID, Name FROM PetRecord WHERE ID ="+ ID+" ORDER BY Name;";
 		
 		//TODO this needs to be changed once the SQL methods have been made
 		java.sql.Connection c;

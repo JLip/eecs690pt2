@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -134,7 +135,7 @@ public static void run() {
 	private void initialize() {
 		frmPetOwnerList = new JFrame();
 		frmPetOwnerList.getContentPane().setBackground(Color.WHITE);
-		//frmPetOwnerList.setIconImage(Toolkit.getDefaultToolkit().getImage(Pet_Owner_List.class.getResource("/General_images/GI_icon.png")));
+		frmPetOwnerList.setIconImage(Toolkit.getDefaultToolkit().getImage(Pet_Owner_List.class.getResource("/General_images/GI_icon.png")));
 		frmPetOwnerList.setTitle("Pet and Owner Lists");
 		frmPetOwnerList.setBounds(100, 100, 800, 600);
 		frmPetOwnerList.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -262,6 +263,7 @@ public static void run() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
+				Main_Menu.run();
 				frmPetOwnerList.dispose();
 				
 			}

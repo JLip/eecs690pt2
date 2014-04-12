@@ -196,49 +196,49 @@ initialize();
 		txtFirstName = new JTextField();
 		txtFirstName.setEnabled(false);
 		txtFirstName.setEditable(false);
-		txtFirstName.setBounds(396, 74, 378, 20);
+		txtFirstName.setBounds(396, 68, 378, 26);
 		frmOwnerRecordView.getContentPane().add(txtFirstName);
 		txtFirstName.setColumns(10);
 		
 		txtLastName = new JTextField();
 		txtLastName.setEnabled(false);
 		txtLastName.setEditable(false);
-		txtLastName.setBounds(396, 105, 378, 20);
+		txtLastName.setBounds(396, 99, 378, 26);
 		frmOwnerRecordView.getContentPane().add(txtLastName);
 		txtLastName.setColumns(10);
 		
 		txtAddress = new JTextField();
 		txtAddress.setEnabled(false);
 		txtAddress.setEditable(false);
-		txtAddress.setBounds(396, 136, 378, 19);
+		txtAddress.setBounds(396, 129, 378, 26);
 		frmOwnerRecordView.getContentPane().add(txtAddress);
 		txtAddress.setColumns(10);
 		
 		txtCity = new JTextField();
 		txtCity.setEditable(false);
 		txtCity.setEnabled(false);
-		txtCity.setBounds(396, 167, 378, 20);
+		txtCity.setBounds(396, 161, 378, 26);
 		frmOwnerRecordView.getContentPane().add(txtCity);
 		txtCity.setColumns(10);
 		
 		txtState = new JTextField();
 		txtState.setEditable(false);
 		txtState.setEnabled(false);
-		txtState.setBounds(396, 197, 378, 20);
+		txtState.setBounds(396, 191, 378, 26);
 		frmOwnerRecordView.getContentPane().add(txtState);
 		txtState.setColumns(10);
 		
 		txtZip = new JTextField();
 		txtZip.setEditable(false);
 		txtZip.setEnabled(false);
-		txtZip.setBounds(396, 227, 378, 20);
+		txtZip.setBounds(396, 221, 378, 26);
 		frmOwnerRecordView.getContentPane().add(txtZip);
 		txtZip.setColumns(10);
 		
 		txtPhoneNum = new JTextField();
 		txtPhoneNum.setEnabled(false);
 		txtPhoneNum.setEditable(false);
-		txtPhoneNum.setBounds(396, 252, 378, 20);
+		txtPhoneNum.setBounds(396, 252, 378, 26);
 		frmOwnerRecordView.getContentPane().add(txtPhoneNum);
 		txtPhoneNum.setColumns(10);
 		
@@ -257,7 +257,8 @@ initialize();
 	btnViewPet.addMouseListener(new MouseAdapter() {
 	@Override
 	public void mouseClicked(MouseEvent e) {
-	Pet_Record_View Pet_Record_Instance = new Pet_Record_View(pets.get((petList.getSelectedIndex())).ID);
+		Pet_Record_View Pet_Record_Instance = new Pet_Record_View(pets.get((petList.getSelectedIndex())).ID);
+		Pet_Record_Instance.frmPetRecordView.setVisible(true);
 	}
 	});
 	btnViewPet.setEnabled(false);

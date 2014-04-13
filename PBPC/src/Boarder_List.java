@@ -43,18 +43,16 @@ public class Boarder_List {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+
+			public static void run() {
 				try {
 					Boarder_List window = new Boarder_List();
-					window.frmBoarderList.setVisible(false);
+					window.frmBoarderList.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-		});
-	}
+		
 
 	/**
 	 * Create the application.
@@ -170,10 +168,11 @@ void update(int petID){
 		ResultSet secondary;
 		
 		Vector<String> board = new Vector<String>();
-		String CommandText = "SELECT PETID from Boarding ";
+		Connection.Connect();
+		String CommandText = "SELECT * from Boarding";
 		try{
 			rs = SQL.ExecuteResultSet(CommandText);
-			while (rs.next()) {
+			while (rs.next() && rs!=null) {
 				pID = rs.getInt("PETID");
 				String SecondaryText = "SELECT Name FROM PetRecord WHERE PetID = " + pID;
 				secondary = SQL.ExecuteResultSet(SecondaryText);

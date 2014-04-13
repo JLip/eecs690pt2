@@ -140,7 +140,7 @@ public static void run() {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+				Main_Menu.run();
 				frmNewClient.dispose();
 				
 			}

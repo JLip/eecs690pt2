@@ -46,33 +46,29 @@ public class Pet_Record_View {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(final String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+
+			public static void run() {
 				try {
 					//TODO: add test to make sure args has one and only one argument.
-					Pet_Record_View window = new Pet_Record_View(Integer.parseInt(args[0]));
-					window.frmPetRecordView.setVisible(false);
+					Pet_Record_View window = new Pet_Record_View();
+					window.frmPetRecordView.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-		});
-	}
 
 	/**
 	 * Create the application.
-	 * @param ID 
 	 */
-	public Pet_Record_View(int ID) {
-		initialize(ID);
+	public Pet_Record_View() {
+		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frmPetRecordView.
 	 * @param iD 
 	 */
-	private void initialize(final int iD) {
+	private void initialize() {
 		frmPetRecordView = new JFrame();
 		frmPetRecordView.getContentPane().setBackground(Color.WHITE);
 		frmPetRecordView.setIconImage(Toolkit.getDefaultToolkit().getImage(Pet_Record_View.class.getResource("/General_images/GI_icon.png")));
@@ -152,7 +148,7 @@ public class Pet_Record_View {
 		btnSave.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				updateDB(iD);
+				updateDB(Main_Menu.PetID);
 				emptyFields();
 				exitEditMode();
 			}
@@ -258,7 +254,7 @@ public class Pet_Record_View {
 		txtColor.setColumns(10);
 		
 		//Initialization Functions
-		pullFromDB(iD);
+		pullFromDB(Main_Menu.PetID);
 		exitEditMode();
 	}
 

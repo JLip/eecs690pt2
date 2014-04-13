@@ -257,8 +257,10 @@ initialize();
 	btnViewPet.addMouseListener(new MouseAdapter() {
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Pet_Record_View Pet_Record_Instance = new Pet_Record_View(pets.get((petList.getSelectedIndex())).ID);
-		Pet_Record_Instance.frmPetRecordView.setVisible(true);
+		Main_Menu.PetID = pets.get((petList.getSelectedIndex())).ID;
+		Pet_Record_View.run();
+		//Pet_Record_View Pet_Record_Instance = new Pet_Record_View(pets.get((petList.getSelectedIndex())).ID);
+		//Pet_Record_Instance.frmPetRecordView.setVisible(true);
 	}
 	});
 	btnViewPet.setEnabled(false);

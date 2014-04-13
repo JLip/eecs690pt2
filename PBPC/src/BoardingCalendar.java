@@ -21,7 +21,7 @@ public class BoardingCalendar {
 public static void run() {
 				try {
 					BoardingCalendar window = new BoardingCalendar();
-					window.frmBoardingCalendar.setVisible(false);
+					window.frmBoardingCalendar.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

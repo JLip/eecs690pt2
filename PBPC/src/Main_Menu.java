@@ -26,6 +26,7 @@ public class Main_Menu {
 	
 	
 	public static int OwnerID;
+	public static int PetID;
 	private JFrame frmMainMenu;
 
 	/**

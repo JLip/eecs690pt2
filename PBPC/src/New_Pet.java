@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Font;
 
 
 public class New_Pet {
@@ -123,12 +124,10 @@ public static void run() {
 		txt_Comments.setBounds(266, 365, 191, 85);
 		frame.getContentPane().add(txt_Comments);
 		
-		JButton btnOkay = new JButton("Okay");
+		JButton btnOkay = new JButton("Submit");
 		btnOkay.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				//InsertRecord();
-				//frame.dispose();
+			public void mouseClicked(MouseEvent arg0) {			
 				CheckValues();
 			}
 		});
@@ -166,6 +165,18 @@ public static void run() {
 		JLabel lblComments = new JLabel("Comments");
 		lblComments.setBounds(181, 365, 75, 14);
 		frame.getContentPane().add(lblComments);
+		
+		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Main_Menu.run();
+				frame.dispose();
+			}
+		});
+		btnMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnMainMenu.setBounds(10, 420, 150, 31);
+		frame.getContentPane().add(btnMainMenu);
 	}
 	
 	public void CheckValues()
@@ -243,7 +254,8 @@ public static void run() {
 				
 				
 		SQL.UpdateResultSet(commandText);
-		
+		String message = Name + " has been successfully added to the database.";
+		JOptionPane.showMessageDialog(null, message);		
 		Main_Menu.run();
 		frame.dispose();
 		

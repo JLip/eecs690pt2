@@ -279,8 +279,10 @@ public static void run() {
 			public void mouseClicked(MouseEvent e) {
 				//Open record view of selected animal's record
 				petItem temp = filteredPets.get(petList.getSelectedIndex());
-				Pet_Record_View Pet_Record_Instance = new Pet_Record_View(temp.ID);
-				Pet_Record_Instance.frmPetRecordView.setVisible(true);
+				Main_Menu.PetID = temp.ID;
+				//Pet_Record_View Pet_Record_Instance = new Pet_Record_View(temp.ID);
+				//Pet_Record_Instance.frmPetRecordView.setVisible(true);
+				Pet_Record_View.run();
 				
 			}
 		});

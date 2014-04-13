@@ -62,8 +62,8 @@ public class Food_Screen {
 	    int day = c.get(Calendar.DAY_OF_MONTH);
 		int day_of_week = c.get(Calendar.DAY_OF_WEEK);
 		ResultSet rs;
-		Date start;
-		Date end;
+		String start = "";
+		String end = "";
 		Vector<Integer> vector = new Vector<Integer>();
 		int id1 = 0;
 		
@@ -95,13 +95,21 @@ public class Food_Screen {
 			try{
 				rs = SQL.ExecuteResultSet(CommandText);
 				while (rs.next()) {
-					start = rs.getDate("StartDate");
-					end = rs.getDate("EndDate");
+					start = rs.getString("StartDate");
+					end = rs.getString("EndDate");
 					id1 = rs.getInt("PetID");
+					String[] sTimes = start.split("-");
+					int sYr = Integer.parseInt(sTimes[2]);
+					int sMo = Integer.parseInt(sTimes[0]);
+					int sDy = Integer.parseInt(sTimes[1]);					
+					String[] eTimes = end.split("-");
+					int eYr = Integer.parseInt(eTimes[2]);
+					int eMo = Integer.parseInt(eTimes[0]);
+					int eDy = Integer.parseInt(eTimes[1]);	
 					Calendar c1 = Calendar.getInstance();
-					c.setTime(start);
+					c1.set(sYr, sMo, sDy);
 					Calendar c2 = Calendar.getInstance();
-					c.setTime(end);
+					c2.set(eYr, eMo, eDy);
 					if (c.before(c2) && c.after(c1))
 						vector.add(id1);
 				}
@@ -114,7 +122,7 @@ public class Food_Screen {
 		
 		String animal;
 		double size;
-		Date birth;
+		String birth;
 		int sdy = 8;
 		int ady = 1;
 		int scy = 11;
@@ -137,9 +145,13 @@ public class Food_Screen {
 				while (rs.next()) {
 					animal = rs.getString("Animal");
 					size = rs.getDouble("Size");
-					birth = rs.getDate("DOB");
+					birth = rs.getString("DOB");
+					String[] bTimes = birth.split("-");
+					int bYr = Integer.parseInt(bTimes[2]);
+					int bMo = Integer.parseInt(bTimes[0]);
+					int bDy = Integer.parseInt(bTimes[1]);
 					Calendar age = Calendar.getInstance();
-					age.setTime(birth);
+					age.set(bYr, bMo, bDy);
 					
 					if(animal.equalsIgnoreCase("dog")){
 						if (size >= 100)
@@ -277,6 +289,8 @@ public class Food_Screen {
 	//This method will restart the boarders screen and destroy this instance of the food screen
 	private void exitFoodScreen() {			
 
+		BoardingCalendar Board_GUI_Instance = new BoardingCalendar();
+		Board_GUI_Instance.frmBoardingCalendar.setVisible(true);
 		frmFoodScreen.dispose();		
 	}
 }

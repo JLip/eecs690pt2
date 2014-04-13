@@ -12,22 +12,33 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Vector;
 import javax.swing.JCheckBox;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
-
+//TODO: Calculate kennel, populate that as a drop-down
+/*TODO: Change DB to handle int values for each optional service
+		PlayTime : 0 to #DaysOfStay
+			0 is unselected, actual value for drop-down populated up to length of stay
+		others : int as boolean
+*/
+//TODO: OPTIONAL
+//		Space out buttons for an "update database" button;
+//			should only be able to alter start/end date
 public class Boarder_List {
 
 	JFrame frmBoarderList;
 	private JTextField textField_animal;
 	private JTextField textField_size;
 	private JTextField textField_owner;
-	private JTextField textField_strtDate;
-	private JTextField textField_endDate;
+	private JTextField textField_start;
+	private JTextField textField_end;
+	private JTextArea txtrCommentText;
 
 	/**
 	 * Launch the application.
@@ -50,6 +61,73 @@ public class Boarder_List {
 	 */
 	public Boarder_List() {
 		initialize();
+	}
+	
+void update(int petID){
+		String start = "";
+		String end = "";
+		String comment = "";
+		String service = "";
+		int ken = -1;
+		String animal = "";
+		String owner = "";
+		int oID = -1;
+		int bigness = -1;
+		ResultSet rs;
+		
+		String CommandText = "SELECT StartDate, EndDate, Comments, ExtraServices, Kennel FROM Boarding WHERE PETID = " + petID;		
+		try{
+			rs = SQL.ExecuteResultSet(CommandText);
+			while (rs.next()) {
+				start = rs.getString("StartDate");
+				end = rs.getString("EndDate");
+				comment = rs.getString("Comments");
+				ken = rs.getInt("Kennel");
+			}
+		}
+		catch (SQLException e){
+			System.out.println(e.getMessage());
+		}
+		
+		CommandText = "SELECT OwnerID, Animal, Size FROM PetRecord WHERE PetID = " + petID;		
+		try{
+			rs = SQL.ExecuteResultSet(CommandText);
+			while (rs.next()) {
+				oID = rs.getInt("OwnerID");
+				animal = rs.getString("Animal");
+				bigness = rs.getInt("Size");
+			}
+		}
+		catch (SQLException e){
+			System.out.println(e.getMessage());
+		}
+		
+		CommandText = "SELECT FirstName, LastName FROM PetOwner WHERE ID = " + oID;		
+		try{
+			rs = SQL.ExecuteResultSet(CommandText);
+			while (rs.next()) {
+				String first = rs.getString("FirstName");
+				String last = rs.getString("LastName");
+				owner = first + " " + last;
+			}
+		}
+		catch (SQLException e){
+			System.out.println(e.getMessage());
+		}
+		
+		textField_animal.setText(animal);
+		textField_size.setText(""+bigness);
+		textField_owner.setText(owner);
+		textField_start.setText(start);
+		textField_end.setText(end);
+		txtrCommentText.setText(comment);
+		txtrCommentText.repaint();
+		textField_animal.repaint();
+		textField_size.repaint();
+		textField_owner.repaint();
+		textField_start.repaint();
+		textField_end.repaint();
+		
 	}
 
 	/**
@@ -86,9 +164,7 @@ public class Boarder_List {
 		frmBoarderList.getContentPane().add(scrollPane);
 		
 		int pID = -1;
-		int oID = -1;
 		String pName = " ";
-		String oName = " ";
 		String displayable;
 		ResultSet rs;
 		ResultSet secondary;
@@ -99,24 +175,32 @@ public class Boarder_List {
 			rs = SQL.ExecuteResultSet(CommandText);
 			while (rs.next()) {
 				pID = rs.getInt("PETID");
-				String SecondaryText = "SELECT OwnerID, Name from PetRecord WHERE PetID = " + pID;
+				String SecondaryText = "SELECT Name FROM PetRecord WHERE PetID = " + pID;
 				secondary = SQL.ExecuteResultSet(SecondaryText);
 				while(secondary.next()){
 					pName = secondary.getString("Name");
-					oID = secondary.getInt("OwnerID");
 				}
-				SecondaryText = "SELECT FirstName, LastName from PetOwner WHERE ID = " + oID;
-				while(secondary.next()){
-					oName = secondary.getString("FirstName") + " " + secondary.getString("LastName");
-				}
-				displayable = oName + "-" + pName;
+				displayable = pName + "-" + pID;
 			    board.add(displayable);
+			    secondary.close();
 			}
+			rs.close();
 		}
 		catch (SQLException e){
 			System.out.println(e.getMessage());
 		}
-		JList list = new JList(board);
+		final JList list = new JList(board);
+		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		list.setLayoutOrientation(JList.VERTICAL);
+		list.setVisibleRowCount(-1);
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				String selected = list.getSelectedValue().toString();
+				String[] selects = selected.split("-");
+				int pID = Integer.parseInt(selects[1]);
+				update(pID);
+			}
+		});
 		scrollPane.setViewportView(list);
 		
 		JLabel lblNewLabel = new JLabel("Animal");
@@ -162,6 +246,18 @@ public class Boarder_List {
 		lblEndDate.setBounds(344, 233, 140, 44);
 		frmBoarderList.getContentPane().add(lblEndDate);
 		
+		textField_start = new JTextField();
+		textField_start.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_start.setColumns(10);
+		textField_start.setBounds(564, 178, 210, 44);
+		frmBoarderList.getContentPane().add(textField_start);
+		
+		textField_end = new JTextField();
+		textField_end.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_end.setColumns(10);
+		textField_end.setBounds(564, 233, 210, 44);
+		frmBoarderList.getContentPane().add(textField_end);
+		
 		JLabel lblKennelNumber = new JLabel("Kennel Number");
 		lblKennelNumber.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblKennelNumber.setBounds(344, 288, 140, 44);
@@ -177,28 +273,16 @@ public class Boarder_List {
 		lblComments.setBounds(344, 423, 140, 44);
 		frmBoarderList.getContentPane().add(lblComments);
 		
-		textField_strtDate = new JTextField();
-		textField_strtDate.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField_strtDate.setColumns(10);
-		textField_strtDate.setBounds(564, 178, 210, 44);
-		frmBoarderList.getContentPane().add(textField_strtDate);
-		
-		textField_endDate = new JTextField();
-		textField_endDate.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField_endDate.setColumns(10);
-		textField_endDate.setBounds(564, 233, 210, 44);
-		frmBoarderList.getContentPane().add(textField_endDate);
-		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(494, 423, 280, 67);
 		frmBoarderList.getContentPane().add(scrollPane_1);
 		
 		JTextArea txtrCommentText = new JTextArea();
-		txtrCommentText.setText("Sample comment text.");
+		txtrCommentText.setText("");
 		scrollPane_1.setViewportView(txtrCommentText);
 		
 		JCheckBox chckbxPlayTime = new JCheckBox("Extra Play Time");
-		chckbxPlayTime.setBounds(564, 343, 210, 23);
+		chckbxPlayTime.setBounds(564, 343, 119, 23);
 		frmBoarderList.getContentPane().add(chckbxPlayTime);
 		
 		JCheckBox chckbxBathing = new JCheckBox("Bathing/Grooming");

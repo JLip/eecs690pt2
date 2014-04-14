@@ -189,7 +189,7 @@ public static void run() {
 		btnMainMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Main_Menu.run();
+				//Main_Menu.run();
 				frame.dispose();
 			}
 		});
@@ -275,7 +275,7 @@ public static void run() {
 		SQL.UpdateResultSet(commandText);
 		String message = Name + " has been successfully added to the database.";
 		JOptionPane.showMessageDialog(null, message);		
-		Main_Menu.run();
+		//Main_Menu.run();
 		frame.dispose();
 		
 	}

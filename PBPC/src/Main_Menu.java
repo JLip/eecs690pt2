@@ -46,7 +46,7 @@ public class Main_Menu {
 		});
 	}
 	
-	
+	/*
 	public static void run() {
 		try {
 			
@@ -56,7 +56,7 @@ public class Main_Menu {
 			e.printStackTrace();
 		}
 	}
-
+*/
 	/**
 	 * Create the application.
 	 */

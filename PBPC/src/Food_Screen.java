@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
+//TODO:	Update SQL calls for pet weight instead of size
 
 public class Food_Screen {
 
@@ -218,7 +219,7 @@ public class Food_Screen {
 		lblComingSoon.setBounds(22, 27, 210, 60);
 		frmFoodScreen.getContentPane().add(lblComingSoon);
 		
-		JButton btnBack = new JButton("Back");
+		JButton btnBack = new JButton("Back to Calendar");
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

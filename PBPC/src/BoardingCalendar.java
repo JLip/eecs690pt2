@@ -9,6 +9,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 
+/*TODO:	Populate a Google Calendar
+			notification of how many kennels full
+			Click a day for pop-up of which kennels full
+*/
 
 public class BoardingCalendar {
 
@@ -52,10 +56,22 @@ public static void run() {
 		lblComingSoon.setBounds(288, 82, 210, 60);
 		frmBoardingCalendar.getContentPane().add(lblComingSoon);
 		
-		JButton btnAddBoarder = new JButton("Add Boarder");
-		btnAddBoarder.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnAddBoarder.setBounds(274, 507, 237, 44);
-		frmBoardingCalendar.getContentPane().add(btnAddBoarder);
+		JButton btnListView = new JButton("Boarder List View");
+		btnListView.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				//Open boarder list screen
+				Boarder_List List_GUI_Instance = new Boarder_List();
+				List_GUI_Instance.frmBoarderList.setVisible(true);
+				frmBoardingCalendar.dispose();	
+				
+				
+			}
+		});
+		btnListView.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnListView.setBounds(274, 507, 237, 44);
+		frmBoardingCalendar.getContentPane().add(btnListView);
 		
 		JButton btnWeeklyFood = new JButton("Weekly Food");
 		btnWeeklyFood.addMouseListener(new MouseAdapter() {
@@ -65,6 +81,7 @@ public static void run() {
 				//Open food screen
 				Food_Screen Food_GUI_Instance = new Food_Screen();
 				Food_GUI_Instance.frmFoodScreen.setVisible(true);
+				frmBoardingCalendar.dispose();	
 				
 				
 			}

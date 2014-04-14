@@ -20,16 +20,19 @@ import java.util.Vector;
 import javax.swing.JCheckBox;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.JComboBox;
 
 //TODO: Calculate kennel, populate that as a drop-down
-/*TODO: Change DB to handle int values for each optional service
+/*TODO: Change SQL calls for each optional service to match new database fields
 		PlayTime : 0 to #DaysOfStay
 			0 is unselected, actual value for drop-down populated up to length of stay
 		others : int as boolean
 */
-//TODO: OPTIONAL
-//		Space out buttons for an "update database" button;
-//			should only be able to alter start/end date
+//TODO:	Mirror of Pet_Owner_List chain for Add_Boarder functionality
+/*TODO: OPTIONAL
+		Space out buttons for an "update database" button;
+			should only be able to alter start/end date and extra services
+			*/
 public class Boarder_List {
 
 	JFrame frmBoarderList;
@@ -145,7 +148,7 @@ void update(int petID){
 		btnAddBoarder.setBounds(564, 507, 210, 44);
 		frmBoarderList.getContentPane().add(btnAddBoarder);
 		
-		JButton btnBack = new JButton("Back");
+		JButton btnBack = new JButton("Back to Calendar");
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -262,10 +265,30 @@ void update(int petID){
 		lblKennelNumber.setBounds(344, 288, 140, 44);
 		frmBoarderList.getContentPane().add(lblKennelNumber);
 		
+		JComboBox comboKennel = new JComboBox();
+		comboKennel.setBounds(564, 288, 210, 44);
+		frmBoarderList.getContentPane().add(comboKennel);
+		
 		JLabel lblExtraServices = new JLabel("Extra Services");
 		lblExtraServices.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblExtraServices.setBounds(344, 343, 140, 44);
 		frmBoarderList.getContentPane().add(lblExtraServices);
+		
+		JCheckBox chckbxPlayTime = new JCheckBox("Extra Play Time");
+		chckbxPlayTime.setBounds(564, 343, 119, 23);
+		frmBoarderList.getContentPane().add(chckbxPlayTime);
+		
+		JComboBox comboPlay = new JComboBox();
+		comboPlay.setBounds(689, 343, 85, 23);
+		frmBoarderList.getContentPane().add(comboPlay);
+		
+		JCheckBox chckbxBathing = new JCheckBox("Bathing/Grooming");
+		chckbxBathing.setBounds(564, 369, 210, 23);
+		frmBoarderList.getContentPane().add(chckbxBathing);
+		
+		JCheckBox chckbxDental = new JCheckBox("Dental Cleaning");
+		chckbxDental.setBounds(564, 395, 210, 23);
+		frmBoarderList.getContentPane().add(chckbxDental);
 		
 		JLabel lblComments = new JLabel("Comments");
 		lblComments.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -276,21 +299,9 @@ void update(int petID){
 		scrollPane_1.setBounds(494, 423, 280, 67);
 		frmBoarderList.getContentPane().add(scrollPane_1);
 		
-		JTextArea txtrCommentText = new JTextArea();
-		txtrCommentText.setText("");
-		scrollPane_1.setViewportView(txtrCommentText);
-		
-		JCheckBox chckbxPlayTime = new JCheckBox("Extra Play Time");
-		chckbxPlayTime.setBounds(564, 343, 119, 23);
-		frmBoarderList.getContentPane().add(chckbxPlayTime);
-		
-		JCheckBox chckbxBathing = new JCheckBox("Bathing/Grooming");
-		chckbxBathing.setBounds(564, 369, 210, 23);
-		frmBoarderList.getContentPane().add(chckbxBathing);
-		
-		JCheckBox chckbxDental = new JCheckBox("Dental Cleaning");
-		chckbxDental.setBounds(564, 395, 210, 23);
-		frmBoarderList.getContentPane().add(chckbxDental);
+		JTextArea txtrCommentText_1 = new JTextArea();
+		txtrCommentText_1.setText("");
+		scrollPane_1.setViewportView(txtrCommentText_1);
 	}
 	
 	//This method will restart the main screen and destroy this instance of the boarders menu

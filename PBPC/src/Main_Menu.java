@@ -135,7 +135,7 @@ public class Main_Menu {
 				
 				//Launch an instance of the boarding calendar screen
 				BoardingCalendar.run();
-				frmMainMenu.dispose();
+				
 			}
 		});
 		btnBoarderCalender.setText("<html><center>"+"Boarder"+"<br>"+"Calender"+"</center></html>");

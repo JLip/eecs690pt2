@@ -263,7 +263,7 @@ public static void run() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				Main_Menu.run();
+				
 				frmPetOwnerList.dispose();
 				
 			}

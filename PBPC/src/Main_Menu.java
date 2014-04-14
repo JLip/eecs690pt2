@@ -94,7 +94,7 @@ public class Main_Menu {
 				
 				//Launch an instance of new client screen
 				New_Client.run();
-				frmMainMenu.dispose();
+				
 			}
 		});
 		btnNewClient.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -108,7 +108,7 @@ public class Main_Menu {
 				
 				//Launch an instance of the Pet_Owner screen
 				Pet_Owner_List.run();
-				frmMainMenu.dispose();
+				
 				
 			}
 		});

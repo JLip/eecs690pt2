@@ -60,37 +60,44 @@ public static void run() {
 		frmNewClient.getContentPane().setLayout(null);
 		
 		txt_FirstName = new JTextField();
-		txt_FirstName.setBounds(197, 11, 123, 20);
+		txt_FirstName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		txt_FirstName.setBounds(360, 20, 123, 33);
 		frmNewClient.getContentPane().add(txt_FirstName);
 		txt_FirstName.setColumns(10);
 		
 		txt_LastName = new JTextField();
-		txt_LastName.setBounds(197, 47, 123, 20);
+		txt_LastName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		txt_LastName.setBounds(360, 74, 123, 33);
 		frmNewClient.getContentPane().add(txt_LastName);
 		txt_LastName.setColumns(10);
 		
 		txt_Address = new JTextField();
+		txt_Address.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txt_Address.setColumns(10);
-		txt_Address.setBounds(197, 78, 123, 20);
+		txt_Address.setBounds(360, 126, 123, 33);
 		frmNewClient.getContentPane().add(txt_Address);
 		
 		txt_City = new JTextField();
+		txt_City.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txt_City.setColumns(10);
-		txt_City.setBounds(197, 109, 123, 20);
+		txt_City.setBounds(360, 187, 123, 33);
 		frmNewClient.getContentPane().add(txt_City);
 		
 		txt_State = new JTextField();
+		txt_State.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txt_State.setColumns(10);
-		txt_State.setBounds(197, 145, 123, 20);
+		txt_State.setBounds(360, 249, 123, 33);
 		frmNewClient.getContentPane().add(txt_State);
 		
 		txt_ZipCode = new JTextField();
+		txt_ZipCode.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txt_ZipCode.setColumns(10);
-		txt_ZipCode.setBounds(197, 176, 123, 20);
+		txt_ZipCode.setBounds(360, 307, 123, 33);
 		frmNewClient.getContentPane().add(txt_ZipCode);
 		
 		txt_Phone = new JTextField();
-		txt_Phone.setBounds(197, 207, 123, 20);
+		txt_Phone.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		txt_Phone.setBounds(360, 363, 123, 33);
 		frmNewClient.getContentPane().add(txt_Phone);
 		txt_Phone.setColumns(10);
 		
@@ -108,31 +115,38 @@ public static void run() {
 		frmNewClient.getContentPane().add(btnNext);
 		
 		JLabel lblFirstName = new JLabel("First Name");
-		lblFirstName.setBounds(79, 14, 76, 14);
+		lblFirstName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblFirstName.setBounds(274, 27, 76, 14);
 		frmNewClient.getContentPane().add(lblFirstName);
 		
 		JLabel lblLastName = new JLabel("Last Name");
-		lblLastName.setBounds(79, 50, 76, 14);
+		lblLastName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblLastName.setBounds(274, 81, 76, 14);
 		frmNewClient.getContentPane().add(lblLastName);
 		
 		JLabel lblAddress = new JLabel("Address");
-		lblAddress.setBounds(79, 81, 76, 14);
+		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblAddress.setBounds(274, 133, 76, 14);
 		frmNewClient.getContentPane().add(lblAddress);
 		
 		JLabel lblCity = new JLabel("City");
-		lblCity.setBounds(79, 112, 76, 14);
+		lblCity.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblCity.setBounds(274, 194, 76, 14);
 		frmNewClient.getContentPane().add(lblCity);
 		
 		JLabel lblState = new JLabel("State");
-		lblState.setBounds(79, 148, 76, 14);
+		lblState.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblState.setBounds(274, 256, 76, 14);
 		frmNewClient.getContentPane().add(lblState);
 		
 		JLabel lblZipcode = new JLabel("ZipCode");
-		lblZipcode.setBounds(79, 179, 76, 14);
+		lblZipcode.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblZipcode.setBounds(274, 314, 76, 14);
 		frmNewClient.getContentPane().add(lblZipcode);
 		
 		JLabel lblPhone = new JLabel("Phone");
-		lblPhone.setBounds(79, 210, 76, 14);
+		lblPhone.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPhone.setBounds(274, 370, 76, 14);
 		frmNewClient.getContentPane().add(lblPhone);
 		
 		JButton btnNewButton = new JButton("Return To Main Menu");

@@ -66,6 +66,7 @@ public static void run() {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 634, 517);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -73,97 +74,115 @@ public static void run() {
 		//JCalendar calendar = new JCalendar();    
 		
 		txt_PetName = new JTextField();
-		txt_PetName.setBounds(268, 56, 130, 20);
+		txt_PetName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		txt_PetName.setBounds(268, 28, 130, 33);
 		frame.getContentPane().add(txt_PetName);
 		txt_PetName.setColumns(10);
 		
 		txt_Breed = new JTextField();
+		txt_Breed.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txt_Breed.setColumns(10);
-		txt_Breed.setBounds(268, 177, 130, 20);
+		txt_Breed.setBounds(268, 173, 130, 33);
 		frame.getContentPane().add(txt_Breed);
 		
 		rdbtnDog = new JRadioButton("Dog");
+		rdbtnDog.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnDog.setSelected(true);
 		buttonGroup.add(rdbtnDog);
-		rdbtnDog.setBounds(268, 83, 51, 23);
+		rdbtnDog.setBounds(255, 83, 51, 23);
 		frame.getContentPane().add(rdbtnDog);
 		
 		rdbtnCat = new JRadioButton("Cat");
+		rdbtnCat.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		buttonGroup.add(rdbtnCat);
 		rdbtnCat.setBounds(334, 83, 51, 23);
 		frame.getContentPane().add(rdbtnCat);
 		
 		rdbtnMale = new JRadioButton("Male");
+		rdbtnMale.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnMale.setSelected(true);
 		buttonGroup_1.add(rdbtnMale);
-		rdbtnMale.setBounds(268, 129, 51, 23);
+		rdbtnMale.setBounds(255, 129, 64, 23);
 		frame.getContentPane().add(rdbtnMale);
 		
 		JRadioButton rdbtnFemale = new JRadioButton("Female");
+		rdbtnFemale.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		buttonGroup_1.add(rdbtnFemale);
-		rdbtnFemale.setBounds(334, 129, 64, 23);
+		rdbtnFemale.setBounds(334, 129, 77, 23);
 		frame.getContentPane().add(rdbtnFemale);
 		
 		combo_size = new JComboBox();
+		combo_size.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		combo_size.setModel(new DefaultComboBoxModel(new String[] {"Small", "Medium", "Large"}));
-		combo_size.setBounds(268, 226, 130, 20);
+		combo_size.setBounds(268, 220, 130, 33);
 		frame.getContentPane().add(combo_size);
 		
 		txt_Color = new JTextField();
-		txt_Color.setBounds(268, 278, 130, 20);
+		txt_Color.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		txt_Color.setBounds(268, 274, 130, 33);
 		frame.getContentPane().add(txt_Color);
 		txt_Color.setColumns(10);
 		
 		DOB = new JDateChooser();
 		DOB.setToolTipText("Date of Birth");
-		DOB.setBounds(268, 330, 130, 20);
+		DOB.setBounds(268, 321, 130, 33);
 		frame.getContentPane().add(DOB);
 		DOB.setLocale(Locale.US);
 		
 		txt_Comments = new JTextPane();
+		txt_Comments.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txt_Comments.setBounds(266, 365, 191, 85);
 		frame.getContentPane().add(txt_Comments);
 		
 		JButton btnOkay = new JButton("Submit");
+		btnOkay.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnOkay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {			
 				CheckValues();
 			}
 		});
-		btnOkay.setBounds(508, 427, 89, 23);
+		btnOkay.setBounds(494, 420, 103, 30);
 		frame.getContentPane().add(btnOkay);
 		
 		JLabel lblName = new JLabel("Name");
-		lblName.setBounds(181, 59, 46, 14);
+		lblName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblName.setBounds(163, 35, 46, 14);
 		frame.getContentPane().add(lblName);
 		
 		JLabel lblAnimal = new JLabel("Animal");
-		lblAnimal.setBounds(181, 87, 46, 14);
+		lblAnimal.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblAnimal.setBounds(163, 87, 46, 14);
 		frame.getContentPane().add(lblAnimal);
 		
 		JLabel lblSex = new JLabel("Sex");
-		lblSex.setBounds(181, 133, 46, 14);
+		lblSex.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSex.setBounds(163, 133, 46, 14);
 		frame.getContentPane().add(lblSex);
 		
 		JLabel lblBreed = new JLabel("Breed");
-		lblBreed.setBounds(181, 180, 46, 14);
+		lblBreed.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblBreed.setBounds(163, 180, 46, 14);
 		frame.getContentPane().add(lblBreed);
 		
 		JLabel lblSize = new JLabel("Size");
-		lblSize.setBounds(181, 229, 46, 14);
+		lblSize.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSize.setBounds(163, 229, 46, 14);
 		frame.getContentPane().add(lblSize);
 		
 		JLabel lblColor = new JLabel("Color");
-		lblColor.setBounds(181, 281, 46, 14);
+		lblColor.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblColor.setBounds(163, 281, 46, 14);
 		frame.getContentPane().add(lblColor);
 		
 		JLabel lblDateOfBirth = new JLabel("Date of Birth");
-		lblDateOfBirth.setBounds(181, 330, 77, 14);
+		lblDateOfBirth.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblDateOfBirth.setBounds(163, 330, 95, 14);
 		frame.getContentPane().add(lblDateOfBirth);
 		
 		JLabel lblComments = new JLabel("Comments");
-		lblComments.setBounds(181, 365, 75, 14);
+		lblComments.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblComments.setBounds(163, 372, 75, 14);
 		frame.getContentPane().add(lblComments);
 		
 		JButton btnMainMenu = new JButton("Main Menu");

@@ -39,7 +39,7 @@ public class BoarderOwners {
 	/**
 	 * Launch the application.
 	 */
-
+//TODO: Resolve SQL syntax error in View Pets button
 public static void run() {
 				try {
 					BoarderOwners window = new BoarderOwners();

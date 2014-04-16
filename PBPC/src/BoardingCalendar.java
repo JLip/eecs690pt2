@@ -73,10 +73,22 @@ public static void run() {
 		btnListView.setBounds(274, 507, 237, 44);
 		frmBoardingCalendar.getContentPane().add(btnListView);
 
-		JButton btnAddBoarder = new JButton("Add Boarder");
-		btnAddBoarder.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnAddBoarder.setBounds(274, 507, 237, 41);
-		frmBoardingCalendar.getContentPane().add(btnAddBoarder);
+		JButton btnListBoarder = new JButton("List of Boarders");
+		btnListBoarder.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				//Open food screen
+				Boarder_List List_GUI_Instance = new Boarder_List();
+				List_GUI_Instance.frmBoarderList.setVisible(true);
+				frmBoardingCalendar.dispose();	
+				
+				
+			}
+		});
+		btnListBoarder.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnListBoarder.setBounds(274, 507, 237, 41);
+		frmBoardingCalendar.getContentPane().add(btnListBoarder);
 		
 		JButton btnWeeklyFood = new JButton("Weekly Food");
 		btnWeeklyFood.addMouseListener(new MouseAdapter() {

@@ -129,7 +129,7 @@ public class Pet_Record_View {
 			}
 		});
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnBack.setBounds(654, 518, 120, 33);
+		btnBack.setBounds(23, 510, 120, 41);
 		frmPetRecordView.getContentPane().add(btnBack);
 		
 		btnEdit = new JButton("Edit Record");
@@ -141,7 +141,7 @@ public class Pet_Record_View {
 			}
 		});
 		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnEdit.setBounds(513, 518, 131, 33);
+		btnEdit.setBounds(630, 510, 131, 41);
 		frmPetRecordView.getContentPane().add(btnEdit);
 		
 		btnSave = new JButton("Save Changes");

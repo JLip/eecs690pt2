@@ -180,7 +180,7 @@ void update(int petID){
 			}
 		});
 		btnAddBoarder.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnAddBoarder.setBounds(564, 507, 210, 44);
+		btnAddBoarder.setBounds(564, 507, 210, 41);
 		frmBoarderList.getContentPane().add(btnAddBoarder);
 		
 		JButton btnBack = new JButton("Back to Calendar");
@@ -192,7 +192,7 @@ void update(int petID){
 			}
 		});
 		btnBack.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnBack.setBounds(344, 507, 210, 44);
+		btnBack.setBounds(344, 507, 210, 41);
 		frmBoarderList.getContentPane().add(btnBack);
 		
 		JScrollPane scrollPane = new JScrollPane();

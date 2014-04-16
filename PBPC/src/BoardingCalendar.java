@@ -72,6 +72,11 @@ public static void run() {
 		btnListView.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnListView.setBounds(274, 507, 237, 44);
 		frmBoardingCalendar.getContentPane().add(btnListView);
+
+		JButton btnAddBoarder = new JButton("Add Boarder");
+		btnAddBoarder.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnAddBoarder.setBounds(274, 507, 237, 41);
+		frmBoardingCalendar.getContentPane().add(btnAddBoarder);
 		
 		JButton btnWeeklyFood = new JButton("Weekly Food");
 		btnWeeklyFood.addMouseListener(new MouseAdapter() {
@@ -87,7 +92,7 @@ public static void run() {
 			}
 		});
 		btnWeeklyFood.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnWeeklyFood.setBounds(537, 507, 237, 44);
+		btnWeeklyFood.setBounds(537, 507, 237, 41);
 		frmBoardingCalendar.getContentPane().add(btnWeeklyFood);
 		
 		JButton btnBack = new JButton("Return To Main Menu");
@@ -99,7 +104,7 @@ public static void run() {
 			}
 		});
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnBack.setBounds(10, 507, 243, 44);
+		btnBack.setBounds(10, 507, 243, 41);
 		frmBoardingCalendar.getContentPane().add(btnBack);
 	}
 	

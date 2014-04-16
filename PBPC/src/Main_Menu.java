@@ -121,7 +121,7 @@ public class Main_Menu {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				//frmMainMenu.dispose();
+				
 			}
 		});
 		btnProductSale.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -148,7 +148,7 @@ public class Main_Menu {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				//frmMainMenu.dispose();
+				Appointment_Main.run();
 			}
 		});
 		btnAppointments.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -157,7 +157,7 @@ public class Main_Menu {
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(Main_Menu.class.getResource("/General_Images/Logo.jpg")));
-		lblNewLabel.setBounds(220, 26, 303, 136);
+		lblNewLabel.setBounds(223, 25, 303, 136);
 		frmMainMenu.getContentPane().add(lblNewLabel);
 	}
 }

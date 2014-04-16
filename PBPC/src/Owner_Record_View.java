@@ -139,7 +139,7 @@ initialize();
 		
 		JScrollPane petScroll = new JScrollPane();
 		petScroll.setViewportBorder(new LineBorder(new Color(0, 0, 0), 3));
-		petScroll.setBounds(10, 56, 241, 430);
+		petScroll.setBounds(10, 56, 241, 214);
 		frmOwnerRecordView.getContentPane().add(petScroll);
 
 		@SuppressWarnings("rawtypes")
@@ -250,7 +250,7 @@ initialize();
 	}
 	});
 	btnBack.setFont(new Font("Tahoma", Font.BOLD, 17));
-	btnBack.setBounds(639, 501, 135, 37);
+	btnBack.setBounds(20, 501, 135, 41);
 	frmOwnerRecordView.getContentPane().add(btnBack);
 	
 	btnViewPet = new JButton("View Pet");
@@ -265,7 +265,7 @@ initialize();
 	});
 	btnViewPet.setEnabled(false);
 	btnViewPet.setFont(new Font("Tahoma", Font.BOLD, 17));
-	btnViewPet.setBounds(68, 497, 121, 37);
+	btnViewPet.setBounds(70, 281, 121, 41);
 	frmOwnerRecordView.getContentPane().add(btnViewPet);
 	
 	btnSave = new JButton("Save Changes");
@@ -299,11 +299,11 @@ initialize();
 	
 	btnNewPet = new JButton("New Pet");
 	btnNewPet.setFont(new Font("Tahoma", Font.BOLD, 17));
-	btnNewPet.setBounds(494, 501, 135, 37);
+	btnNewPet.setBounds(630, 501, 135, 41);
 	frmOwnerRecordView.getContentPane().add(btnNewPet);
 	btnSave.setEnabled(false);
 	btnSave.setFont(new Font("Tahoma", Font.BOLD, 17));
-	btnSave.setBounds(396, 325, 151, 37);
+	btnSave.setBounds(396, 325, 151, 41);
 	frmOwnerRecordView.getContentPane().add(btnSave);
 	
 	btnDiscard = new JButton("Discard Changes");
@@ -315,7 +315,7 @@ initialize();
 	});
 	btnDiscard.setEnabled(false);
 	btnDiscard.setFont(new Font("Tahoma", Font.BOLD, 17));
-	btnDiscard.setBounds(557, 325, 181, 37);
+	btnDiscard.setBounds(557, 325, 181, 41);
 	frmOwnerRecordView.getContentPane().add(btnDiscard);
 	
 	btnEditAccount = new JButton("Edit Account");
@@ -387,7 +387,7 @@ initialize();
 	}
 	});
 	btnEditAccount.setFont(new Font("Tahoma", Font.BOLD, 17));
-	btnEditAccount.setBounds(329, 501, 155, 37);
+	btnEditAccount.setBounds(465, 501, 155, 41);
 	frmOwnerRecordView.getContentPane().add(btnEditAccount);
 	
 	//Initial available buttons

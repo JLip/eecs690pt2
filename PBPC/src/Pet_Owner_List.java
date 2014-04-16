@@ -269,7 +269,7 @@ public static void run() {
 			}
 		});
 		btnReturnToMain.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnReturnToMain.setBounds(23, 520, 225, 31);
+		btnReturnToMain.setBounds(21, 510, 225, 41);
 		frmPetOwnerList.getContentPane().add(btnReturnToMain);
 		
 		

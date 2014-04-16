@@ -12,6 +12,7 @@ import java.awt.Font;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.Toolkit;
 
 
 public class New_Client {
@@ -53,6 +54,8 @@ public static void run() {
 	 */
 	private void initialize() {
 		frmNewClient = new JFrame();
+		frmNewClient.setTitle("New Client");
+		frmNewClient.setIconImage(Toolkit.getDefaultToolkit().getImage(New_Client.class.getResource("/General_Images/GI_icon.png")));
 		frmNewClient.getContentPane().setBackground(Color.WHITE);
 		frmNewClient.setBackground(Color.WHITE);
 		frmNewClient.setBounds(100, 100, 800, 600);
@@ -111,7 +114,7 @@ public static void run() {
 				//InsertRecord();
 			}
 		});
-		btnNext.setBounds(650, 518, 110, 33);
+		btnNext.setBounds(651, 510, 110, 41);
 		frmNewClient.getContentPane().add(btnNext);
 		
 		JLabel lblFirstName = new JLabel("First Name");

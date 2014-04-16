@@ -22,13 +22,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JComboBox;
 
-//TODO: Calculate kennel, populate that as a drop-down
-/*TODO: Change SQL calls for each optional service to match new database fields
-		PlayTime : 0 to #DaysOfStay
-			0 is unselected, actual value for drop-down populated up to length of stay
-		others : int as boolean
-*/
-//TODO:	Mirror of Pet_Owner_List chain for Add_Boarder functionality
+//TODO: Change SQL calls for weight instead of size
 /*TODO: OPTIONAL
 		Space out buttons for an "update database" button;
 			should only be able to alter start/end date and extra services
@@ -42,6 +36,11 @@ public class Boarder_List {
 	private JTextField textField_start;
 	private JTextField textField_end;
 	private JTextArea txtrCommentText;
+	private JLabel lblPlay;
+	private JCheckBox chckbxDental;
+	private JCheckBox chckbxBathing;
+	private JCheckBox chckbxPlayTime;
+	private JLabel lblKennel;
 
 	/**
 	 * Launch the application.
@@ -68,15 +67,18 @@ void update(int petID){
 		String start = "";
 		String end = "";
 		String comment = "";
-		String service = "";
+		int play = 0;
+		int dent = 0;
+		int groom = 0;
 		int ken = -1;
 		String animal = "";
 		String owner = "";
 		int oID = -1;
 		int bigness = -1;
+		String size = "";
 		ResultSet rs;
 		
-		String CommandText = "SELECT StartDate, EndDate, Comments, ExtraServices, Kennel FROM Boarding WHERE PETID = " + petID;		
+		String CommandText = "SELECT * FROM Boarding WHERE PETID = " + petID;		
 		try{
 			rs = SQL.ExecuteResultSet(CommandText);
 			while (rs.next()) {
@@ -84,6 +86,9 @@ void update(int petID){
 				end = rs.getString("EndDate");
 				comment = rs.getString("Comments");
 				ken = rs.getInt("Kennel");
+				play = rs.getInt("PlayTime");
+				dent = rs.getInt("Dental");
+				groom = rs.getInt("Grooming");
 			}
 		}
 		catch (SQLException e){
@@ -96,7 +101,8 @@ void update(int petID){
 			while (rs.next()) {
 				oID = rs.getInt("OwnerID");
 				animal = rs.getString("Animal");
-				bigness = rs.getInt("Size");
+				size = rs.getString("Size");
+//				bigness = rs.getInt("Weight");
 			}
 		}
 		catch (SQLException e){
@@ -117,12 +123,34 @@ void update(int petID){
 		}
 		
 		textField_animal.setText(animal);
-		textField_size.setText(""+bigness);
+		textField_size.setText(bigness + "lbs. : " + size);
 		textField_owner.setText(owner);
 		textField_start.setText(start);
 		textField_end.setText(end);
+		lblKennel.setText(""+ken);
 		txtrCommentText.setText(comment);
+		if (play > 0){
+			lblPlay.setText(""+play);
+			chckbxPlayTime.setSelected(true);
+		}
+		else{
+			lblPlay.setText("");
+			chckbxPlayTime.setSelected(false);
+		}
+		if (dent > 0)
+			chckbxDental.setSelected(true);
+		else
+			chckbxDental.setSelected(false);
+		if (groom > 0)
+			chckbxBathing.setSelected(true);
+		else
+			chckbxBathing.setSelected(false);
+		lblPlay.repaint();
+		chckbxPlayTime.repaint();
+		chckbxDental.repaint();
+		chckbxBathing.repaint();
 		txtrCommentText.repaint();
+		lblKennel.repaint();
 		textField_animal.repaint();
 		textField_size.repaint();
 		textField_owner.repaint();
@@ -144,6 +172,13 @@ void update(int petID){
 		frmBoarderList.getContentPane().setLayout(null);
 		
 		JButton btnAddBoarder = new JButton("Add Boarder");
+		btnAddBoarder.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				addBoardScreen();
+			}
+		});
 		btnAddBoarder.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnAddBoarder.setBounds(564, 507, 210, 44);
 		frmBoarderList.getContentPane().add(btnAddBoarder);
@@ -265,9 +300,9 @@ void update(int petID){
 		lblKennelNumber.setBounds(344, 288, 140, 44);
 		frmBoarderList.getContentPane().add(lblKennelNumber);
 		
-		JComboBox comboKennel = new JComboBox();
-		comboKennel.setBounds(564, 288, 210, 44);
-		frmBoarderList.getContentPane().add(comboKennel);
+		JLabel lblKennel = new JLabel("");
+		lblKennel.setBounds(564, 288, 210, 44);
+		frmBoarderList.getContentPane().add(lblKennel);
 		
 		JLabel lblExtraServices = new JLabel("Extra Services");
 		lblExtraServices.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -278,9 +313,9 @@ void update(int petID){
 		chckbxPlayTime.setBounds(564, 343, 119, 23);
 		frmBoarderList.getContentPane().add(chckbxPlayTime);
 		
-		JComboBox comboPlay = new JComboBox();
-		comboPlay.setBounds(689, 343, 85, 23);
-		frmBoarderList.getContentPane().add(comboPlay);
+		JLabel lblPlay = new JLabel("");
+		lblPlay.setBounds(689, 343, 85, 23);
+		frmBoarderList.getContentPane().add(lblPlay);
 		
 		JCheckBox chckbxBathing = new JCheckBox("Bathing/Grooming");
 		chckbxBathing.setBounds(564, 369, 210, 23);
@@ -310,6 +345,15 @@ void update(int petID){
 		
 		BoardingCalendar Board_GUI_Instance = new BoardingCalendar();
 		Board_GUI_Instance.frmBoardingCalendar.setVisible(true);
+		frmBoarderList.dispose();		
+	}
+	
+	//This method will begin the chain of screens necessary to add a boarder
+	private void addBoardScreen() {
+		
+		
+		BoarderOwners Own_GUI_Instance = new BoarderOwners();
+		Own_GUI_Instance.frmBoardOwner.setVisible(true);
 		frmBoarderList.dispose();		
 	}
 }

@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.Vector;
 
 //TODO:	Update SQL calls for pet weight instead of size
+//TODO: Verify date is mm/dd/yyyy
 
 public class Food_Screen {
 

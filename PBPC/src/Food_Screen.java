@@ -93,6 +93,7 @@ public class Food_Screen {
 			c.set(year, month, day+i);
 			
 			String CommandText = "SELECT StartDate, EndDate, PETID from Boarding ";
+			Connection.Connect();
 			
 			try{
 				rs = SQL.ExecuteResultSet(CommandText);
@@ -140,13 +141,13 @@ public class Food_Screen {
 		cSD.set(year-acy, month, day+6);
 		
 		for (int i = 0; i < vector.size(); i++){
-			String CommandText = "SELECT Animal, Size, DOB from PetRecord WHERE PetID = " + vector.get(i);
-			
+			String CommandText = "SELECT Animal, Weight, DOB from PetRecord WHERE PetID = " + vector.get(i);
+			Connection.Connect();
 			try{
 				rs = SQL.ExecuteResultSet(CommandText);
 				while (rs.next()) {
 					animal = rs.getString("Animal");
-					size = rs.getDouble("Size");
+					size = rs.getDouble("Weight");
 					birth = rs.getString("DOB");
 					String[] bTimes = birth.split("-");
 					int bYr = Integer.parseInt(bTimes[2]);

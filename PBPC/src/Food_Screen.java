@@ -209,12 +209,12 @@ public class Food_Screen {
 			}
 		}
 
-		String snrD = String.format("%d cups", snrDog);
-		String adlD = String.format("%d cups", adlDog);
-		String yngD = String.format("%d cups", yngDog);
-		String snrC = String.format("%d cups", snrCat);
-		String adlC = String.format("%d cups", adlCat);
-		String yngC = String.format("%d cups", yngCat);
+		String snrD = "" + snrDog + " cups";
+		String adlD = "" + adlDog + " cups";
+		String yngD = "" + yngDog + " cups";
+		String snrC = "" + snrCat + " cups";
+		String adlC = "" + adlCat + " cups";
+		String yngC = "" + yngCat + " cups";
 		
 		JLabel lblComingSoon = new JLabel("Senior Dog Food:");
 		lblComingSoon.setFont(new Font("Dialog", Font.BOLD, 20));

@@ -22,7 +22,9 @@ import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
+
 import javax.swing.UIManager;
+
 import java.awt.Toolkit;
 
 
@@ -41,6 +43,7 @@ public class New_Pet {
 	private static JRadioButton rdbtnMale;
 	private static JRadioButton rdbtnFemale;
 	private static JTextPane txt_Comments;
+	private JTextField txt_Weight;
 
 	/**
 	 * Launch the application.
@@ -71,7 +74,7 @@ public static void run() {
 		frmNewPet.setTitle("New Pet");
 		frmNewPet.setIconImage(Toolkit.getDefaultToolkit().getImage(New_Pet.class.getResource("/General_Images/GI_icon.png")));
 		frmNewPet.getContentPane().setBackground(Color.WHITE);
-		frmNewPet.setBounds(100, 100, 634, 517);
+		frmNewPet.setBounds(100, 100, 634, 610);
 		frmNewPet.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNewPet.getContentPane().setLayout(null);
 		
@@ -123,20 +126,20 @@ public static void run() {
 		
 		txt_Color = new JTextField();
 		txt_Color.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txt_Color.setBounds(268, 274, 130, 33);
+		txt_Color.setBounds(268, 308, 130, 33);
 		frmNewPet.getContentPane().add(txt_Color);
 		txt_Color.setColumns(10);
 		
 		DOB = new JDateChooser();
 		DOB.setToolTipText("Date of Birth");
-		DOB.setBounds(268, 321, 130, 33);
+		DOB.setBounds(268, 359, 130, 33);
 		frmNewPet.getContentPane().add(DOB);
 		DOB.setLocale(Locale.US);
 		
 		txt_Comments = new JTextPane();
 		txt_Comments.setBackground(Color.LIGHT_GRAY);
 		txt_Comments.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txt_Comments.setBounds(266, 365, 191, 85);
+		txt_Comments.setBounds(266, 420, 191, 85);
 		frmNewPet.getContentPane().add(txt_Comments);
 		
 		JButton btnOkay = new JButton("Submit");
@@ -147,7 +150,7 @@ public static void run() {
 				CheckValues();
 			}
 		});
-		btnOkay.setBounds(492, 420, 103, 41);
+		btnOkay.setBounds(505, 492, 103, 41);
 		frmNewPet.getContentPane().add(btnOkay);
 		
 		JLabel lblName = new JLabel("Name");
@@ -177,17 +180,17 @@ public static void run() {
 		
 		JLabel lblColor = new JLabel("Color");
 		lblColor.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblColor.setBounds(163, 281, 46, 14);
+		lblColor.setBounds(163, 317, 46, 14);
 		frmNewPet.getContentPane().add(lblColor);
 		
 		JLabel lblDateOfBirth = new JLabel("Date of Birth");
 		lblDateOfBirth.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblDateOfBirth.setBounds(163, 330, 95, 14);
+		lblDateOfBirth.setBounds(163, 368, 95, 14);
 		frmNewPet.getContentPane().add(lblDateOfBirth);
 		
 		JLabel lblComments = new JLabel("Comments");
 		lblComments.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblComments.setBounds(163, 372, 75, 14);
+		lblComments.setBounds(163, 427, 75, 14);
 		frmNewPet.getContentPane().add(lblComments);
 		
 		JButton btnMainMenu = new JButton("Main Menu");
@@ -199,8 +202,19 @@ public static void run() {
 			}
 		});
 		btnMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnMainMenu.setBounds(20, 420, 150, 41);
+		btnMainMenu.setBounds(10, 492, 150, 41);
 		frmNewPet.getContentPane().add(btnMainMenu);
+		
+		JLabel lblWeight = new JLabel("Weight");
+		lblWeight.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblWeight.setBounds(163, 273, 46, 14);
+		frmNewPet.getContentPane().add(lblWeight);
+		
+		txt_Weight = new JTextField();
+		txt_Weight.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		txt_Weight.setColumns(10);
+		txt_Weight.setBounds(268, 264, 130, 33);
+		frmNewPet.getContentPane().add(txt_Weight);
 	}
 	
 	public void CheckValues()
@@ -218,6 +232,12 @@ public static void run() {
 			JOptionPane.showMessageDialog(null, "Breed is Required.");		
 			return;
 			
+		}
+		else if (txt_Weight.getText().isEmpty())
+		{
+			txt_Weight.setBackground(Color.red);
+			JOptionPane.showMessageDialog(null, "Weight is required");
+			return;
 		}
 		else if (txt_Color.getText().isEmpty())
 		{
@@ -247,6 +267,7 @@ public static void run() {
 		String Name = txt_PetName.getText();		
 		String Breed = txt_Breed.getText();
 		String Color = txt_Color.getText();
+		String Weight = txt_Weight.getText();
 		
 		String DOB = String.format("%1$td-%1$tm-%1$tY", DateofBirth);
 		String Animal;
@@ -272,9 +293,9 @@ public static void run() {
 		String Size = combo_size.getSelectedItem().toString();
 		
 	
-		String commandText = "INSERT INTO 'PetRecord'('OwnerID','Name','Animal','Sex','Breed','Size','Color','DOB','Comments') VALUES (" +
+		String commandText = "INSERT INTO 'PetRecord'('OwnerID','Name','Animal','Sex','Breed','Size','Weight','Color','DOB','Comments') VALUES (" +
 							Main_Menu.OwnerID + " ," + "'" + Name + "' ," + "'" + Animal + "' ," + "'" + Sex + "' ,"
-							+ "'" + Breed + "' ," + "'" + Size + "' ," + "'" + Color + "' ," + "'" + DOB + "' ," + "'" + Comments + "')";
+							+ "'" + Breed + "' ," + "'" + Size + "' ," + "'" + Weight + "'," + "'" + Color + "' ," + "'" + DOB + "' ," + "'" + Comments + "')";
 				
 				
 		SQL.UpdateResultSet(commandText);

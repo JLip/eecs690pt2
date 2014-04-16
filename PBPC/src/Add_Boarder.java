@@ -208,7 +208,6 @@ public class Add_Boarder {
 	private void pullFromDB(int iD) {
 		//Pull Pet info from the DB and update lbl
 		String commandText = "SELECT * FROM PetRecord WHERE PetID="+ iD+";";
-		Connection.Connect();
 		String Owner = "";
 		String Size = "";
 		String animal = "";
@@ -231,7 +230,6 @@ public class Add_Boarder {
 		
 		//Pull Owner name from DB and update lbl
 		commandText = "SELECT FirstName, LastName FROM PetOwner WHERE ID="+ownerID+";";
-		Connection.Connect();
 		rs = SQL.ExecuteResultSet(commandText);
 		
 		try {

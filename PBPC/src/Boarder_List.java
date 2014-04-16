@@ -78,8 +78,7 @@ void update(int petID){
 		String size = "";
 		ResultSet rs;
 		
-		String CommandText = "SELECT * FROM Boarding WHERE PETID = " + petID;	
-		Connection.Connect();
+		String CommandText = "SELECT * FROM Boarding WHERE PETID = " + petID;		
 		try{
 			rs = SQL.ExecuteResultSet(CommandText);
 			while (rs.next()) {
@@ -96,8 +95,7 @@ void update(int petID){
 			System.out.println(e.getMessage());
 		}
 		
-		CommandText = "SELECT OwnerID, Animal, Size FROM PetRecord WHERE PetID = " + petID;	
-		Connection.Connect();
+		CommandText = "SELECT OwnerID, Animal, Size FROM PetRecord WHERE PetID = " + petID;		
 		try{
 			rs = SQL.ExecuteResultSet(CommandText);
 			while (rs.next()) {
@@ -112,7 +110,6 @@ void update(int petID){
 		}
 		
 		CommandText = "SELECT FirstName, LastName FROM PetOwner WHERE ID = " + oID;		
-		Connection.Connect();
 		try{
 			rs = SQL.ExecuteResultSet(CommandText);
 			while (rs.next()) {
@@ -211,7 +208,6 @@ void update(int petID){
 		Vector<String> board = new Vector<String>();
 		Connection.Connect();
 		String CommandText = "SELECT * from Boarding";
-		Connection.Connect();
 		try{
 			rs = SQL.ExecuteResultSet(CommandText);
 			while (rs.next() && rs!=null) {
@@ -343,7 +339,7 @@ void update(int petID){
 		scrollPane_1.setViewportView(txtrCommentText_1);
 	}
 	
-	//This method will restart the calendar and destroy this instance of the boarders list
+	//This method will restart the main screen and destroy this instance of the boarders menu
 	private void exitListScreen() {
 		
 		

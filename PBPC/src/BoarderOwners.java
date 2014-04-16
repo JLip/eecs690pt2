@@ -83,7 +83,6 @@ public static void run() {
 		pets.clear();
 		int temp = Main_Menu.OwnerID;
 		String commandStr = "SELECT PetID, Name FROM PetRecord ORDER BY Name WITH OwnerID = " + temp + ";";
-		Connection.Connect();
 		
 	    try {
 	        ResultSet rs = SQL.ExecuteResultSet(commandStr);
@@ -109,7 +108,6 @@ public static void run() {
 		//select all owners FirstNames, LastNames, and IDs and create a owner list
 		
 		String commandStr = "SELECT FirstName, LastName, `ID` FROM PetOwner ORDER BY LastName;";
-		Connection.Connect();
 
 	    try {
 	        ResultSet rs = SQL.ExecuteResultSet(commandStr);

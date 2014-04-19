@@ -120,7 +120,7 @@ public class Main_Menu {
 		btnProductSale.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				Simple_Product_Sale.run();
 				
 			}
 		});

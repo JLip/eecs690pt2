@@ -54,6 +54,18 @@ public class Simple_Product_Sale {
 		frmSimpleSale.getContentPane().setLayout(null);
 		
 		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try
+				{
+				Simple_Product_Sale.ClearTicket();
+				}
+				catch(Exception e1)
+				{}
+				frmSimpleSale.dispose();
+			}
+		});
 		btnMainMenu.setBounds(10, 414, 89, 23);
 		frmSimpleSale.getContentPane().add(btnMainMenu);
 		
@@ -62,7 +74,7 @@ public class Simple_Product_Sale {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				FelineProducts.run();
-				frmSimpleSale.dispose();
+				//frmSimpleSale.dispose();
 			}
 			
 		});
@@ -149,9 +161,19 @@ public class Simple_Product_Sale {
 		Connection.Connect();
 		Tickets tmp = ticketList.getSelectedValue();
 		String name = tmp.getitem();
-		System.out.println(name);
+		//System.out.println(name);
 		//String commandText = "DELETE FROM SingleSale WHERE Service = " + "'" + name + "'" + "LIMIT 1";
 		String commandText = "DELETE FROM SingleSale WHERE SingleSale.Service = (SELECT Service FROM SingleSale WHERE Service = " + "'" + name + "' LIMIT 1)";
+		SQL.UpdateResultSet(commandText);
+		PopulateTicket();
+	}
+	
+	
+	public static void ClearTicket()
+	{
+		Connection.Connect();
+		
+		String commandText = "DELETE FROM SingleSale";
 		SQL.UpdateResultSet(commandText);
 		PopulateTicket();
 	}

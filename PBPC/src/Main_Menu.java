@@ -120,6 +120,12 @@ public class Main_Menu {
 		btnProductSale.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try
+				{
+				Simple_Product_Sale.ClearTicket();
+				}
+				catch(Exception e1)
+				{}
 				Simple_Product_Sale.run();
 				
 			}

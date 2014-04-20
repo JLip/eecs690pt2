@@ -31,6 +31,7 @@ public class Simple_Product_Sale {
 				try {
 					Simple_Product_Sale window = new Simple_Product_Sale();
 					window.frmSimpleSale.setVisible(true);
+					PopulateTicket();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -114,6 +115,17 @@ public class Simple_Product_Sale {
 		});
 		btnRemove.setBounds(81, 321, 89, 23);
 		frmSimpleSale.getContentPane().add(btnRemove);
+		
+		JButton btnCashout = new JButton("Cashout");
+		btnCashout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Cashout_Screen.run();
+				frmSimpleSale.dispose();
+			}
+		});
+		btnCashout.setBounds(296, 384, 89, 23);
+		frmSimpleSale.getContentPane().add(btnCashout);
 	}
 	
 	
@@ -177,5 +189,4 @@ public class Simple_Product_Sale {
 		SQL.UpdateResultSet(commandText);
 		PopulateTicket();
 	}
-	
 }

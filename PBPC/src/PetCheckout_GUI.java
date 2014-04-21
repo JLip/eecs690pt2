@@ -18,6 +18,7 @@ import com.mysql.jdbc.Statement;
 import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JButton;
 
 
 public class PetCheckout_GUI {
@@ -51,7 +52,7 @@ public class PetCheckout_GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 594, 481);
+		frame.setBounds(100, 100, 594, 699);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -68,6 +69,46 @@ public class PetCheckout_GUI {
 		label.setFont(new Font("Tahoma", Font.BOLD, 20));
 		label.setBounds(10, 11, 218, 37);
 		frame.getContentPane().add(label);
+		
+		JButton btnFelineServices = new JButton("Feline Services");
+		btnFelineServices.setBounds(310, 50, 112, 37);
+		frame.getContentPane().add(btnFelineServices);
+		
+		JButton btnCanineServices = new JButton("Canine Services");
+		btnCanineServices.setBounds(442, 50, 112, 37);
+		frame.getContentPane().add(btnCanineServices);
+		
+		JButton btnFelineImmunizations = new JButton("Feline Immunizations");
+		btnFelineImmunizations.setBounds(310, 98, 112, 37);
+		frame.getContentPane().add(btnFelineImmunizations);
+		
+		JButton btnCanineImmunizations = new JButton("Canine immunizations");
+		btnCanineImmunizations.setBounds(442, 98, 112, 37);
+		frame.getContentPane().add(btnCanineImmunizations);
+		
+		JButton btnFelineBoarding = new JButton("Feline Boarding");
+		btnFelineBoarding.setBounds(310, 146, 112, 37);
+		frame.getContentPane().add(btnFelineBoarding);
+		
+		JButton btnCanineBoarding = new JButton("Canine Boarding");
+		btnCanineBoarding.setBounds(442, 146, 112, 37);
+		frame.getContentPane().add(btnCanineBoarding);
+		
+		JButton btnFelineProducts = new JButton("Feline Products");
+		btnFelineProducts.setBounds(310, 194, 112, 37);
+		frame.getContentPane().add(btnFelineProducts);
+		
+		JButton btnCanineProducts = new JButton("Canine Products");
+		btnCanineProducts.setBounds(442, 194, 112, 37);
+		frame.getContentPane().add(btnCanineProducts);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 292, 245, 239);
+		frame.getContentPane().add(scrollPane);
+		
+		JList<Tickets> list = new JList<Tickets>();
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane.setViewportView(list);
 		
 		PopulatePets();
 		
@@ -102,6 +143,4 @@ public class PetCheckout_GUI {
 
 
 	}
-	
-	
 }

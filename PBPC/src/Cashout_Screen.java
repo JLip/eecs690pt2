@@ -179,7 +179,7 @@ public class Cashout_Screen {
 			JOptionPane.showMessageDialog(null, e.toString());
 		}
 		
-		total = total + (total *.08);
+		total = total + (total *.075);
 		
 	}
 	

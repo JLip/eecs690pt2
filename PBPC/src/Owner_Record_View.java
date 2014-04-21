@@ -55,6 +55,7 @@ private JButton btnBack;
 
 
 public Vector<petItem> pets = new Vector<petItem>();
+private JButton btnCashout;
 /**
 * Launch the application.
 */
@@ -389,6 +390,12 @@ initialize();
 	btnEditAccount.setFont(new Font("Tahoma", Font.BOLD, 17));
 	btnEditAccount.setBounds(465, 501, 155, 41);
 	frmOwnerRecordView.getContentPane().add(btnEditAccount);
+	
+	btnCashout = new JButton("Cashout");
+	btnCashout.setFont(new Font("Tahoma", Font.BOLD, 17));
+	btnCashout.setEnabled(true);
+	btnCashout.setBounds(182, 501, 135, 41);
+	frmOwnerRecordView.getContentPane().add(btnCashout);
 	
 	//Initial available buttons
 	btnSave.setVisible(false);

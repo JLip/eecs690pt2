@@ -82,14 +82,14 @@ public static void run() {
 		//select all pets names and ID and create pet list
 		pets.clear();
 		int temp = Main_Menu.OwnerID;
-		String commandStr = "SELECT PetID, Name FROM PetRecord ORDER BY Name WHERE OwnerID = " + temp + ";";
+		String commandStr = "SELECT PetID, Name FROM PetRecord WHERE OwnerID = " + temp + " ORDER BY Name;";
 		Connection.Connect();
 		
 	    try {
 	        ResultSet rs = SQL.ExecuteResultSet(commandStr);
 	      
 	        //Iterate through the results and populate pet's tempList
-	        while ( rs.next() ) {
+	        while ( rs != null && rs.next() ) {
 	        	String tempName = rs.getString("Name");
 	        	int tempID = rs.getInt("PetID");
 	        	petItem tempItem = new petItem(tempName, tempID);
@@ -115,7 +115,7 @@ public static void run() {
 	        ResultSet rs = SQL.ExecuteResultSet(commandStr);
 	        
 	        //Iterate through the results and populate owner's tempList
-	        while ( rs.next() ) {
+	        while ( rs != null && rs.next() ) {
 	        	String tempFirst = rs.getString("FirstName");
 	        	String tempLast = rs.getString("LastName");
 	        	int tempID = rs.getInt("ID");
@@ -274,7 +274,7 @@ public static void run() {
 			}
 		});
 		btnReturnToList.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnReturnToList.setBounds(23, 520, 225, 31);
+		btnReturnToList.setBounds(20, 507, 280, 44);
 		frmBoardOwner.getContentPane().add(btnReturnToList);
 		
 		

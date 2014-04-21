@@ -23,6 +23,8 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class Cashout_Screen {
@@ -59,9 +61,14 @@ public class Cashout_Screen {
 		frmCashoutTable = new JFrame();
 		frmCashoutTable.setIconImage(Toolkit.getDefaultToolkit().getImage(Cashout_Screen.class.getResource("/General_images/GI_icon.png")));
 		frmCashoutTable.getContentPane().setBackground(Color.WHITE);
-		frmCashoutTable.getContentPane().setLayout(null);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBack.setBounds(150, 520, 117, 31);
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -71,26 +78,27 @@ public class Cashout_Screen {
 				
 			}
 		});
-		btnBack.setBounds(136, 0, 117, 25);
+		frmCashoutTable.getContentPane().setLayout(null);
 		frmCashoutTable.getContentPane().add(btnBack);
 		
-		JLabel lblTicket = new JLabel("Ticket");
+		JLabel lblTicket = new JLabel("Items  / Services:");
+		lblTicket.setBounds(59, 47, 183, 25);
 		lblTicket.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblTicket.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblTicket.setBounds(59, 47, 70, 25);
 		frmCashoutTable.getContentPane().add(lblTicket);
 		
 		JTextPane textPane_1 = new JTextPane();
-		textPane_1.setBackground(Color.LIGHT_GRAY);
 		textPane_1.setBounds(181, 290, 144, 41);
+		textPane_1.setBackground(Color.LIGHT_GRAY);
 		frmCashoutTable.getContentPane().add(textPane_1);
 		
 		JLabel lblTotal = new JLabel("Total:");
-		lblTotal.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblTotal.setBounds(93, 301, 70, 15);
+		lblTotal.setFont(new Font("Dialog", Font.BOLD, 20));
 		frmCashoutTable.getContentPane().add(lblTotal);
 		
 		JButton btnCash = new JButton("Cash");
+		btnCash.setBounds(10, 409, 117, 47);
 		btnCash.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -101,10 +109,10 @@ public class Cashout_Screen {
 			}
 		});
 		btnCash.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnCash.setBounds(10, 409, 117, 47);
 		frmCashoutTable.getContentPane().add(btnCash);
 		
 		JButton btnCc = new JButton("CC");
+		btnCc.setBounds(150, 409, 117, 47);
 		btnCc.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -115,10 +123,14 @@ public class Cashout_Screen {
 			}
 		});
 		btnCc.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnCc.setBounds(136, 409, 117, 47);
 		frmCashoutTable.getContentPane().add(btnCc);
 		
 		JButton btnCheck = new JButton("Check");
+		btnCheck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCheck.setBounds(288, 409, 117, 47);
 		btnCheck.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -129,16 +141,10 @@ public class Cashout_Screen {
 			}
 		});
 		btnCheck.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnCheck.setBounds(260, 409, 117, 47);
 		frmCashoutTable.getContentPane().add(btnCheck);
 		
-		JButton btnDiscount = new JButton("Discount");
-		btnDiscount.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnDiscount.setBounds(46, 494, 294, 47);
-		frmCashoutTable.getContentPane().add(btnDiscount);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(31, 83, 294, 196);
+		scrollPane.setBounds(59, 83, 294, 196);
 		frmCashoutTable.getContentPane().add(scrollPane);
 		
 		JList<Tickets> list = new JList<Tickets>();
@@ -179,7 +185,7 @@ public class Cashout_Screen {
 			JOptionPane.showMessageDialog(null, e.toString());
 		}
 		
-		total = total + (total *.08);
+		total = total + (total *.075);
 		
 	}
 	

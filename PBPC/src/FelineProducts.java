@@ -5,6 +5,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class FelineProducts {
@@ -39,11 +44,15 @@ public class FelineProducts {
 	 */
 	private void initialize() {
 		frmFelineProducts = new JFrame();
+		frmFelineProducts.setTitle("Feline Products");
+		frmFelineProducts.setIconImage(Toolkit.getDefaultToolkit().getImage(FelineProducts.class.getResource("/General_Images/GI_icon.png")));
+		frmFelineProducts.getContentPane().setBackground(Color.WHITE);
 		frmFelineProducts.setBounds(100, 100, 450, 300);
 		frmFelineProducts.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmFelineProducts.getContentPane().setLayout(null);
 		
 		JButton btnHeartwormPrevention = new JButton("Heartworm Prevention");
+		btnHeartwormPrevention.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnHeartwormPrevention.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -55,10 +64,14 @@ public class FelineProducts {
 				frmFelineProducts.dispose();
 			}
 		});
-		btnHeartwormPrevention.setBounds(72, 45, 152, 23);
+		btnHeartwormPrevention.setBounds(26, 45, 179, 31);
 		frmFelineProducts.getContentPane().add(btnHeartwormPrevention);
 		
 		JButton btnFleatickPrevention = new JButton("Flea/Tick Prevention");
+		btnFleatickPrevention.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnFleatickPrevention.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -70,7 +83,7 @@ public class FelineProducts {
 				frmFelineProducts.dispose();
 			}
 		});
-		btnFleatickPrevention.setBounds(72, 79, 152, 23);
+		btnFleatickPrevention.setBounds(229, 45, 179, 31);
 		frmFelineProducts.getContentPane().add(btnFleatickPrevention);
 		
 		JButton btnKittenFood = new JButton("Kitten Food ");
@@ -85,10 +98,14 @@ public class FelineProducts {
 				frmFelineProducts.dispose();
 			}
 		});
-		btnKittenFood.setBounds(72, 113, 152, 23);
+		btnKittenFood.setBounds(26, 87, 179, 31);
 		frmFelineProducts.getContentPane().add(btnKittenFood);
 		
 		JButton btnAdultCatFood = new JButton("Adult Cat Food");
+		btnAdultCatFood.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAdultCatFood.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -100,7 +117,7 @@ public class FelineProducts {
 				frmFelineProducts.dispose();
 			}
 		});
-		btnAdultCatFood.setBounds(72, 147, 152, 23);
+		btnAdultCatFood.setBounds(229, 87, 179, 31);
 		frmFelineProducts.getContentPane().add(btnAdultCatFood);
 		
 		JButton btnReducedFatAdult = new JButton("Reduced Fat Adult Cat Food");
@@ -115,7 +132,7 @@ public class FelineProducts {
 				frmFelineProducts.dispose();
 			}
 		});
-		btnReducedFatAdult.setBounds(72, 181, 179, 23);
+		btnReducedFatAdult.setBounds(26, 140, 179, 31);
 		frmFelineProducts.getContentPane().add(btnReducedFatAdult);
 		
 		JButton btnSeniorAdultCat = new JButton("Senior Adult Cat Food");
@@ -130,12 +147,27 @@ public class FelineProducts {
 				frmFelineProducts.dispose();
 			}
 		});
-		btnSeniorAdultCat.setBounds(72, 215, 179, 23);
+		btnSeniorAdultCat.setBounds(229, 140, 179, 31);
 		frmFelineProducts.getContentPane().add(btnSeniorAdultCat);
 		
 		JLabel lblFelineProducts = new JLabel("Feline Products");
-		lblFelineProducts.setBounds(178, 11, 128, 14);
+		lblFelineProducts.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblFelineProducts.setBounds(152, 11, 128, 14);
 		frmFelineProducts.getContentPane().add(lblFelineProducts);
+		
+		JButton button = new JButton("Back");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				frmFelineProducts.dispose();
+			}
+		});
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button.setBounds(172, 220, 89, 31);
+		frmFelineProducts.getContentPane().add(button);
 	}
-
 }

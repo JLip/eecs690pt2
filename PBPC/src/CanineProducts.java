@@ -5,6 +5,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class CanineProducts {
@@ -39,11 +44,18 @@ public class CanineProducts {
 	 */
 	private void initialize() {
 		frmCanineProducts = new JFrame();
+		frmCanineProducts.setTitle("Canine Products");
+		frmCanineProducts.setIconImage(Toolkit.getDefaultToolkit().getImage(CanineProducts.class.getResource("/General_Images/GI_icon.png")));
+		frmCanineProducts.getContentPane().setBackground(Color.WHITE);
 		frmCanineProducts.setBounds(100, 100, 450, 300);
 		frmCanineProducts.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCanineProducts.getContentPane().setLayout(null);
 		
 		JButton btnHeartwormSmallMed = new JButton("Heartworm (Sm/Med)");
+		btnHeartwormSmallMed.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnHeartwormSmallMed.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -55,10 +67,14 @@ public class CanineProducts {
 				frmCanineProducts.dispose();
 			}
 		});
-		btnHeartwormSmallMed.setBounds(63, 39, 153, 23);
+		btnHeartwormSmallMed.setBounds(20, 38, 179, 31);
 		frmCanineProducts.getContentPane().add(btnHeartwormSmallMed);
 		
 		JButton btnHeartwormLarge = new JButton("Heartworm (Large)");
+		btnHeartwormLarge.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnHeartwormLarge.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -70,10 +86,14 @@ public class CanineProducts {
 				frmCanineProducts.dispose();
 			}
 		});
-		btnHeartwormLarge.setBounds(63, 73, 153, 23);
+		btnHeartwormLarge.setBounds(233, 38, 179, 31);
 		frmCanineProducts.getContentPane().add(btnHeartwormLarge);
 		
 		JButton btnFleatickPrevention = new JButton("Flea/Tick Prevention");
+		btnFleatickPrevention.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnFleatickPrevention.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -85,10 +105,14 @@ public class CanineProducts {
 				frmCanineProducts.dispose();
 			}
 		});
-		btnFleatickPrevention.setBounds(59, 107, 157, 23);
+		btnFleatickPrevention.setBounds(20, 80, 179, 31);
 		frmCanineProducts.getContentPane().add(btnFleatickPrevention);
 		
 		JButton btnPuppyFoodsmall = new JButton("Puppy Food (small)");
+		btnPuppyFoodsmall.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnPuppyFoodsmall.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -100,10 +124,14 @@ public class CanineProducts {
 				frmCanineProducts.dispose();
 			}
 		});
-		btnPuppyFoodsmall.setBounds(63, 140, 153, 23);
+		btnPuppyFoodsmall.setBounds(20, 122, 179, 31);
 		frmCanineProducts.getContentPane().add(btnPuppyFoodsmall);
 		
 		JButton btnPuppyFoodmedlarge = new JButton("Puppy Food (Med/Large)");
+		btnPuppyFoodmedlarge.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnPuppyFoodmedlarge.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -115,7 +143,7 @@ public class CanineProducts {
 				frmCanineProducts.dispose();
 			}
 		});
-		btnPuppyFoodmedlarge.setBounds(59, 173, 157, 23);
+		btnPuppyFoodmedlarge.setBounds(233, 122, 179, 31);
 		frmCanineProducts.getContentPane().add(btnPuppyFoodmedlarge);
 		
 		JButton btnAdultDogFood = new JButton("Adult Dog Food ");
@@ -130,7 +158,7 @@ public class CanineProducts {
 				frmCanineProducts.dispose();
 			}
 		});
-		btnAdultDogFood.setBounds(59, 207, 157, 23);
+		btnAdultDogFood.setBounds(233, 80, 179, 31);
 		frmCanineProducts.getContentPane().add(btnAdultDogFood);
 		
 		JButton btnReducedFatAdult = new JButton("Reduced Fat Adult Dog Food");
@@ -145,10 +173,14 @@ public class CanineProducts {
 				frmCanineProducts.dispose();
 			}
 		});
-		btnReducedFatAdult.setBounds(233, 107, 179, 23);
+		btnReducedFatAdult.setBounds(233, 164, 179, 31);
 		frmCanineProducts.getContentPane().add(btnReducedFatAdult);
 		
 		JButton btnSeniorAdultDog = new JButton("Senior Adult Dog Food ");
+		btnSeniorAdultDog.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnSeniorAdultDog.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -160,7 +192,7 @@ public class CanineProducts {
 				frmCanineProducts.dispose();
 			}
 		});
-		btnSeniorAdultDog.setBounds(231, 140, 181, 23);
+		btnSeniorAdultDog.setBounds(20, 164, 179, 31);
 		frmCanineProducts.getContentPane().add(btnSeniorAdultDog);
 		
 		JButton btnBack = new JButton("Back");
@@ -170,11 +202,12 @@ public class CanineProducts {
 				frmCanineProducts.dispose();
 			}
 		});
-		btnBack.setBounds(179, 241, 89, 23);
+		btnBack.setBounds(171, 220, 89, 31);
 		frmCanineProducts.getContentPane().add(btnBack);
 		
 		JLabel lblCanineProducts = new JLabel("Canine Products");
-		lblCanineProducts.setBounds(185, 14, 100, 14);
+		lblCanineProducts.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblCanineProducts.setBounds(148, 14, 131, 13);
 		frmCanineProducts.getContentPane().add(lblCanineProducts);
 	}
 

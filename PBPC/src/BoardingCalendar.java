@@ -55,23 +55,6 @@ public static void run() {
 		lblComingSoon.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblComingSoon.setBounds(288, 82, 210, 60);
 		frmBoardingCalendar.getContentPane().add(lblComingSoon);
-		
-		JButton btnListView = new JButton("Boarder List View");
-		btnListView.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				//Open boarder list screen
-				Boarder_List List_GUI_Instance = new Boarder_List();
-				List_GUI_Instance.frmBoarderList.setVisible(true);
-				frmBoardingCalendar.dispose();	
-				
-				
-			}
-		});
-		btnListView.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnListView.setBounds(274, 507, 237, 44);
-		frmBoardingCalendar.getContentPane().add(btnListView);
 
 		JButton btnListBoarder = new JButton("List of Boarders");
 		btnListBoarder.addMouseListener(new MouseAdapter() {

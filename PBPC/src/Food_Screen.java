@@ -97,18 +97,18 @@ public class Food_Screen {
 			
 			try{
 				rs = SQL.ExecuteResultSet(CommandText);
-				while (rs.next()) {
+		        while ( rs != null && rs.next() ) {
 					start = rs.getString("StartDate");
 					end = rs.getString("EndDate");
 					id1 = rs.getInt("PetID");
 					String[] sTimes = start.split("-");
 					int sYr = Integer.parseInt(sTimes[2]);
-					int sMo = Integer.parseInt(sTimes[0]);
-					int sDy = Integer.parseInt(sTimes[1]);					
+					int sMo = Integer.parseInt(sTimes[1]);
+					int sDy = Integer.parseInt(sTimes[0]);					
 					String[] eTimes = end.split("-");
 					int eYr = Integer.parseInt(eTimes[2]);
-					int eMo = Integer.parseInt(eTimes[0]);
-					int eDy = Integer.parseInt(eTimes[1]);	
+					int eMo = Integer.parseInt(eTimes[1]);
+					int eDy = Integer.parseInt(eTimes[0]);	
 					Calendar c1 = Calendar.getInstance();
 					c1.set(sYr, sMo, sDy);
 					Calendar c2 = Calendar.getInstance();
@@ -145,7 +145,7 @@ public class Food_Screen {
 			Connection.Connect();
 			try{
 				rs = SQL.ExecuteResultSet(CommandText);
-				while (rs.next()) {
+		        while ( rs != null && rs.next() ) {
 					animal = rs.getString("Animal");
 					size = rs.getDouble("Weight");
 					birth = rs.getString("DOB");

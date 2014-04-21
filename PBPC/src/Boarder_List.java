@@ -195,11 +195,11 @@ void update(int petID){
 			}
 		});
 		btnBack.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnBack.setBounds(344, 507, 210, 41);
+		btnBack.setBounds(20, 507, 210, 41);
 		frmBoarderList.getContentPane().add(btnBack);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 320, 540);
+		scrollPane.setBounds(10, 11, 320, 479);
 		frmBoarderList.getContentPane().add(scrollPane);
 		
 		int pID = -1;

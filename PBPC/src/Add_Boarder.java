@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,14 +24,13 @@ import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
 
 //TODO: Calculate kennel, populate that as a drop-down
-//TODO:	Test max days of stay, populate drop-down when extra playtime selected
 public class Add_Boarder {
 
 	JFrame frmAddBoard;
 	private JTextField textField_animal;
 	private JTextField textField_weight;
 	private JTextField textField_owner;
-	private JTextArea txtrCommentText;
+	private JTextPane txtrCommentText;
 	private JComboBox comboBoxPlay;
 	private JCheckBox chckbxDental;
 	private JCheckBox chckbxBathing;
@@ -155,7 +155,7 @@ public class Add_Boarder {
 		lblKennelNumber.setBounds(372, 120, 140, 44);
 		frmAddBoard.getContentPane().add(lblKennelNumber);
 		
-		JComboBox comboBoxKennel = new JComboBox();
+		comboBoxKennel = new JComboBox();
 		comboBoxKennel.setBounds(589, 120, 172, 44);
 		frmAddBoard.getContentPane().add(comboBoxKennel);
 		
@@ -164,7 +164,7 @@ public class Add_Boarder {
 		lblExtraServices.setBounds(20, 175, 140, 44);
 		frmAddBoard.getContentPane().add(lblExtraServices);
 		
-		JCheckBox chckbxPlayTime = new JCheckBox("Extra Play Time");
+		chckbxPlayTime = new JCheckBox("Extra Play Time");
 		chckbxPlayTime.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -174,16 +174,16 @@ public class Add_Boarder {
 		chckbxPlayTime.setBounds(160, 196, 172, 23);
 		frmAddBoard.getContentPane().add(chckbxPlayTime);
 		
-		JComboBox comboBoxPlay = new JComboBox();
+		comboBoxPlay = new JComboBox();
 		comboBoxPlay.setBounds(372, 196, 172, 23);
 		frmAddBoard.getContentPane().add(comboBoxPlay);
 		comboBoxPlay.setEnabled(false);
 		
-		JCheckBox chckbxBathing = new JCheckBox("Bathing/Grooming");
+		chckbxBathing = new JCheckBox("Bathing/Grooming");
 		chckbxBathing.setBounds(160, 226, 172, 23);
 		frmAddBoard.getContentPane().add(chckbxBathing);
 		
-		JCheckBox chckbxDental = new JCheckBox("Dental Cleaning");
+		chckbxDental = new JCheckBox("Dental Cleaning");
 		chckbxDental.setBounds(370, 226, 172, 23);
 		frmAddBoard.getContentPane().add(chckbxDental);
 		
@@ -196,9 +196,10 @@ public class Add_Boarder {
 		scrollPane_1.setBounds(20, 311, 723, 185);
 		frmAddBoard.getContentPane().add(scrollPane_1);
 		
-		JTextArea txtrCommentText_1 = new JTextArea();
-		scrollPane_1.setViewportView(txtrCommentText_1);
-		txtrCommentText_1.setText("");		
+		txtrCommentText = new JTextPane();
+		scrollPane_1.setViewportView(txtrCommentText);
+		txtrCommentText.setText("");		
+		txtrCommentText.setEditable(true);
 
 		
 		//Initialization Functions
@@ -207,7 +208,7 @@ public class Add_Boarder {
 	
 	private void pullFromDB(int iD) {
 		//Pull Pet info from the DB and update lbl
-		String commandText = "SELECT * FROM PetRecord WHERE PetID="+ iD+";";
+		String commandText = "SELECT * FROM PetRecord WHERE PetID = "+ iD+";";
 		Connection.Connect();
 		String Owner = "";
 		String Size = "";
@@ -218,24 +219,24 @@ public class Add_Boarder {
 		ResultSet rs = SQL.ExecuteResultSet(commandText);
 		
 		try {
-			while(rs.next()){
+	        while ( rs != null && rs.next() ) {
 				animal = rs.getString("Animal");
 				ownerID = rs.getInt("OwnerID");
 				Comment = rs.getString("Comments");
 				Size = rs.getString("Size");
-				//weight = rs.getString("Weight");
+				weight = Integer.parseInt(rs.getString("Weight"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		//Pull Owner name from DB and update lbl
-		commandText = "SELECT FirstName, LastName FROM PetOwner WHERE ID="+ownerID+";";
+		commandText = "SELECT FirstName, LastName FROM PetOwner WHERE ID = "+ownerID+";";
 		Connection.Connect();
 		rs = SQL.ExecuteResultSet(commandText);
 		
 		try {
-			while(rs.next()){
+	        while ( rs != null && rs.next() ) {
 				Owner = rs.getString("LastName") +", "+ rs.getString("FirstName");
 			}
 			rs.close();
@@ -246,7 +247,9 @@ public class Add_Boarder {
 		textField_animal.setText(animal);
 		textField_weight.setText(""+weight);
 		textField_owner.setText(Owner);
-		txtrCommentText.setText(Comment);
+		if ( !(Comment.isEmpty() || Comment == null) ){
+			txtrCommentText.setText(Comment);
+		}
 		
 	}
 	

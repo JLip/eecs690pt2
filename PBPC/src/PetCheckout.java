@@ -1,7 +1,7 @@
 import java.text.DecimalFormat;
 
 
-public class Tickets {
+public class PetCheckout {
 	
 	private int ID;
 	private String item;
@@ -17,34 +17,23 @@ public class Tickets {
 	public void setitem(String itemName) { item = itemName; }
 	public void setprice(double itemPrice) { price = itemPrice;}
 	
-	public Tickets(int id2, String itemName, double itemPrice)
+	public PetCheckout(int id2, String itemName, double itemPrice)
 	{
 		ID = id2;
 		item = itemName;
 		price = itemPrice;
-		
 	}
 	
 	
-	public Tickets(String itemName)
+	public PetCheckout(String itemName)
 	{
 		item = itemName;		
-		
 	}
 	
-	public Tickets(String itemName, double itemPrice)
+	public PetCheckout(String itemName, double itemPrice)
 	{
 		item = itemName;
 		price = itemPrice;		
-		
-	}
-	
-	public Tickets(String itemName, int petID)
-	{
-		item = itemName;
-		ID = petID;
-		
-		
 	}
 	
 	

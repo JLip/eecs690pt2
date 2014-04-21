@@ -60,11 +60,11 @@ public class Simple_Product_Sale {
 			public void mouseClicked(MouseEvent e) {
 				try
 				{
-				Simple_Product_Sale.ClearTicket();
+					Simple_Product_Sale.ClearTicket();
 				}
 				catch(Exception e1)
 				{}
-				frmSimpleSale.dispose();
+					frmSimpleSale.dispose();
 			}
 		});
 		btnMainMenu.setBounds(10, 414, 89, 23);

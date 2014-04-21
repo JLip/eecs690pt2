@@ -392,6 +392,14 @@ initialize();
 	frmOwnerRecordView.getContentPane().add(btnEditAccount);
 	
 	btnCashout = new JButton("Cashout");
+	btnCashout.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			PetCheckout_GUI.run();
+			frmOwnerRecordView.dispose();
+		}
+		
+	});
 	btnCashout.setFont(new Font("Tahoma", Font.BOLD, 17));
 	btnCashout.setEnabled(true);
 	btnCashout.setBounds(182, 501, 135, 41);
@@ -488,14 +496,14 @@ initialize();
 	protected void createPetList(int ID) {
 		//select all pets names and ID and create pet list
 		String commandStr = "SELECT PetID, Name FROM PetRecord WHERE OwnerID ="+ ID+" ORDER BY Name;";
-		
+		Connection.Connect();
 		//TODO this needs to be changed once the SQL methods have been made
-		java.sql.Connection c;
-		Statement stmt;
+		//java.sql.Connection c;
+		//Statement stmt;
 		try {
-		Class.forName("org.sqlite.JDBC");
-		stmt = Connection.con.createStatement();
-		ResultSet rs = stmt.executeQuery( commandStr );
+		//Class.forName("org.sqlite.JDBC");
+		//stmt = Connection.con.createStatement();
+		ResultSet rs = SQL.ExecuteResultSet(commandStr);
 		
 		//Iterate through the results and populate pet's tempList
 		while ( rs.next() ) {
@@ -504,8 +512,7 @@ initialize();
 		petItem tempItem = new petItem(tempName, tempID);
 		pets.add(tempItem);
 		}
-		rs.close();
-		stmt.close();
+		rs.close();		
 		
 		} catch ( Exception e ) {
 		System.err.println( e.getClass().getName() + ": " + e.getMessage() );

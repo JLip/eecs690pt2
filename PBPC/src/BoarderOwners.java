@@ -82,7 +82,7 @@ public static void run() {
 		//select all pets names and ID and create pet list
 		pets.clear();
 		int temp = Main_Menu.OwnerID;
-		String commandStr = "SELECT PetID, Name FROM PetRecord ORDER BY Name WITH OwnerID = " + temp + ";";
+		String commandStr = "SELECT PetID, Name FROM PetRecord ORDER BY Name WHERE OwnerID = " + temp + ";";
 		Connection.Connect();
 		
 	    try {

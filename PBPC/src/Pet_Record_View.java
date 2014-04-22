@@ -15,8 +15,10 @@ import javax.swing.JTextField;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 
 public class Pet_Record_View {
@@ -29,7 +31,8 @@ public class Pet_Record_View {
 	private  JTextField txtDOB;
 	private  JTextField txtColor;
 	private  JTextPane txtComment;
-	 
+	private  JTextPane txtRecord;
+	
 	private  JLabel lblName;
 	private  JLabel lblOwner;
 	private  JLabel lblType;
@@ -79,38 +82,43 @@ public class Pet_Record_View {
 		
 		JLabel lblNewLabel = new JLabel("Owner's Name:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel.setBounds(10, 86, 130, 21);
+		lblNewLabel.setBounds(10, 49, 130, 21);
 		frmPetRecordView.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Type:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel_1.setBounds(93, 118, 47, 27);
+		lblNewLabel_1.setBounds(93, 69, 47, 27);
 		frmPetRecordView.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Sex:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel_2.setBounds(103, 162, 37, 21);
+		lblNewLabel_2.setBounds(103, 98, 37, 21);
 		frmPetRecordView.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Size:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel_3.setBounds(98, 206, 42, 21);
+		lblNewLabel_3.setBounds(98, 130, 42, 21);
 		frmPetRecordView.getContentPane().add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("DOB:");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel_4.setBounds(95, 252, 45, 21);
+		lblNewLabel_4.setBounds(95, 162, 45, 21);
 		frmPetRecordView.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Color:");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel_5.setBounds(89, 298, 51, 21);
+		lblNewLabel_5.setBounds(89, 194, 51, 21);
 		frmPetRecordView.getContentPane().add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("Comments:");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblNewLabel_6.setBounds(58, 349, 97, 21);
 		frmPetRecordView.getContentPane().add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("Record:");
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblNewLabel_7.setBounds(74, 235, 66, 21);
+		frmPetRecordView.getContentPane().add(lblNewLabel_7);
 		
 		JScrollPane commentScroll = new JScrollPane();
 		commentScroll.setBounds(58, 381, 716, 71);
@@ -177,32 +185,32 @@ public class Pet_Record_View {
 		
 		lblOwner = new JLabel("");
 		lblOwner.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblOwner.setBounds(150, 86, 624, 21);
+		lblOwner.setBounds(150, 49, 624, 21);
 		frmPetRecordView.getContentPane().add(lblOwner);
 		
 		lblType = new JLabel("");
 		lblType.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblType.setBounds(150, 118, 624, 27);
+		lblType.setBounds(150, 69, 624, 27);
 		frmPetRecordView.getContentPane().add(lblType);
 		
 		lblSex = new JLabel("");
 		lblSex.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblSex.setBounds(150, 162, 624, 27);
+		lblSex.setBounds(150, 98, 624, 27);
 		frmPetRecordView.getContentPane().add(lblSex);
 		
 		lblSize = new JLabel("");
 		lblSize.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblSize.setBounds(150, 206, 624, 27);
+		lblSize.setBounds(150, 124, 624, 27);
 		frmPetRecordView.getContentPane().add(lblSize);
 		
 		lblDOB = new JLabel("");
 		lblDOB.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblDOB.setBounds(150, 252, 624, 27);
+		lblDOB.setBounds(150, 156, 624, 27);
 		frmPetRecordView.getContentPane().add(lblDOB);
 		
 		lblColor = new JLabel("");
 		lblColor.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblColor.setBounds(150, 298, 624, 27);
+		lblColor.setBounds(150, 188, 624, 27);
 		frmPetRecordView.getContentPane().add(lblColor);
 		
 		txtName = new JTextField();
@@ -217,7 +225,7 @@ public class Pet_Record_View {
 		txtType.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		txtType.setEnabled(false);
 		txtType.setEditable(false);
-		txtType.setBounds(150, 118, 624, 27);
+		txtType.setBounds(150, 69, 624, 27);
 		frmPetRecordView.getContentPane().add(txtType);
 		txtType.setColumns(10);
 		
@@ -225,7 +233,7 @@ public class Pet_Record_View {
 		txtSex.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtSex.setEditable(false);
 		txtSex.setEnabled(false);
-		txtSex.setBounds(150, 156, 624, 27);
+		txtSex.setBounds(150, 98, 624, 27);
 		frmPetRecordView.getContentPane().add(txtSex);
 		txtSex.setColumns(10);
 		
@@ -233,7 +241,7 @@ public class Pet_Record_View {
 		txtSize.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtSize.setEnabled(false);
 		txtSize.setEditable(false);
-		txtSize.setBounds(150, 200, 624, 27);
+		txtSize.setBounds(150, 130, 624, 27);
 		frmPetRecordView.getContentPane().add(txtSize);
 		txtSize.setColumns(10);
 		
@@ -241,7 +249,7 @@ public class Pet_Record_View {
 		txtDOB.setEditable(false);
 		txtDOB.setEnabled(false);
 		txtDOB.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtDOB.setBounds(150, 244, 624, 27);
+		txtDOB.setBounds(150, 162, 624, 27);
 		frmPetRecordView.getContentPane().add(txtDOB);
 		txtDOB.setColumns(10);
 		
@@ -249,9 +257,18 @@ public class Pet_Record_View {
 		txtColor.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtColor.setEnabled(false);
 		txtColor.setEditable(false);
-		txtColor.setBounds(150, 290, 624, 27);
+		txtColor.setBounds(150, 192, 624, 27);
 		frmPetRecordView.getContentPane().add(txtColor);
 		txtColor.setColumns(10);
+		
+		JScrollPane recordScroll = new JScrollPane();
+		recordScroll.setBounds(58, 264, 716, 83);
+		frmPetRecordView.getContentPane().add(recordScroll);
+		
+		txtRecord = new JTextPane();
+		txtRecord.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtRecord.setEditable(false);
+		recordScroll.setViewportView(txtRecord);
 		
 		//Initialization Functions
 		pullFromDB(Main_Menu.PetID);
@@ -260,15 +277,24 @@ public class Pet_Record_View {
 
 	private void pullFromDB(int iD) {
 		//Pull Pet info from the DB and update lbl
+		SimpleDateFormat DateForm = new SimpleDateFormat("MM/dd/yyyy");
 		String commandText = "SELECT * FROM PetRecord WHERE PetID="+ iD+";";
 		String Name = "";
 		String Owner = "";
 		String Type = "";
 		String Sex = "";
 		String DOB = "";
+		
 		String Color = "";
 		String Size = "";
 		String Comment = "";
+		Date Rabies = new Date(0L);
+		Date Distemper = new Date(0L);
+		Date Bordetella = new Date(0L);
+		Date PreVisit = new Date(0L);
+		
+		String Prescriptions = "NONE";
+		String Record = "";
 		int ownerID = 0;
 		ResultSet rs = SQL.ExecuteResultSet(commandText);
 		
@@ -296,11 +322,40 @@ public class Pet_Record_View {
 			while(rs.next()){
 				Owner = rs.getString("LastName") +", "+ rs.getString("FirstName");
 			}
-			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		commandText = "SELECT * FROM MedicalRecords WHERE PETID="+iD+";";
+		rs = SQL.ExecuteResultSet(commandText);
+		try{
+			while(rs.next()){
+				Rabies = rs.getDate("Rabies");
+				if(rs.wasNull()) Rabies = new Date(0L);
+				Distemper = rs.getDate("Distemper");
+				if(rs.wasNull()) Distemper = new Date(0L);
+				Bordetella = rs.getDate("Bordetella");
+				
+				if(rs.wasNull()) Bordetella = new Date(0L);
+				PreVisit = rs.getDate("PreVisit");
+				if(rs.wasNull()) PreVisit = new Date(0L);
+				Prescriptions = rs.getString("Prescriptions");
+				if(rs.wasNull()) Prescriptions = "NONE";
+				
+			}
+			
+			rs.close();
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		Record = "Rabies Vaccine: " + DateForm.format(Rabies) + "\n"
+				+"Distemper Vaccine: " + DateForm.format(Distemper) + "\n"
+				+"Bordetella: " + DateForm.format(Bordetella) + "\n"
+				+"Previous Visit: " + DateForm.format(PreVisit) + "\n"
+				+"Prescriptions: " + Prescriptions;
+		
 		//SET THE LBL's
 		lblName.setText(Name);
 		lblType.setText(Type);
@@ -308,6 +363,7 @@ public class Pet_Record_View {
 		lblSex.setText(Sex);
 		lblDOB.setText(DOB);
 		lblColor.setText(Color);
+		txtRecord.setText(Record);
 		txtComment.setText(Comment);
 		lblSize.setText(Size);
 		

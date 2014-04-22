@@ -247,6 +247,7 @@ initialize();
 	btnBack.addMouseListener(new MouseAdapter() {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+	Pet_Owner_List.run();
 	frmOwnerRecordView.dispose();
 	}
 	});
@@ -299,6 +300,14 @@ initialize();
 	});
 	
 	btnNewPet = new JButton("New Pet");
+	btnNewPet.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			New_Pet.run();
+			Connection.Close();
+			frmOwnerRecordView.dispose();
+		}
+	});
 	btnNewPet.setFont(new Font("Tahoma", Font.BOLD, 17));
 	btnNewPet.setBounds(630, 501, 135, 41);
 	frmOwnerRecordView.getContentPane().add(btnNewPet);
@@ -395,6 +404,7 @@ initialize();
 	btnCashout.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
+			Connection.Close();
 			PetCheckout_GUI.run();
 			frmOwnerRecordView.dispose();
 		}

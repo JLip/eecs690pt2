@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Locale;
 
@@ -207,7 +208,7 @@ public static void run() {
 		
 		JLabel lblWeight = new JLabel("Weight");
 		lblWeight.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblWeight.setBounds(163, 273, 46, 14);
+		lblWeight.setBounds(163, 268, 46, 24);
 		frmNewPet.getContentPane().add(lblWeight);
 		
 		txt_Weight = new JTextField();
@@ -303,6 +304,9 @@ public static void run() {
 		JOptionPane.showMessageDialog(null, message);		
 		//Main_Menu.run();
 		frmNewPet.dispose();
+	
+		
+		
 		
 	}
 }

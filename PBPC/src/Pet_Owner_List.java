@@ -43,7 +43,7 @@ public class Pet_Owner_List {
 public static void run() {
 				try {
 					Pet_Owner_List window = new Pet_Owner_List();
-					window.frmPetOwnerList.setVisible(true);
+					window.frmPetOwnerList.setVisible(true);					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -283,6 +283,7 @@ public static void run() {
 				//Pet_Record_View Pet_Record_Instance = new Pet_Record_View(temp.ID);
 				//Pet_Record_Instance.frmPetRecordView.setVisible(true);
 				Pet_Record_View.run();
+				frmPetOwnerList.dispose();
 				
 			}
 		});
@@ -296,6 +297,7 @@ public static void run() {
 				
 				Main_Menu.OwnerID = temp.ID; //update owner ID variable.
 				Owner_Record_View.run();
+				frmPetOwnerList.dispose();
 				//Owner_Record_View Owner_Record_Instance = new Owner_Record_View(temp.ID);				
 				//Owner_Record_Instance.frmOwnerRecordView.setVisible(true);
 			}

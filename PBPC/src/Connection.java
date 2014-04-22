@@ -25,5 +25,16 @@ public static boolean Connect(){
 
 }
 
+public static void Close()
+{
+	try {
+		con.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+}
+
 }
 

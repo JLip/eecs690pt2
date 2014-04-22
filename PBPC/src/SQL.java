@@ -24,7 +24,7 @@ public static void ExecuteQuery(String query){
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-   
+    
 
 	
 	
@@ -43,6 +43,9 @@ public static ResultSet ExecuteResultSet(String query){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
+
+	 
 	   
 	return rs;
 	
@@ -62,7 +65,7 @@ public static ResultSet ExecuteResultSet(String query){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	   
+
 
 
 	}

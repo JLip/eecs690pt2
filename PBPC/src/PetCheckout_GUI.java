@@ -13,17 +13,28 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JLabel;
 
 
+
+
+
+
 import com.mysql.jdbc.Statement;
 
 import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import javax.swing.JButton;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class PetCheckout_GUI {
 	public static JList<Pets> petList;
 	public static DefaultListModel<Pets> petListModel;
+	public static JList<Tickets> ticketList;
+	public static DefaultListModel<Tickets> ticketListModel;
+	public static String animalSize = "";
 	private JFrame frame;
 
 	/**
@@ -70,7 +81,24 @@ public class PetCheckout_GUI {
 		label.setBounds(10, 11, 218, 37);
 		frame.getContentPane().add(label);
 		
-		JButton btnFelineServices = new JButton("Feline Services");
+		JButton btnFelineServices = new JButton("Services");
+		btnFelineServices.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				//System.out.println(petList.getSelectedValue().getname());
+				//System.out.println(petList.getSelectedValue().getID());
+				if(petList.getSelectedIndex() == -1)
+				{
+					JOptionPane.showMessageDialog(null, "Please select a pet first");
+					return;
+					
+				}
+				animalSize = petList.getSelectedValue().getsize();
+				Services.run();
+				
+				
+			}
+		});
 		btnFelineServices.setBounds(310, 50, 112, 37);
 		frame.getContentPane().add(btnFelineServices);
 		
@@ -103,36 +131,84 @@ public class PetCheckout_GUI {
 		frame.getContentPane().add(btnCanineProducts);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportBorder(new LineBorder(new Color(0, 0, 0), 3));
 		scrollPane.setBounds(10, 292, 245, 239);
 		frame.getContentPane().add(scrollPane);
 		
-		JList<Tickets> list = new JList<Tickets>();
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.setViewportView(list);
+		ticketList = new JList<Tickets>();
+		ticketList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane.setViewportView(ticketList);
 		
 		PopulatePets();
+		ClearTicket();
+	}
+	
+	public static void InsertServiceToTicket(int item_id, String item_name, double item_price)
+	{
+		Connection.Connect();
+		
+		String name = petList.getSelectedValue().getname() + " : " + item_name;
+		String commandText = "INSERT INTO SingleSale (ID,Service,Price)" +
+				"VALUES ('" + item_id + "', '" +
+				name + "', '" + item_price +
+				"')";
+				SQL.UpdateResultSet(commandText);
+				PopulateTicket();
+				
+		
+		
 		
 	}
 	
-	
-	
-	public static void PopulatePets()
+	public static void PopulateTicket()
 	{
-
-	petListModel = new DefaultListModel<Pets>();
-	String commandStr = "SELECT PetID, Name FROM PetRecord WHERE OwnerID ="+ Main_Menu.OwnerID +" ORDER BY Name;";
-	ResultSet rs = SQL.ExecuteResultSet(commandStr);	
+	Connection.Connect();
+	ticketListModel = new DefaultListModel<Tickets>();
+	String commandText = "SELECT * from SingleSale";
+	ResultSet rs = SQL.ExecuteResultSet(commandText);
+	double price = 0;
 	String name = "";
-	int petID = 0;
 	try {
 	while ((rs!=null) && (rs.next()))
 	{	
-	name = rs.getString("Name");
-	petID = rs.getInt("PetID");
-	Pets tick = new Pets(name, petID);	
-	petListModel.addElement(tick);
+	name = rs.getString("Service");
+	price = rs.getDouble("Price");
+	Tickets tick = new Tickets(name,price);	
+	ticketListModel.addElement(tick);
 
 	}
+	}
+	catch (SQLException e)
+	{
+	JOptionPane.showMessageDialog(null, e.toString());
+	}
+		
+	ticketList.setModel(ticketListModel);
+
+
+	}
+	
+	public static void PopulatePets()
+	{
+	Connection.Connect();
+	petListModel = new DefaultListModel<Pets>();
+	String commandStr = "SELECT * FROM PetRecord WHERE OwnerID ="+ Main_Menu.OwnerID +" ORDER BY Name;";
+	ResultSet rs = SQL.ExecuteResultSet(commandStr);	
+	String name = "";
+	String size = "";
+	String animal = "";
+	int petID;
+	try {
+	while ((rs!=null) && (rs.next()))
+		{	
+			name = rs.getString("Name");
+			petID = rs.getInt("PetID");
+			size = rs.getString("Size");
+			animal = rs.getString("Animal");
+			Pets tick = new Pets(name, petID,animal,size);	
+			petListModel.addElement(tick);
+
+		}
 	}
 	catch (SQLException e)
 	{
@@ -143,4 +219,19 @@ public class PetCheckout_GUI {
 
 
 	}
+	
+	public static void ClearTicket()
+	{
+		try{
+		Connection.Connect();
+		
+		String commandText = "DELETE FROM SingleSale";
+		SQL.UpdateResultSet(commandText);
+		
+		}
+		catch(Exception e2)
+		{
+		}
+	}
+	
 }

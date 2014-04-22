@@ -100,7 +100,7 @@ public class Appointment_Main {
 		lblOr.setBounds(22, 324, 82, 26);
 		frmAppointmentMain.getContentPane().add(lblOr);
 		
-		JButton btnNewAppointment = new JButton("New Appointment");
+		JButton btnNewAppointment = new JButton("New/Remove Appointment");
 		btnNewAppointment.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -109,7 +109,7 @@ public class Appointment_Main {
 			}
 		});
 		btnNewAppointment.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewAppointment.setBounds(512, 510, 243, 41);
+		btnNewAppointment.setBounds(471, 510, 284, 41);
 		frmAppointmentMain.getContentPane().add(btnNewAppointment);
 		frmAppointmentMain.setTitle("Appointments");
 		frmAppointmentMain.setBackground(Color.WHITE);

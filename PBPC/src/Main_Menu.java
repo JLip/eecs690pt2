@@ -46,17 +46,7 @@ public class Main_Menu {
 		});
 	}
 	
-	/*
-	public static void run() {
-		try {
-			
-			Main_Menu window = new Main_Menu();
-			window.frmMainMenu.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-*/
+
 	/**
 	 * Create the application.
 	 */

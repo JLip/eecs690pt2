@@ -137,6 +137,7 @@ public class Add_Boarder {
 		startDay.getDateEditor().getUiComponent().addMouseListener(new java.awt.event.MouseAdapter() {
 	        public void mouseClicked(java.awt.event.MouseEvent evt) {
 	            CheckKennel();
+				CheckPlay();
 	        }
 	    });
 		startDay.setBounds(589, 10, 172, 44);
@@ -153,6 +154,7 @@ public class Add_Boarder {
 		endDay.getDateEditor().getUiComponent().addMouseListener(new java.awt.event.MouseAdapter() {
 	        public void mouseClicked(java.awt.event.MouseEvent evt) {
 	            CheckKennel();
+				CheckPlay();
 	        }
 	    });
 		endDay.setBounds(589, 65, 172, 44);
@@ -261,7 +263,8 @@ public class Add_Boarder {
 	}
 	
 	public void CheckPlay(){
-		if (chckbxPlayTime.isSelected()){
+		
+		if(startDay.getDate() != null && endDay.getDate() != null && chckbxPlayTime.isSelected()){
 
 			int days = 0;
 			Date start = startDay.getDate();	
@@ -420,6 +423,7 @@ public class Add_Boarder {
 			}
 			comboBoxKennel.removeAllItems();
 
+			//TODO:		Resolve comboBoxKennel population issue.
 			String sDate = "";
 			String eDate = "";
 			for( int i = startKen; i <= lastKen; i++){
@@ -455,7 +459,8 @@ public class Add_Boarder {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				comboBoxKennel.addItem(i);
+				
+				comboBoxKennel.addItem((Integer)i);
 			}
 			
 			int kenSize = comboBoxKennel.getSize().height;

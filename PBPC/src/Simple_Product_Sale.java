@@ -60,8 +60,8 @@ public class Simple_Product_Sale {
 		frmSimpleSale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSimpleSale.getContentPane().setLayout(null);
 		
-		JButton btnMainMenu = new JButton("Main Menu");
-		btnMainMenu.setFont(new Font("Tahoma", Font.BOLD, 15));
+		JButton btnMainMenu = new JButton("Return to Main Menu");
+		btnMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnMainMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -74,7 +74,7 @@ public class Simple_Product_Sale {
 					frmSimpleSale.dispose();
 			}
 		});
-		btnMainMenu.setBounds(34, 507, 136, 31);
+		btnMainMenu.setBounds(34, 507, 232, 41);
 		frmSimpleSale.getContentPane().add(btnMainMenu);
 		
 		JButton btnFelineProducts = new JButton("Feline Products");
@@ -127,7 +127,7 @@ public class Simple_Product_Sale {
 		frmSimpleSale.getContentPane().add(btnRemove);
 		
 		JButton btnCashout = new JButton("Cashout");
-		btnCashout.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnCashout.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnCashout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -135,7 +135,7 @@ public class Simple_Product_Sale {
 				frmSimpleSale.dispose();
 			}
 		});
-		btnCashout.setBounds(627, 513, 118, 31);
+		btnCashout.setBounds(627, 513, 118, 41);
 		frmSimpleSale.getContentPane().add(btnCashout);
 	}
 	

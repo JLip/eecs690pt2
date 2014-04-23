@@ -43,7 +43,8 @@ public class Pet_Owner_List {
 public static void run() {
 				try {
 					Pet_Owner_List window = new Pet_Owner_List();
-					window.frmPetOwnerList.setVisible(true);					
+					window.frmPetOwnerList.setVisible(true);
+					Connection.Connect();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -81,7 +82,7 @@ public static void run() {
 	protected void createPetList() {
 		//select all pets names and ID and create pet list
 		String commandStr = "SELECT PetID, Name FROM PetRecord ORDER BY Name;";
-		
+		Connection.Connect();
 	    try {
 	        ResultSet rs = SQL.ExecuteResultSet(commandStr);
 	      
@@ -104,7 +105,7 @@ public static void run() {
 
 	protected void createOwnerList() {
 		//select all owners FirstNames, LastNames, and IDs and create a owner list
-		
+		Connection.Connect();
 		String commandStr = "SELECT FirstName, LastName, `ID` FROM PetOwner ORDER BY LastName;";
 
 	    try {

@@ -57,23 +57,45 @@ public class Services {
 		btnOfficeVisit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				item_id = 1;
-				
-				if(PetCheckout_GUI.animalSize.compareTo("Small") == 0)
+				if(Cat())
 				{
-					item_price = 25;
-				}
-				else if(PetCheckout_GUI.animalSize.compareTo("Medium") == 0)
-				{
-					item_price = 35;
+					item_id = 1;
 					
+					if(PetCheckout_GUI.animalSize.compareTo("Small") == 0)
+					{
+						item_price = 25;
+					}
+					else if(PetCheckout_GUI.animalSize.compareTo("Medium") == 0)
+					{
+						item_price = 35;
+						
+					}
+					else 
+					{
+						item_price = 45;
+					}
 				}
-				else 
+				else
 				{
-					item_price = 45;
+					item_id = 1;
+					
+					if(PetCheckout_GUI.animalSize.compareTo("Small") == 0)
+					{
+						item_price = 35;
+					}
+					else if(PetCheckout_GUI.animalSize.compareTo("Medium") == 0)
+					{
+						item_price = 45;
+						
+					}
+					else 
+					{
+						item_price = 55;
+					}
+										
 				}
 				
-				//item_price = Query.PriceQuery(item_id);
+				
 				item_name = Query.ItemQuery(item_id);		
 				PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);
 				
@@ -86,19 +108,22 @@ public class Services {
 		JButton btnSpayNeuter = new JButton("Spay/Neuter");
 		btnSpayNeuter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnSpayNeuter.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				item_id = 27;
+				if(Cat())
+				{
+					item_id = 4;
+					
+				}
+				else
+				{
+					item_id = 13;
+				}
 				item_price = Query.PriceQuery(item_id);
-				item_name = Query.ItemQuery(item_id);		
-				Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
-				
+				item_name = Query.ItemQuery(item_id);
+				PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);				
 				frmServices.dispose();
 			}
 		});
+		
 		btnSpayNeuter.setBounds(229, 45, 179, 31);
 		frmServices.getContentPane().add(btnSpayNeuter);
 		
@@ -106,10 +131,10 @@ public class Services {
 		btnMicroChipping.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				item_id = 28;
+				item_id = 2;
 				item_price = Query.PriceQuery(item_id);
 				item_name = Query.ItemQuery(item_id);		
-				Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);
 				
 				frmServices.dispose();
 			}
@@ -118,17 +143,25 @@ public class Services {
 		frmServices.getContentPane().add(btnMicroChipping);
 		
 		JButton btnLabWork = new JButton("Lab Work");
-		btnLabWork.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnLabWork.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				item_id = 29;
-				item_price = Query.PriceQuery(item_id);
+				item_id = 5;
+				if(PetCheckout_GUI.animalSize.compareTo("Small") == 0)
+				{
+					item_price = 25;
+				}
+				else if(PetCheckout_GUI.animalSize.compareTo("Medium") == 0)
+				{
+					item_price = 40;
+					
+				}
+				else 
+				{
+					item_price = 50;
+				}
 				item_name = Query.ItemQuery(item_id);		
-				Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);
 				
 				frmServices.dispose();
 			}
@@ -140,30 +173,38 @@ public class Services {
 		btnHeartworm.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				item_id = 30;
+				item_id = 3;
 				item_price = Query.PriceQuery(item_id);
 				item_name = Query.ItemQuery(item_id);		
-				Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);
 				
 				frmServices.dispose();
 			}
 		});
-		btnHeartworm.setBounds(26, 140, 179, 31);
+		btnHeartworm.setBounds(26, 129, 179, 31);
 		frmServices.getContentPane().add(btnHeartworm);
 		
 		JButton btnDentalCleaning = new JButton("Dental Cleaning");
 		btnDentalCleaning.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				item_id = 31;
-				item_price = Query.PriceQuery(item_id);
-				item_name = Query.ItemQuery(item_id);		
-				Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
 				
+				if(Cat())
+				{
+					item_id = 6;
+					
+				}
+				else
+				{
+					item_id = 15;
+				}
+				item_price = Query.PriceQuery(item_id);
+				item_name = Query.ItemQuery(item_id);
+				PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);				
 				frmServices.dispose();
 			}
 		});
-		btnDentalCleaning.setBounds(229, 140, 179, 31);
+		btnDentalCleaning.setBounds(229, 129, 179, 31);
 		frmServices.getContentPane().add(btnDentalCleaning);
 		
 		JLabel lblServices = new JLabel("Services");
@@ -187,7 +228,40 @@ public class Services {
 		frmServices.getContentPane().add(button);
 		
 		JButton btnXray = new JButton("X-Ray");
-		btnXray.setBounds(26, 184, 179, 31);
+		btnXray.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(Cat())
+				{
+					item_id = 7;
+					
+				}
+				else
+				{
+					item_id = 16;
+				}
+				item_price = Query.PriceQuery(item_id);
+				item_name = Query.ItemQuery(item_id);
+				PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);				
+				frmServices.dispose();
+				
+			}
+		});
+		btnXray.setBounds(26, 171, 179, 31);
 		frmServices.getContentPane().add(btnXray);
 	}
+	
+	public static boolean Cat()
+	{
+		if(PetCheckout_GUI.animalType.compareTo("Cat") == 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	
 }

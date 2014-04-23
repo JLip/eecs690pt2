@@ -35,6 +35,7 @@ public class PetCheckout_GUI {
 	public static JList<Tickets> ticketList;
 	public static DefaultListModel<Tickets> ticketListModel;
 	public static String animalSize = "";
+	public static String animalType = "";
 	private JFrame frame;
 
 	/**
@@ -85,15 +86,15 @@ public class PetCheckout_GUI {
 		btnFelineServices.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//System.out.println(petList.getSelectedValue().getname());
-				//System.out.println(petList.getSelectedValue().getID());
+
 				if(petList.getSelectedIndex() == -1)
 				{
 					JOptionPane.showMessageDialog(null, "Please select a pet first");
 					return;
 					
 				}
-				animalSize = petList.getSelectedValue().getsize();
+				
+				UpdateVariables();
 				Services.run();
 				
 				
@@ -132,12 +133,17 @@ public class PetCheckout_GUI {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportBorder(new LineBorder(new Color(0, 0, 0), 3));
-		scrollPane.setBounds(10, 292, 245, 239);
+		scrollPane.setBounds(10, 316, 245, 239);
 		frame.getContentPane().add(scrollPane);
 		
 		ticketList = new JList<Tickets>();
 		ticketList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(ticketList);
+		
+		JLabel lblTicket = new JLabel("Ticket");
+		lblTicket.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblTicket.setBounds(10, 268, 218, 37);
+		frame.getContentPane().add(lblTicket);
 		
 		PopulatePets();
 		ClearTicket();
@@ -154,10 +160,13 @@ public class PetCheckout_GUI {
 				"')";
 				SQL.UpdateResultSet(commandText);
 				PopulateTicket();
-				
-		
-		
-		
+
+	}
+	
+	public static void UpdateVariables()
+	{
+		animalSize = petList.getSelectedValue().getsize();
+		animalType = petList.getSelectedValue().getanimal();
 	}
 	
 	public static void PopulateTicket()
@@ -233,5 +242,4 @@ public class PetCheckout_GUI {
 		{
 		}
 	}
-	
 }

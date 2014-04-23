@@ -11,11 +11,11 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.JCheckBox;
@@ -23,7 +23,6 @@ import javax.swing.JComboBox;
 
 import com.toedter.calendar.JDateChooser;
 
-//TODO: Calculate kennel, populate that as a drop-down
 public class Add_Boarder {
 
 	JFrame frmAddBoard;
@@ -135,6 +134,11 @@ public class Add_Boarder {
 		
 		startDay = new JDateChooser();
 		startDay.setToolTipText("Date of Check-In");
+		startDay.getDateEditor().getUiComponent().addMouseListener(new java.awt.event.MouseAdapter() {
+	        public void mouseClicked(java.awt.event.MouseEvent evt) {
+	            CheckKennel();
+	        }
+	    });
 		startDay.setBounds(589, 10, 172, 44);
 		frmAddBoard.getContentPane().add(startDay);
 		startDay.setLocale(Locale.US);
@@ -146,6 +150,11 @@ public class Add_Boarder {
 		
 		endDay = new JDateChooser();
 		endDay.setToolTipText("Date of Check-Out");
+		endDay.getDateEditor().getUiComponent().addMouseListener(new java.awt.event.MouseAdapter() {
+	        public void mouseClicked(java.awt.event.MouseEvent evt) {
+	            CheckKennel();
+	        }
+	    });
 		endDay.setBounds(589, 65, 172, 44);
 		frmAddBoard.getContentPane().add(endDay);
 		endDay.setLocale(Locale.US);
@@ -211,7 +220,6 @@ public class Add_Boarder {
 		String commandText = "SELECT * FROM PetRecord WHERE PetID = "+ iD+";";
 		Connection.Connect();
 		String Owner = "";
-		String Size = "";
 		String animal = "";
 		int weight = -1;
 		String Comment = "";
@@ -223,7 +231,6 @@ public class Add_Boarder {
 				animal = rs.getString("Animal");
 				ownerID = rs.getInt("OwnerID");
 				Comment = rs.getString("Comments");
-				Size = rs.getString("Size");
 				weight = Integer.parseInt(rs.getString("Weight"));
 			}
 		} catch (SQLException e) {
@@ -350,15 +357,111 @@ public class Add_Boarder {
 			comboBoxPlay.removeAllItems();
 			for (int i = days; i > 0; i--)
 				comboBoxPlay.addItem((Integer)i);
-/*			List<Integer> age = new ArrayList<Integer>();
-			for (int i = 1; i <= 100; ++i) {
-			    age.add(i);
-			}
-			JComboBox ageComboBox = new JComboBox(age.toArray());*/
+			
 			comboBoxPlay.setEnabled(true);
 		}
 		else
 			comboBoxPlay.setEnabled(false);
+	}
+	
+	public void CheckKennel(){
+		if(startDay.getDate() != null && endDay.getDate() != null){
+			//Calculate kennel, populate that as a drop-down
+			//			6 cat				- 11-16
+			//			4 small dog			- 21-24
+			//			4 mid-large dog		- 25-28
+
+			Date start = startDay.getDate();	
+			Date end = endDay.getDate();
+			String DOS = String.format("%1$td-%1$tm-%1$tY", start);
+			String DOE = String.format("%1$td-%1$tm-%1$tY", end);
+			String[] sTimes = DOS.split("-");
+			String[] eTimes = DOE.split("-");
+			int sYr = Integer.parseInt(sTimes[2]);
+			int sMo = Integer.parseInt(sTimes[1]);
+			int sDy = Integer.parseInt(sTimes[0]);
+			int eYr = Integer.parseInt(eTimes[2]);
+			int eMo = Integer.parseInt(eTimes[1]);
+			int eDy = Integer.parseInt(eTimes[0]);
+			int startKen = 0;
+			int lastKen = 0;
+			
+			Calendar cStart = Calendar.getInstance();
+			cStart.set(sYr, sMo, sDy);
+			Calendar cEnd = Calendar.getInstance();
+			cEnd.set(eYr, eMo, eDy);
+			
+			String commandText = "SELECT Size, Animal FROM PetRecord WHERE PetID = "+ Main_Menu.PetID+";";
+			Connection.Connect();
+			String Size = "";
+			String animal = "";
+			ResultSet rs = SQL.ExecuteResultSet(commandText);
+			
+			try {
+		        while ( rs != null && rs.next() ) {
+					animal = rs.getString("Animal");
+					Size = rs.getString("Size");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			if (animal.equalsIgnoreCase("cat")){
+				startKen = 11;
+				lastKen = 16;
+			}
+			else if (Size.equalsIgnoreCase("small")){
+				startKen = 21;
+				lastKen = 24;
+			}
+			else{
+				startKen = 25;
+				lastKen = 28;
+			}
+			comboBoxKennel.removeAllItems();
+
+			String sDate = "";
+			String eDate = "";
+			for( int i = startKen; i <= lastKen; i++){
+				commandText = "SELECT StartDate, EndDate FROM Boarding WHERE Kennel = "+ i+";";
+				Connection.Connect();
+				rs = SQL.ExecuteResultSet(commandText);
+				
+				try {
+			        while ( rs != null && rs.next() ) {
+			        	sDate = rs.getString("StartDate");
+			        	eDate = rs.getString("EndDate");
+			        	
+						String[] tsTimes = sDate.split("-");
+						int tsYr = Integer.parseInt(tsTimes[2]);
+						int tsMo = Integer.parseInt(tsTimes[1]);
+						int tsDy = Integer.parseInt(tsTimes[0]);					
+						String[] teTimes = eDate.split("-");
+						int teYr = Integer.parseInt(teTimes[2]);
+						int teMo = Integer.parseInt(teTimes[1]);
+						int teDy = Integer.parseInt(teTimes[0]);	
+						Calendar tStart = Calendar.getInstance();
+						tStart.set(tsYr, tsMo, tsDy);
+						Calendar tEnd = Calendar.getInstance();
+						tEnd.set(teYr, teMo, teDy);
+						
+						if (tStart.after(cStart) && tStart.before(cEnd)){
+							continue;
+						}
+						if (tEnd.after(cStart) && tEnd.before(cEnd)){
+							continue;
+						}
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				comboBoxKennel.addItem(i);
+			}
+			
+			int kenSize = comboBoxKennel.getSize().height;
+			if( kenSize == 0)
+				JOptionPane.showMessageDialog(null, "There are no kennels available for the entire selected stay.");
+		}
 	}
 	
 	public void CheckValues()

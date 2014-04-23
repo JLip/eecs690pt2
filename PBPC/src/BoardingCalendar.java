@@ -12,6 +12,9 @@ import java.awt.Color;
 /*TODO:	Populate a Google Calendar
 			notification of how many kennels full
 			Click a day for pop-up of which kennels full
+			
+			Complete modifications to sample code found online
+				http://www.dreamincode.net/forums/topic/25042-creating-a-calendar-viewer-application/
 */
 
 public class BoardingCalendar {
@@ -55,6 +58,20 @@ public static void run() {
 		lblComingSoon.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblComingSoon.setBounds(288, 82, 210, 60);
 		frmBoardingCalendar.getContentPane().add(lblComingSoon);
+/*	TODO:
+		int[] kennels = {11, 12, 13, 14, 15, 16, 21, 22, 23, 24, 25, 26, 27, 28};
+		for each date in the month:
+			for( int i = 0; i < kennels.length; i++){
+				if kennel[i] has a boarder
+					dateDataHolder.add boarder.name
+			}
+			if date.isFull
+				turn date red
+				
+		mouseclick event on date
+			popup with labels for each kennel
+				label with name of pet in each kennel, if applicable
+*/
 
 		JButton btnListBoarder = new JButton("List of Boarders");
 		btnListBoarder.addMouseListener(new MouseAdapter() {

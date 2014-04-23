@@ -103,9 +103,15 @@ public class PetCheckout_GUI {
 		btnFelineServices.setBounds(310, 50, 112, 37);
 		frame.getContentPane().add(btnFelineServices);
 		
-		JButton btnCanineServices = new JButton("Canine Services");
-		btnCanineServices.setBounds(442, 50, 112, 37);
-		frame.getContentPane().add(btnCanineServices);
+		JButton btnImmunizations = new JButton("Immunizations");
+		btnImmunizations.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Immunizations.run();
+			}
+		});
+		btnImmunizations.setBounds(442, 50, 112, 37);
+		frame.getContentPane().add(btnImmunizations);
 		
 		JButton btnFelineImmunizations = new JButton("Feline Immunizations");
 		btnFelineImmunizations.setBounds(310, 98, 112, 37);
@@ -241,5 +247,18 @@ public class PetCheckout_GUI {
 		catch(Exception e2)
 		{
 		}
+	}
+	
+	public static boolean Cat()
+	{
+		if(PetCheckout_GUI.animalType.compareTo("Cat") == 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
 	}
 }

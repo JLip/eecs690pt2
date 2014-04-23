@@ -64,7 +64,7 @@ public class PetCheckout_GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 594, 699);
+		frame.setBounds(100, 100, 594, 657);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -113,9 +113,9 @@ public class PetCheckout_GUI {
 		btnImmunizations.setBounds(442, 50, 112, 37);
 		frame.getContentPane().add(btnImmunizations);
 		
-		JButton btnFelineImmunizations = new JButton("Feline Immunizations");
-		btnFelineImmunizations.setBounds(310, 98, 112, 37);
-		frame.getContentPane().add(btnFelineImmunizations);
+		JButton btnBoarding = new JButton("Boarding");
+		btnBoarding.setBounds(310, 98, 112, 37);
+		frame.getContentPane().add(btnBoarding);
 		
 		JButton btnCanineImmunizations = new JButton("Canine immunizations");
 		btnCanineImmunizations.setBounds(442, 98, 112, 37);

@@ -16,6 +16,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 
 public class Simple_Product_Sale {
@@ -50,11 +52,16 @@ public class Simple_Product_Sale {
 	 */
 	private void initialize() {
 		frmSimpleSale = new JFrame();
-		frmSimpleSale.setBounds(100, 100, 573, 486);
+		frmSimpleSale.setIconImage(Toolkit.getDefaultToolkit().getImage(Simple_Product_Sale.class.getResource("/General_Images/GI_icon.png")));
+		frmSimpleSale.setTitle("Product Sale");
+		frmSimpleSale.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 15));
+		frmSimpleSale.getContentPane().setBackground(Color.WHITE);
+		frmSimpleSale.setBounds(100, 100, 800, 600);
 		frmSimpleSale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSimpleSale.getContentPane().setLayout(null);
 		
 		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnMainMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -67,10 +74,11 @@ public class Simple_Product_Sale {
 					frmSimpleSale.dispose();
 			}
 		});
-		btnMainMenu.setBounds(10, 414, 89, 23);
+		btnMainMenu.setBounds(34, 507, 136, 31);
 		frmSimpleSale.getContentPane().add(btnMainMenu);
 		
 		JButton btnFelineProducts = new JButton("Feline Products");
+		btnFelineProducts.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnFelineProducts.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -79,10 +87,11 @@ public class Simple_Product_Sale {
 			}
 			
 		});
-		btnFelineProducts.setBounds(374, 36, 128, 56);
+		btnFelineProducts.setBounds(464, 65, 186, 56);
 		frmSimpleSale.getContentPane().add(btnFelineProducts);
 		
 		JButton btnCanineProducts = new JButton("Canine Products");
+		btnCanineProducts.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnCanineProducts.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -91,7 +100,7 @@ public class Simple_Product_Sale {
 			//	frmSimpleSale.dispose();
 			}
 		});
-		btnCanineProducts.setBounds(374, 103, 128, 56);
+		btnCanineProducts.setBounds(464, 176, 186, 56);
 		frmSimpleSale.getContentPane().add(btnCanineProducts);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -107,16 +116,18 @@ public class Simple_Product_Sale {
 		frmSimpleSale.getContentPane().add(lblCurrentTicket);
 		
 		JButton btnRemove = new JButton("Remove");
+		btnRemove.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnRemove.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				RemoveFromTicket();
 			}
 		});
-		btnRemove.setBounds(81, 321, 89, 23);
+		btnRemove.setBounds(100, 321, 89, 31);
 		frmSimpleSale.getContentPane().add(btnRemove);
 		
 		JButton btnCashout = new JButton("Cashout");
+		btnCashout.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnCashout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -124,7 +135,7 @@ public class Simple_Product_Sale {
 				frmSimpleSale.dispose();
 			}
 		});
-		btnCashout.setBounds(296, 384, 89, 23);
+		btnCashout.setBounds(627, 513, 118, 31);
 		frmSimpleSale.getContentPane().add(btnCashout);
 	}
 	

@@ -20,13 +20,7 @@ import java.util.Vector;
 import javax.swing.JCheckBox;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.JComboBox;
 
-//TODO: Change SQL calls for weight instead of size
-/*TODO: OPTIONAL
-		Space out buttons for an "update database" button;
-			should only be able to alter start/end date and extra services
-			*/
 public class Boarder_List {
 
 	JFrame frmBoarderList;
@@ -40,7 +34,7 @@ public class Boarder_List {
 	private JCheckBox chckbxDental;
 	private JCheckBox chckbxBathing;
 	private JCheckBox chckbxPlayTime;
-	private JLabel lblKennel;
+	private JTextField textField_Kennel;
 
 	/**
 	 * Launch the application.
@@ -74,7 +68,7 @@ void update(int petID){
 		String animal = "";
 		String owner = "";
 		int oID = -1;
-		int bigness = -1;
+		double bigness = -1;
 		String size = "";
 		ResultSet rs;
 		
@@ -86,7 +80,7 @@ void update(int petID){
 				start = rs.getString("StartDate");
 				end = rs.getString("EndDate");
 				comment = rs.getString("Comments");
-				ken = rs.getInt("Kennel");
+				ken = Integer.parseInt(rs.getString("Kennel"));
 				play = rs.getInt("PlayTime");
 				dent = rs.getInt("Dental");
 				groom = rs.getInt("Grooming");
@@ -96,7 +90,7 @@ void update(int petID){
 			System.out.println(e.getMessage());
 		}
 		
-		CommandText = "SELECT OwnerID, Animal, Size FROM PetRecord WHERE PetID = " + petID;	
+		CommandText = "SELECT OwnerID, Animal, Size, Weight FROM PetRecord WHERE PetID = " + petID;	
 		Connection.Connect();
 		try{
 			rs = SQL.ExecuteResultSet(CommandText);
@@ -104,7 +98,7 @@ void update(int petID){
 				oID = rs.getInt("OwnerID");
 				animal = rs.getString("Animal");
 				size = rs.getString("Size");
-//				bigness = rs.getInt("Weight");
+				bigness = rs.getDouble("Weight");
 			}
 		}
 		catch (SQLException e){
@@ -130,7 +124,7 @@ void update(int petID){
 		textField_owner.setText(owner);
 		textField_start.setText(start);
 		textField_end.setText(end);
-		lblKennel.setText(""+ken);
+		textField_Kennel.setText(""+ken);
 		txtrCommentText.setText(comment);
 		if (play > 0){
 			lblPlay.setText(""+play);
@@ -153,7 +147,7 @@ void update(int petID){
 		chckbxDental.repaint();
 		chckbxBathing.repaint();
 		txtrCommentText.repaint();
-		lblKennel.repaint();
+		textField_Kennel.repaint();
 		textField_animal.repaint();
 		textField_size.repaint();
 		textField_owner.repaint();
@@ -304,9 +298,11 @@ void update(int petID){
 		lblKennelNumber.setBounds(344, 288, 140, 44);
 		frmBoarderList.getContentPane().add(lblKennelNumber);
 		
-		JLabel lblKennel = new JLabel("");
-		lblKennel.setBounds(564, 288, 210, 44);
-		frmBoarderList.getContentPane().add(lblKennel);
+		textField_Kennel = new JTextField();
+		textField_Kennel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_Kennel.setColumns(10);
+		textField_Kennel.setBounds(564, 288, 210, 44);
+		frmBoarderList.getContentPane().add(textField_Kennel);
 		
 		JLabel lblExtraServices = new JLabel("Extra Services");
 		lblExtraServices.setFont(new Font("Tahoma", Font.PLAIN, 18));

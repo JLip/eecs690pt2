@@ -449,10 +449,10 @@ public class Add_Boarder {
 						Calendar tEnd = Calendar.getInstance();
 						tEnd.set(teYr, teMo, teDy);
 						
-						if (tStart.after(cStart) && tStart.before(cEnd)){
+						if ( (tStart.after(cStart) || tStart.equals(cStart)) && tStart.before(cEnd) ){
 							continue;
 						}
-						if (tEnd.after(cStart) && tEnd.before(cEnd)){
+						if ( tEnd.after(cStart) && (tEnd.before(cEnd) || tEnd.equals(cEnd)) ){
 							continue;
 						}
 					}

@@ -8,6 +8,9 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -102,6 +105,7 @@ public class Add_Boarder {
 		textField_animal = new JTextField();
 		textField_animal.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textField_animal.setBounds(160, 10, 172, 44);
+		textField_animal.setEditable(false);
 		frmAddBoard.getContentPane().add(textField_animal);
 		textField_animal.setColumns(10);
 		
@@ -114,6 +118,7 @@ public class Add_Boarder {
 		textField_weight.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textField_weight.setColumns(10);
 		textField_weight.setBounds(160, 65, 172, 44);
+		textField_weight.setEditable(false);
 		frmAddBoard.getContentPane().add(textField_weight);
 		
 		JLabel lblOwner = new JLabel("Owner");
@@ -125,6 +130,7 @@ public class Add_Boarder {
 		textField_owner.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textField_owner.setColumns(10);
 		textField_owner.setBounds(160, 120, 172, 44);
+		textField_owner.setEditable(false);
 		frmAddBoard.getContentPane().add(textField_owner);
 		
 		JLabel lblStartDate = new JLabel("Start Date");
@@ -134,10 +140,11 @@ public class Add_Boarder {
 		
 		startDay = new JDateChooser();
 		startDay.setToolTipText("Date of Check-In");
-		startDay.getDateEditor().getUiComponent().addMouseListener(new java.awt.event.MouseAdapter() {
-	        public void mouseClicked(java.awt.event.MouseEvent evt) {
-	            CheckKennel();
-				CheckPlay();
+		startDay.getDateEditor().addPropertyChangeListener(
+			    new PropertyChangeListener() {
+			        public void propertyChange(PropertyChangeEvent e) {
+			        	CheckKennel();
+			        	CheckPlay();
 	        }
 	    });
 		startDay.setBounds(589, 10, 172, 44);
@@ -151,10 +158,11 @@ public class Add_Boarder {
 		
 		endDay = new JDateChooser();
 		endDay.setToolTipText("Date of Check-Out");
-		endDay.getDateEditor().getUiComponent().addMouseListener(new java.awt.event.MouseAdapter() {
-	        public void mouseClicked(java.awt.event.MouseEvent evt) {
-	            CheckKennel();
-				CheckPlay();
+		endDay.getDateEditor().addPropertyChangeListener(
+			    new PropertyChangeListener() {
+			        public void propertyChange(PropertyChangeEvent e) {
+			        	CheckKennel();
+			        	CheckPlay();
 	        }
 	    });
 		endDay.setBounds(589, 65, 172, 44);
@@ -431,7 +439,6 @@ public class Add_Boarder {
 			}
 			comboBoxKennel.removeAllItems();
 
-			//TODO:		Resolve comboBoxKennel population issue.
 			String sDate = "";
 			String eDate = "";
 			for( int i = startKen; i <= lastKen; i++){
@@ -545,7 +552,7 @@ public class Add_Boarder {
 	
 		String commandText = "INSERT INTO 'Boarding'('Dental','Grooming','PlayTime','PETID','StartDate','EndDate','Comments','Kennel') VALUES (" +
 							tooth + " ," + "'" + bath + "' ," + "'" + play + "' ," + "'" + Main_Menu.PetID + "' ,"
-							+ "'" + DOS + "' ," + "'" + DOE + "' ," + "'" + Comments + "' ," + "'" + kennel + "' ," + "'" + Comments + "')";
+							+ "'" + DOS + "' ," + "'" + DOE + "' ," + "'" + Comments + "' ," + "'" + kennel + "')";
 				
 				
 		SQL.UpdateResultSet(commandText);
@@ -558,7 +565,7 @@ public class Add_Boarder {
 	//This method will restart the main screen and destroy this instance of the boarders menu
 	private void exitAddScreen() {
 		
-		
+		Connection.Close();
 		BoarderOwners Own_GUI_Instance = new BoarderOwners();
 		Own_GUI_Instance.frmBoardOwner.setVisible(true);
 		frmAddBoard.dispose();		

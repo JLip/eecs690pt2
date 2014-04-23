@@ -45,7 +45,7 @@ public class Services {
 	 */
 	private void initialize() {
 		frmServices = new JFrame();
-		frmServices.setTitle("Feline Products");
+		frmServices.setTitle("Pet Services");
 		frmServices.setIconImage(Toolkit.getDefaultToolkit().getImage(Services.class.getResource("/General_Images/GI_icon.png")));
 		frmServices.getContentPane().setBackground(Color.WHITE);
 		frmServices.setBounds(100, 100, 450, 321);
@@ -57,7 +57,7 @@ public class Services {
 		btnOfficeVisit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(Cat())
+				if(PetCheckout_GUI.Cat())
 				{
 					item_id = 1;
 					
@@ -108,7 +108,7 @@ public class Services {
 		JButton btnSpayNeuter = new JButton("Spay/Neuter");
 		btnSpayNeuter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Cat())
+				if(PetCheckout_GUI.Cat())
 				{
 					item_id = 4;
 					
@@ -189,7 +189,7 @@ public class Services {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				if(Cat())
+				if(PetCheckout_GUI.Cat())
 				{
 					item_id = 6;
 					
@@ -209,7 +209,7 @@ public class Services {
 		
 		JLabel lblServices = new JLabel("Services");
 		lblServices.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblServices.setBounds(152, 11, 128, 14);
+		lblServices.setBounds(183, 11, 74, 14);
 		frmServices.getContentPane().add(lblServices);
 		
 		JButton button = new JButton("Back");
@@ -231,7 +231,7 @@ public class Services {
 		btnXray.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(Cat())
+				if(PetCheckout_GUI.Cat())
 				{
 					item_id = 7;
 					
@@ -251,17 +251,6 @@ public class Services {
 		frmServices.getContentPane().add(btnXray);
 	}
 	
-	public static boolean Cat()
-	{
-		if(PetCheckout_GUI.animalType.compareTo("Cat") == 0)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-		
-	}
+	
 	
 }

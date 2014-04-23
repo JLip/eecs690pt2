@@ -167,6 +167,14 @@ public class Add_Boarder {
 		frmAddBoard.getContentPane().add(lblKennelNumber);
 		
 		comboBoxKennel = new JComboBox();
+		comboBoxKennel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				
+				CheckKennel();
+				
+			}
+		});
 		comboBoxKennel.setBounds(589, 120, 172, 44);
 		frmAddBoard.getContentPane().add(comboBoxKennel);
 		

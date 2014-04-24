@@ -59,7 +59,14 @@ public class FelineProducts {
 				item_id = 26;
 				item_price = Query.PriceQuery(item_id);
 				item_name = Query.ItemQuery(item_id);		
-				Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				if(PetCheckout_GUI.petCheckout)
+				{					
+					PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);
+				}
+				else
+				{
+					Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				}
 				
 				frmFelineProducts.dispose();
 			}
@@ -78,7 +85,14 @@ public class FelineProducts {
 				item_id = 27;
 				item_price = Query.PriceQuery(item_id);
 				item_name = Query.ItemQuery(item_id);		
-				Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				if(PetCheckout_GUI.petCheckout)
+				{					
+					PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);
+				}
+				else
+				{
+					Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				}
 				
 				frmFelineProducts.dispose();
 			}
@@ -93,7 +107,14 @@ public class FelineProducts {
 				item_id = 28;
 				item_price = Query.PriceQuery(item_id);
 				item_name = Query.ItemQuery(item_id);		
-				Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				if(PetCheckout_GUI.petCheckout)
+				{					
+					PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);
+				}
+				else
+				{
+					Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				}
 				
 				frmFelineProducts.dispose();
 			}
@@ -112,7 +133,14 @@ public class FelineProducts {
 				item_id = 29;
 				item_price = Query.PriceQuery(item_id);
 				item_name = Query.ItemQuery(item_id);		
-				Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				if(PetCheckout_GUI.petCheckout)
+				{					
+					PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);
+				}
+				else
+				{
+					Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				}
 				
 				frmFelineProducts.dispose();
 			}
@@ -127,7 +155,14 @@ public class FelineProducts {
 				item_id = 30;
 				item_price = Query.PriceQuery(item_id);
 				item_name = Query.ItemQuery(item_id);		
-				Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				if(PetCheckout_GUI.petCheckout)
+				{					
+					PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);
+				}
+				else
+				{
+					Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				}
 				
 				frmFelineProducts.dispose();
 			}
@@ -142,7 +177,14 @@ public class FelineProducts {
 				item_id = 31;
 				item_price = Query.PriceQuery(item_id);
 				item_name = Query.ItemQuery(item_id);		
-				Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				if(PetCheckout_GUI.petCheckout)
+				{					
+					PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);
+				}
+				else
+				{
+					Simple_Product_Sale.InsertItem(item_id, item_name, item_price);
+				}
 				
 				frmFelineProducts.dispose();
 			}

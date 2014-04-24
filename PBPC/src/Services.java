@@ -59,43 +59,43 @@ public class Services {
 			public void mouseClicked(MouseEvent e) {
 				if(PetCheckout_GUI.Cat())
 				{
-					item_id = 1;
+				
 					
 					if(PetCheckout_GUI.animalSize.compareTo("Small") == 0)
 					{
-						item_price = 25;
+						item_id = 1;
 					}
 					else if(PetCheckout_GUI.animalSize.compareTo("Medium") == 0)
 					{
-						item_price = 35;
+						item_id = 42;
 						
 					}
 					else 
 					{
-						item_price = 45;
+						item_id = 43;
 					}
 				}
 				else
 				{
-					item_id = 1;
+					
 					
 					if(PetCheckout_GUI.animalSize.compareTo("Small") == 0)
 					{
-						item_price = 35;
+						item_id = 50;
 					}
 					else if(PetCheckout_GUI.animalSize.compareTo("Medium") == 0)
 					{
-						item_price = 45;
+						item_id = 44;
 						
 					}
 					else 
 					{
-						item_price = 55;
+						item_id = 45;
 					}
 										
 				}
 				
-				
+				item_price = Query.PriceQuery(item_id);
 				item_name = Query.ItemQuery(item_id);		
 				PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);
 				
@@ -146,20 +146,21 @@ public class Services {
 		btnLabWork.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				item_id = 5;
+				
 				if(PetCheckout_GUI.animalSize.compareTo("Small") == 0)
 				{
-					item_price = 25;
+					item_id = 5;
 				}
 				else if(PetCheckout_GUI.animalSize.compareTo("Medium") == 0)
 				{
-					item_price = 40;
+					item_id = 46;
 					
 				}
 				else 
 				{
-					item_price = 50;
+					item_id = 47;
 				}
+				item_price = Query.PriceQuery(item_id);
 				item_name = Query.ItemQuery(item_id);		
 				PetCheckout_GUI.InsertServiceToTicket(item_id, item_name, item_price);
 				

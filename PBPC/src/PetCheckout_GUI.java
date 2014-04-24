@@ -36,7 +36,9 @@ public class PetCheckout_GUI {
 	public static DefaultListModel<Tickets> ticketListModel;
 	public static String animalSize = "";
 	public static String animalType = "";
-	private JFrame frame;
+	public static int petID;
+	public static boolean petCheckout;
+	private JFrame PetCheckout;
 
 	/**
 	 * Launch the application.
@@ -45,7 +47,7 @@ public class PetCheckout_GUI {
 			public static void run() {
 				try {
 					PetCheckout_GUI window = new PetCheckout_GUI();
-					window.frame.setVisible(true);
+					window.PetCheckout.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -63,15 +65,16 @@ public class PetCheckout_GUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 594, 657);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		PetCheckout = new JFrame();
+		PetCheckout.setTitle("Pet Checkout");
+		PetCheckout.setBounds(100, 100, 594, 657);
+		PetCheckout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		PetCheckout.getContentPane().setLayout(null);
 		
 		JScrollPane PetscrollPane = new JScrollPane();
 		PetscrollPane.setViewportBorder(new LineBorder(new Color(0, 0, 0), 3));
 		PetscrollPane.setBounds(10, 49, 241, 214);
-		frame.getContentPane().add(PetscrollPane);
+		PetCheckout.getContentPane().add(PetscrollPane);
 		
 		petList = new JList();
 		PetscrollPane.setViewportView(petList);
@@ -80,7 +83,7 @@ public class PetCheckout_GUI {
 		JLabel label = new JLabel("Pets:");
 		label.setFont(new Font("Tahoma", Font.BOLD, 20));
 		label.setBounds(10, 11, 218, 37);
-		frame.getContentPane().add(label);
+		PetCheckout.getContentPane().add(label);
 		
 		JButton btnFelineServices = new JButton("Services");
 		btnFelineServices.addMouseListener(new MouseAdapter() {
@@ -101,46 +104,48 @@ public class PetCheckout_GUI {
 			}
 		});
 		btnFelineServices.setBounds(310, 50, 112, 37);
-		frame.getContentPane().add(btnFelineServices);
+		PetCheckout.getContentPane().add(btnFelineServices);
 		
 		JButton btnImmunizations = new JButton("Immunizations");
 		btnImmunizations.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(petList.getSelectedIndex() == -1)
+				{
+					JOptionPane.showMessageDialog(null, "Please select a pet first");
+					return;
+					
+				}
+				
+				UpdateVariables();
 				Immunizations.run();
 			}
 		});
 		btnImmunizations.setBounds(442, 50, 112, 37);
-		frame.getContentPane().add(btnImmunizations);
+		PetCheckout.getContentPane().add(btnImmunizations);
 		
 		JButton btnBoarding = new JButton("Boarding");
+		btnBoarding.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(petList.getSelectedIndex() == -1)
+				{
+					JOptionPane.showMessageDialog(null, "Please select a pet first");
+					return;
+					
+				}
+				
+				UpdateVariables();
+				Checkout_Boarding.run();
+			}
+		});
 		btnBoarding.setBounds(310, 98, 112, 37);
-		frame.getContentPane().add(btnBoarding);
-		
-		JButton btnCanineImmunizations = new JButton("Canine immunizations");
-		btnCanineImmunizations.setBounds(442, 98, 112, 37);
-		frame.getContentPane().add(btnCanineImmunizations);
-		
-		JButton btnFelineBoarding = new JButton("Feline Boarding");
-		btnFelineBoarding.setBounds(310, 146, 112, 37);
-		frame.getContentPane().add(btnFelineBoarding);
-		
-		JButton btnCanineBoarding = new JButton("Canine Boarding");
-		btnCanineBoarding.setBounds(442, 146, 112, 37);
-		frame.getContentPane().add(btnCanineBoarding);
-		
-		JButton btnFelineProducts = new JButton("Feline Products");
-		btnFelineProducts.setBounds(310, 194, 112, 37);
-		frame.getContentPane().add(btnFelineProducts);
-		
-		JButton btnCanineProducts = new JButton("Canine Products");
-		btnCanineProducts.setBounds(442, 194, 112, 37);
-		frame.getContentPane().add(btnCanineProducts);
+		PetCheckout.getContentPane().add(btnBoarding);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportBorder(new LineBorder(new Color(0, 0, 0), 3));
 		scrollPane.setBounds(10, 316, 245, 239);
-		frame.getContentPane().add(scrollPane);
+		PetCheckout.getContentPane().add(scrollPane);
 		
 		ticketList = new JList<Tickets>();
 		ticketList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -149,10 +154,60 @@ public class PetCheckout_GUI {
 		JLabel lblTicket = new JLabel("Ticket");
 		lblTicket.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblTicket.setBounds(10, 268, 218, 37);
-		frame.getContentPane().add(lblTicket);
+		PetCheckout.getContentPane().add(lblTicket);
 		
-		PopulatePets();
+		JButton btnBack = new JButton("Back");
+		btnBack.setBounds(10, 585, 89, 23);
+		PetCheckout.getContentPane().add(btnBack);
+		
+		JButton btnCashout = new JButton("Cashout");
+		btnCashout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				//System.out.println(ticketList.getSelectedValue().
+			}
+		});
+		btnCashout.setBounds(333, 585, 89, 23);
+		PetCheckout.getContentPane().add(btnCashout);
+		
+		JButton btnFelineProducts = new JButton("Feline Products");
+		btnFelineProducts.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(petList.getSelectedIndex() == -1)
+				{
+					JOptionPane.showMessageDialog(null, "Please select a pet first");
+					return;
+					
+				}
+				
+				UpdateVariables();
+				FelineProducts.run();
+			}
+		});
+		btnFelineProducts.setBounds(310, 157, 112, 37);
+		PetCheckout.getContentPane().add(btnFelineProducts);
+		
+		JButton btnCanineProducts = new JButton("Canine Products");
+		btnCanineProducts.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(petList.getSelectedIndex() == -1)
+				{
+					JOptionPane.showMessageDialog(null, "Please select a pet first");
+					return;
+					
+				}
+				
+				UpdateVariables();
+				CanineProducts.run();
+			}
+		});
+		btnCanineProducts.setBounds(452, 157, 116, 37);
+		PetCheckout.getContentPane().add(btnCanineProducts);
 		ClearTicket();
+		PopulatePets();
+		
 	}
 	
 	public static void InsertServiceToTicket(int item_id, String item_name, double item_price)
@@ -160,11 +215,10 @@ public class PetCheckout_GUI {
 		Connection.Connect();
 		
 		String name = petList.getSelectedValue().getname() + " : " + item_name;
-		String commandText = "INSERT INTO SingleSale (ID,Service,Price)" +
+		String commandText = "INSERT INTO SingleSale (ID,Service,Price, PetID)" +
 				"VALUES ('" + item_id + "', '" +
-				name + "', '" + item_price +
-				"')";
-				SQL.UpdateResultSet(commandText);
+				name + "', '" + item_price + "'," + "'" + PetCheckout_GUI.petID + "')";
+				SQL.UpdateResultSet(commandText);				
 				PopulateTicket();
 
 	}
@@ -173,6 +227,8 @@ public class PetCheckout_GUI {
 	{
 		animalSize = petList.getSelectedValue().getsize();
 		animalType = petList.getSelectedValue().getanimal();
+		petID = petList.getSelectedValue().getID();
+		petCheckout = true;
 	}
 	
 	public static void PopulateTicket()

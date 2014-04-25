@@ -38,7 +38,7 @@ public class PetCheckout_GUI {
 	public static String animalType = "";
 	public static int petID;
 	public static boolean petCheckout;
-	private JFrame PetCheckout;
+	private JFrame frmPetCheckout;
 
 	/**
 	 * Launch the application.
@@ -47,7 +47,7 @@ public class PetCheckout_GUI {
 			public static void run() {
 				try {
 					PetCheckout_GUI window = new PetCheckout_GUI();
-					window.PetCheckout.setVisible(true);
+					window.frmPetCheckout.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,16 +65,16 @@ public class PetCheckout_GUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		PetCheckout = new JFrame();
-		PetCheckout.setTitle("Pet Checkout");
-		PetCheckout.setBounds(100, 100, 594, 657);
-		PetCheckout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		PetCheckout.getContentPane().setLayout(null);
+		frmPetCheckout = new JFrame();
+		frmPetCheckout.setTitle("Pet Checkout");
+		frmPetCheckout.setBounds(100, 100, 594, 657);
+		frmPetCheckout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPetCheckout.getContentPane().setLayout(null);
 		
 		JScrollPane PetscrollPane = new JScrollPane();
 		PetscrollPane.setViewportBorder(new LineBorder(new Color(0, 0, 0), 3));
 		PetscrollPane.setBounds(10, 49, 241, 214);
-		PetCheckout.getContentPane().add(PetscrollPane);
+		frmPetCheckout.getContentPane().add(PetscrollPane);
 		
 		petList = new JList();
 		PetscrollPane.setViewportView(petList);
@@ -83,7 +83,7 @@ public class PetCheckout_GUI {
 		JLabel label = new JLabel("Pets:");
 		label.setFont(new Font("Tahoma", Font.BOLD, 20));
 		label.setBounds(10, 11, 218, 37);
-		PetCheckout.getContentPane().add(label);
+		frmPetCheckout.getContentPane().add(label);
 		
 		JButton btnFelineServices = new JButton("Services");
 		btnFelineServices.addMouseListener(new MouseAdapter() {
@@ -104,7 +104,7 @@ public class PetCheckout_GUI {
 			}
 		});
 		btnFelineServices.setBounds(310, 50, 112, 37);
-		PetCheckout.getContentPane().add(btnFelineServices);
+		frmPetCheckout.getContentPane().add(btnFelineServices);
 		
 		JButton btnImmunizations = new JButton("Immunizations");
 		btnImmunizations.addMouseListener(new MouseAdapter() {
@@ -122,7 +122,7 @@ public class PetCheckout_GUI {
 			}
 		});
 		btnImmunizations.setBounds(442, 50, 112, 37);
-		PetCheckout.getContentPane().add(btnImmunizations);
+		frmPetCheckout.getContentPane().add(btnImmunizations);
 		
 		JButton btnBoarding = new JButton("Boarding");
 		btnBoarding.addMouseListener(new MouseAdapter() {
@@ -140,12 +140,12 @@ public class PetCheckout_GUI {
 			}
 		});
 		btnBoarding.setBounds(310, 98, 112, 37);
-		PetCheckout.getContentPane().add(btnBoarding);
+		frmPetCheckout.getContentPane().add(btnBoarding);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportBorder(new LineBorder(new Color(0, 0, 0), 3));
 		scrollPane.setBounds(10, 316, 245, 239);
-		PetCheckout.getContentPane().add(scrollPane);
+		frmPetCheckout.getContentPane().add(scrollPane);
 		
 		ticketList = new JList<Tickets>();
 		ticketList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -154,21 +154,35 @@ public class PetCheckout_GUI {
 		JLabel lblTicket = new JLabel("Ticket");
 		lblTicket.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblTicket.setBounds(10, 268, 218, 37);
-		PetCheckout.getContentPane().add(lblTicket);
+		frmPetCheckout.getContentPane().add(lblTicket);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+							
+					try
+					{
+						ClearTicket();
+					}
+					catch(Exception e1)
+					{}
+				frmPetCheckout.dispose();
+			}
+		});
 		btnBack.setBounds(10, 585, 89, 23);
-		PetCheckout.getContentPane().add(btnBack);
+		frmPetCheckout.getContentPane().add(btnBack);
 		
 		JButton btnCashout = new JButton("Cashout");
 		btnCashout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//System.out.println(ticketList.getSelectedValue().
+				PetCashout_GUI.run();
+				frmPetCheckout.dispose();
 			}
 		});
 		btnCashout.setBounds(333, 585, 89, 23);
-		PetCheckout.getContentPane().add(btnCashout);
+		frmPetCheckout.getContentPane().add(btnCashout);
 		
 		JButton btnFelineProducts = new JButton("Feline Products");
 		btnFelineProducts.addMouseListener(new MouseAdapter() {
@@ -186,7 +200,7 @@ public class PetCheckout_GUI {
 			}
 		});
 		btnFelineProducts.setBounds(310, 157, 112, 37);
-		PetCheckout.getContentPane().add(btnFelineProducts);
+		frmPetCheckout.getContentPane().add(btnFelineProducts);
 		
 		JButton btnCanineProducts = new JButton("Canine Products");
 		btnCanineProducts.addMouseListener(new MouseAdapter() {
@@ -204,20 +218,45 @@ public class PetCheckout_GUI {
 			}
 		});
 		btnCanineProducts.setBounds(452, 157, 116, 37);
-		PetCheckout.getContentPane().add(btnCanineProducts);
-		ClearTicket();
+		frmPetCheckout.getContentPane().add(btnCanineProducts);
+		
+		JButton button = new JButton("Remove");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				RemoveFromTicket();
+			}
+		});
+		button.setFont(new Font("Tahoma", Font.BOLD, 11));
+		button.setBounds(162, 566, 89, 31);
+		frmPetCheckout.getContentPane().add(button);
+		
 		PopulatePets();
+		PopulateTicket();
 		
 	}
 	
 	public static void InsertServiceToTicket(int item_id, String item_name, double item_price)
 	{
 		Connection.Connect();
+		String cmd = "SELECT Taxable FROM Price WHERE ItemID = " + item_id;
+		int taxable = 0;
+		ResultSet rs = SQL.ExecuteResultSet(cmd);
+		try {
+			while ((rs!=null) && (rs.next()))
+			{	
+			taxable = rs.getInt("Taxable");
+			}
+			}
+			catch (SQLException e)
+			{
+				System.out.println(e.toString());
+			}
 		
 		String name = petList.getSelectedValue().getname() + " : " + item_name;
-		String commandText = "INSERT INTO SingleSale (ID,Service,Price, PetID)" +
+		String commandText = "INSERT INTO SingleSale (ID,Service,Price, PetID, Taxable)" +
 				"VALUES ('" + item_id + "', '" +
-				name + "', '" + item_price + "'," + "'" + PetCheckout_GUI.petID + "')";
+				name + "', '" + item_price + "'," + "'" + petID + "'," + "'" + taxable + "')";
 				SQL.UpdateResultSet(commandText);				
 				PopulateTicket();
 
@@ -316,5 +355,15 @@ public class PetCheckout_GUI {
 			return false;
 		}
 		
+	}
+	
+	public static void RemoveFromTicket()
+	{
+		Connection.Connect();
+		Tickets tmp = ticketList.getSelectedValue();
+		String name = tmp.getitem();		
+		String commandText = "DELETE FROM SingleSale WHERE SingleSale.Service = (SELECT Service FROM SingleSale WHERE Service = " + "'" + name + "' LIMIT 1)";
+		SQL.UpdateResultSet(commandText);
+		PopulateTicket();
 	}
 }

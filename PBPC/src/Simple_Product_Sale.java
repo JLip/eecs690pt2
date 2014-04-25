@@ -183,9 +183,7 @@ public class Simple_Product_Sale {
 	{
 		Connection.Connect();
 		Tickets tmp = ticketList.getSelectedValue();
-		String name = tmp.getitem();
-		//System.out.println(name);
-		//String commandText = "DELETE FROM SingleSale WHERE Service = " + "'" + name + "'" + "LIMIT 1";
+		String name = tmp.getitem();		
 		String commandText = "DELETE FROM SingleSale WHERE SingleSale.Service = (SELECT Service FROM SingleSale WHERE Service = " + "'" + name + "' LIMIT 1)";
 		SQL.UpdateResultSet(commandText);
 		PopulateTicket();

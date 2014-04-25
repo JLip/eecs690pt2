@@ -25,6 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.DropMode;
 
 
 public class Cashout_Screen {
@@ -81,14 +82,16 @@ public class Cashout_Screen {
 		frmCashoutTable.getContentPane().setLayout(null);
 		frmCashoutTable.getContentPane().add(btnBack);
 		
-		JLabel lblTicket = new JLabel("Items  / Services:");
+		JLabel lblTicket = new JLabel("Products");
 		lblTicket.setBounds(59, 47, 183, 25);
 		lblTicket.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblTicket.setVerticalAlignment(SwingConstants.BOTTOM);
 		frmCashoutTable.getContentPane().add(lblTicket);
 		
 		JTextPane textPane_1 = new JTextPane();
-		textPane_1.setBounds(181, 290, 144, 41);
+		textPane_1.setFont(new Font("Dialog", Font.BOLD, 20));
+		textPane_1.setEditable(false);
+		textPane_1.setBounds(173, 291, 86, 25);
 		textPane_1.setBackground(Color.LIGHT_GRAY);
 		frmCashoutTable.getContentPane().add(textPane_1);
 		
@@ -103,8 +106,7 @@ public class Cashout_Screen {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				RemoveFromDatabase();
-				//Simple_Product_Sale.run();
+				RemoveFromDatabase();				
 				frmCashoutTable.dispose();
 			}
 		});
@@ -118,7 +120,7 @@ public class Cashout_Screen {
 			public void mouseClicked(MouseEvent e) {
 				
 				RemoveFromDatabase();
-				//Simple_Product_Sale.run();
+				
 				frmCashoutTable.dispose();
 			}
 		});
@@ -136,7 +138,7 @@ public class Cashout_Screen {
 			public void mouseClicked(MouseEvent e) {
 				
 				RemoveFromDatabase();
-				//Simple_Product_Sale.run();
+				
 				frmCashoutTable.dispose();
 			}
 		});
@@ -158,8 +160,8 @@ public class Cashout_Screen {
 		frmCashoutTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GetTotal();
 		String tmp = new DecimalFormat("#.##").format(total);
-		//String tmp = String.valueOf(total2);
-		textPane_1.setText(tmp);
+		String tmp2 = "$" + tmp;
+		textPane_1.setText(tmp2);
 		
 	
 	}

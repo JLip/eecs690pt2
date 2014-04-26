@@ -115,7 +115,7 @@ public class Main_Menu {
 				Simple_Product_Sale.ClearTicket();
 				}
 				catch(Exception e1)
-				{}
+				{}				
 				Simple_Product_Sale.run();
 				
 			}

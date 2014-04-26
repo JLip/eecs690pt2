@@ -81,16 +81,37 @@ public class PetCashout_GUI {
 		scrollPane_1.setViewportView(listServices);
 		
 		JButton button = new JButton("Cash");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				PetCheckout_GUI.ClearTicket();
+				frame.dispose();
+			}
+		});
 		button.setFont(new Font("Dialog", Font.BOLD, 20));
 		button.setBounds(191, 445, 117, 47);
 		frame.getContentPane().add(button);
 		
 		JButton button_1 = new JButton("CC");
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PetCheckout_GUI.ClearTicket();
+				frame.dispose();
+			}
+		});
 		button_1.setFont(new Font("Dialog", Font.BOLD, 20));
 		button_1.setBounds(331, 445, 117, 47);
 		frame.getContentPane().add(button_1);
 		
 		JButton button_2 = new JButton("Check");
+		button_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PetCheckout_GUI.ClearTicket();
+				frame.dispose();
+			}
+		});
 		button_2.setFont(new Font("Dialog", Font.BOLD, 20));
 		button_2.setBounds(469, 445, 117, 47);
 		frame.getContentPane().add(button_2);

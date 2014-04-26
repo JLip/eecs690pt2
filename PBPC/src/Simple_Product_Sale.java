@@ -59,7 +59,7 @@ public class Simple_Product_Sale {
 		frmSimpleSale.setBounds(100, 100, 800, 600);
 		frmSimpleSale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSimpleSale.getContentPane().setLayout(null);
-		
+		PetCheckout_GUI.petCheckout = false;
 		JButton btnMainMenu = new JButton("Return to Main Menu");
 		btnMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnMainMenu.addMouseListener(new MouseAdapter() {

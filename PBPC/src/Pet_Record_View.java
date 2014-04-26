@@ -134,6 +134,7 @@ public class Pet_Record_View {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				frmPetRecordView.dispose();
+				Connection.Close();
 			}
 		});
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -288,10 +289,10 @@ public class Pet_Record_View {
 		String Color = "";
 		String Size = "";
 		String Comment = "";
-		Date Rabies = new Date(0L);
-		Date Distemper = new Date(0L);
-		Date Bordetella = new Date(0L);
-		Date PreVisit = new Date(0L);
+		String Rabies = "";
+		String Distemper = "";
+		String Bordetella = "";
+		String PreVisit = "";
 		
 		String Prescriptions = "NONE";
 		String Record = "";
@@ -327,6 +328,59 @@ public class Pet_Record_View {
 			e.printStackTrace();
 		}
 		
+		commandText = "SELECT * FROM MedicalRecords WHERE PetID = " + iD;
+		rs = SQL.ExecuteResultSet(commandText);
+		int tmpid = 0;
+		try
+		{
+			while((rs != null) && (rs.next()))
+			{
+				tmpid = rs.getInt("ItemID");
+				
+						if(tmpid == 10 || tmpid == 19) //Bordetella
+						{
+							Bordetella = rs.getString("Date");
+						}
+						else if (tmpid == 9 || tmpid == 18) //Distemper
+						{
+							Distemper = rs.getString("Date");
+						}
+						else if (tmpid == 8 || tmpid == 17) //Rabies
+						{
+							Rabies = rs.getString("Date");							
+						}
+						else if (tmpid == 1 || tmpid == 42 || tmpid == 43 || tmpid == 44 || tmpid == 45 || tmpid == 50)
+						{
+							PreVisit = rs.getString("Date");
+							
+						}
+			}
+			
+			Record = "Rabies Vaccine: " + Rabies + "\n"
+					+"Distemper Vaccine: " + Distemper + "\n"
+					+"Bordetella: " + Bordetella + "\n"
+					+"Previous Visit: " + PreVisit + "\n"
+					+"Prescriptions: " + Prescriptions;
+			
+			//SET THE LBL's
+			lblName.setText(Name);
+			lblType.setText(Type);
+			lblOwner.setText(Owner);
+			lblSex.setText(Sex);
+			lblDOB.setText(DOB);
+			lblColor.setText(Color);
+			txtRecord.setText(Record);
+			txtComment.setText(Comment);
+			lblSize.setText(Size);
+			
+		}
+		catch (SQLException e){
+			e.printStackTrace();
+		}
+		Connection.Close();
+		
+		
+		/*
 		commandText = "SELECT * FROM MedicalRecords WHERE PETID="+iD+";";
 		rs = SQL.ExecuteResultSet(commandText);
 		try{
@@ -349,24 +403,8 @@ public class Pet_Record_View {
 		} catch (SQLException e){
 			e.printStackTrace();
 		}
-		
-		Record = "Rabies Vaccine: " + DateForm.format(Rabies) + "\n"
-				+"Distemper Vaccine: " + DateForm.format(Distemper) + "\n"
-				+"Bordetella: " + DateForm.format(Bordetella) + "\n"
-				+"Previous Visit: " + DateForm.format(PreVisit) + "\n"
-				+"Prescriptions: " + Prescriptions;
-		
-		//SET THE LBL's
-		lblName.setText(Name);
-		lblType.setText(Type);
-		lblOwner.setText(Owner);
-		lblSex.setText(Sex);
-		lblDOB.setText(DOB);
-		lblColor.setText(Color);
-		txtRecord.setText(Record);
-		txtComment.setText(Comment);
-		lblSize.setText(Size);
-		
+		*/
+	
 	}
 
 	protected void populateFields() {

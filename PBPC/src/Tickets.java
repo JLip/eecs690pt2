@@ -17,6 +17,12 @@ public class Tickets {
 	public void setitem(String itemName) { item = itemName; }
 	public void setprice(double itemPrice) { price = itemPrice;}
 	
+	public Tickets(int id2)
+	{
+		ID = id2;
+		
+	}
+	
 	public Tickets(int id2, String itemName, double itemPrice)
 	{
 		ID = id2;

@@ -15,10 +15,15 @@ import javax.swing.JTextPane;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -84,6 +89,7 @@ public class PetCashout_GUI {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				PopulateMedicalRecords();								
 				PetCheckout_GUI.ClearTicket();
 				frame.dispose();
 			}
@@ -96,6 +102,7 @@ public class PetCashout_GUI {
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				PopulateMedicalRecords();								
 				PetCheckout_GUI.ClearTicket();
 				frame.dispose();
 			}
@@ -108,6 +115,7 @@ public class PetCashout_GUI {
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				PopulateMedicalRecords();								
 				PetCheckout_GUI.ClearTicket();
 				frame.dispose();
 			}
@@ -188,7 +196,7 @@ public class PetCashout_GUI {
 		ProductTotal.setText(tmp4);
 		ServiceTotal.setText(tmp2);
 		GrandTotal.setText(tmp6);
-		
+	
 		
 	}
 	
@@ -276,6 +284,42 @@ public class PetCashout_GUI {
 		
 	}
 	
+
+	public void PopulateMedicalRecords()
+	{
+		String commandText = "SELECT * from SingleSale WHERE Taxable = 0 ORDER BY PetID asc";
+		ResultSet rs = SQL.ExecuteResultSet(commandText); 
+		String service;		 
+		//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		String date = new SimpleDateFormat("MM/dd/YYYY").format(Calendar.getInstance().getTime());
+		
+		int petid = 0;
+		int itemid = 0;
+		try {
+			while ((rs!=null) && (rs.next()))
+			{		
+				service = rs.getString("Service");
+				String delims = " :";
+				String[] tokens = service.split(delims);
+				String tmptoken = tokens[1].trim();
+				itemid = rs.getInt("ID");
+				petid = rs.getInt("PetID");
+				
+				
+				String cmd = "INSERT INTO MedicalRecords (PetID,Service,Date,ItemID)" +
+						"VALUES ('" + petid + "', '" +
+						tmptoken + "', '" + date + "'," + "'" + itemid + "')";
+						SQL.UpdateResultSet(cmd);	
+								
+				
+			}
+		}
+		catch (SQLException e)
+		{
+			JOptionPane.showMessageDialog(null, e.toString());
+		}
+		
+	}
 	
 	
 }

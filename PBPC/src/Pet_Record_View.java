@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
@@ -15,10 +16,12 @@ import javax.swing.JTextField;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 public class Pet_Record_View {
@@ -278,7 +281,7 @@ public class Pet_Record_View {
 
 	private void pullFromDB(int iD) {
 		//Pull Pet info from the DB and update lbl
-		SimpleDateFormat DateForm = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat DateForm = new SimpleDateFormat("YYYY-MM-DD");
 		String commandText = "SELECT * FROM PetRecord WHERE PetID="+ iD+";";
 		String Name = "";
 		String Owner = "";
@@ -328,7 +331,7 @@ public class Pet_Record_View {
 			e.printStackTrace();
 		}
 		
-		commandText = "SELECT * FROM MedicalRecords WHERE PetID = " + iD;
+		commandText = "SELECT * FROM MedicalRecords WHERE PetID = " + iD + " ORDER BY Date asc";
 		rs = SQL.ExecuteResultSet(commandText);
 		int tmpid = 0;
 		try
@@ -372,6 +375,54 @@ public class Pet_Record_View {
 			txtRecord.setText(Record);
 			txtComment.setText(Comment);
 			lblSize.setText(Size);
+			
+			//Check Alerts
+			
+			
+			try {
+				String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+				Date dtCurrent = new SimpleDateFormat("yyyy-MM-dd").parse(currentDate);
+				
+				Date dtRabies;				
+				dtRabies = new SimpleDateFormat("yyyy-MM-dd").parse(Rabies);
+				Date RabiesComp = new Date(dtCurrent.getTime() - 1096L * 24 * 3600 * 1000);
+				
+				Date dtBordetella;				
+				dtBordetella = new SimpleDateFormat("yyyy-MM-dd").parse(Bordetella);
+				Date BordetellaComp = new Date(dtCurrent.getTime() - 1096L * 24 * 3600 * 1000);
+				
+				Date dtDistemper;				
+				dtDistemper = new SimpleDateFormat("yyyy-MM-dd").parse(Distemper);
+				Date DistemperComp = new Date(dtCurrent.getTime() - 1096L * 24 * 3600 * 1000);
+				
+				
+				if(dtRabies.before(RabiesComp))
+				{
+					JOptionPane.showMessageDialog(null,Name + " is due for Rabies shot!");
+				}
+				
+				if(dtBordetella.before(BordetellaComp))
+				{
+					JOptionPane.showMessageDialog(null,Name + " is due for Bordetella shot!");
+				}
+				
+
+				if(dtDistemper.before(DistemperComp))
+				{
+					JOptionPane.showMessageDialog(null,Name + " is due for Distemper shot!");
+				}
+				
+				
+				
+				
+				
+				
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 			
 		}
 		catch (SQLException e){

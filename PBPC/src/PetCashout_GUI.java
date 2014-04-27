@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -291,7 +292,9 @@ public class PetCashout_GUI {
 		ResultSet rs = SQL.ExecuteResultSet(commandText); 
 		String service;		 
 		//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		String date = new SimpleDateFormat("MM/dd/YYYY").format(Calendar.getInstance().getTime());
+		//Date date2 = null;
+		String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+		
 		
 		int petid = 0;
 		int itemid = 0;

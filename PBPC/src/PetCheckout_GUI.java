@@ -244,12 +244,24 @@ public class PetCheckout_GUI {
 		btnBackToClients.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+				ClearTicket();
 				frmPetCheckout.dispose();
 			}
 		});
 		btnBackToClients.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frmPetCheckout.getContentPane().add(btnBackToClients);
+		
+		JButton Cashout = new JButton("Cashout");
+		Cashout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				PetCashout_GUI.run();
+				frmPetCheckout.dispose();
+			}
+		});
+		Cashout.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Cashout.setBounds(426, 510, 243, 41);
+		frmPetCheckout.getContentPane().add(Cashout);
 		
 		PopulatePets();
 		PopulateTicket();

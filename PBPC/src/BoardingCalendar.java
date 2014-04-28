@@ -56,6 +56,9 @@ public static void run() {
 	 * Create the application.
 	 */
 	public BoardingCalendar() {
+		for(int i = 0; i < 40; i++){
+			days[i] = new dayItem();
+		}
 		initialize();
 	}
 	
@@ -75,9 +78,12 @@ public static void run() {
 	        }
 	        
 	        int row = table.getSelectedRow();
+//	        System.out.println(row);
 	        int column = table.getSelectedColumn();
+//	        System.out.println(column);
 	        if(table.getValueAt(row, column) != null){
 		        int day = (int) table.getValueAt(row, column);
+//		        System.out.println(day);
 		        dayItem pass = days[day];
 		        
 		        DayDisplay.run(pass);
@@ -86,6 +92,7 @@ public static void run() {
 	}
 	
 	public static dayItem[] days = new dayItem[40];
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -360,24 +367,24 @@ public static void run() {
 			if (value != null){
 				int day = Integer.parseInt(value.toString());
 //				System.out.println("Day " + day);
-//				boolean full = days[day].isFull();
-//				boolean empty = days[day].isEmpty();
+				boolean full = days[day].isFull();
+				boolean empty = days[day].isEmpty();
 				if (day == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
 //					System.out.println(" is the current day");
-//					if(empty)
+					if(empty)
 						setBackground(new Color(220, 220, 255));
-/*					else if(full)
+					else if(full)
 						setBackground(new Color(245, 210, 210));
 					else
-						setBackground(new Color(210, 245, 210));*/
+						setBackground(new Color(210, 245, 210));
 						
 				}
-/*				else if (empty)
+				else if (empty)
 					setBackground(new Color(255, 255, 255));
 				else if (full)
 					setBackground(new Color(255, 220, 220));
 				else
-					setBackground(new Color(220, 255, 220));*/
+					setBackground(new Color(220, 255, 220));
 					
 			}
 			setBorder(null);

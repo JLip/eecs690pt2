@@ -138,7 +138,7 @@ public static void run() {
 		DOB.setLocale(Locale.US);
 		
 		txt_Comments = new JTextPane();
-		txt_Comments.setBackground(Color.LIGHT_GRAY);
+		txt_Comments.setBackground(Color.GRAY);
 		txt_Comments.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txt_Comments.setBounds(352, 427, 191, 85);
 		frmNewPet.getContentPane().add(txt_Comments);

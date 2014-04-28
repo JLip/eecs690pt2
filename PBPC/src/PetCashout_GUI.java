@@ -27,11 +27,12 @@ import javax.swing.ListSelectionModel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 
 public class PetCashout_GUI {
 
-	private JFrame frame;
+	private JFrame frmPetCashout;
 	public static DefaultListModel<Tickets> serviceListModel;
 	public static DefaultListModel<Tickets> productListModel;
 	public static JList<Tickets> listProducts = new JList<Tickets>();
@@ -47,7 +48,7 @@ public class PetCashout_GUI {
 			public static void run() {
 				try {
 					PetCashout_GUI window = new PetCashout_GUI();
-					window.frame.setVisible(true);
+					window.frmPetCashout.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,14 +66,17 @@ public class PetCashout_GUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 811, 541);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmPetCashout = new JFrame();
+		frmPetCashout.setTitle("Pet Cashout");
+		frmPetCashout.setIconImage(Toolkit.getDefaultToolkit().getImage(PetCashout_GUI.class.getResource("/General_Images/GI_icon.png")));
+		frmPetCashout.getContentPane().setBackground(Color.WHITE);
+		frmPetCashout.setBounds(100, 100, 811, 541);
+		frmPetCashout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPetCashout.getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(20, 77, 294, 196);
-		frame.getContentPane().add(scrollPane);
+		frmPetCashout.getContentPane().add(scrollPane);
 		
 		
 		listProducts.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -80,7 +84,7 @@ public class PetCashout_GUI {
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(430, 77, 294, 196);
-		frame.getContentPane().add(scrollPane_1);
+		frmPetCashout.getContentPane().add(scrollPane_1);
 		
 		
 		listServices.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -92,12 +96,12 @@ public class PetCashout_GUI {
 			public void mouseClicked(MouseEvent arg0) {
 				PopulateMedicalRecords();								
 				PetCheckout_GUI.ClearTicket();
-				frame.dispose();
+				frmPetCashout.dispose();
 			}
 		});
 		button.setFont(new Font("Dialog", Font.BOLD, 20));
 		button.setBounds(191, 445, 117, 47);
-		frame.getContentPane().add(button);
+		frmPetCashout.getContentPane().add(button);
 		
 		JButton button_1 = new JButton("CC");
 		button_1.addMouseListener(new MouseAdapter() {
@@ -105,12 +109,12 @@ public class PetCashout_GUI {
 			public void mouseClicked(MouseEvent e) {
 				PopulateMedicalRecords();								
 				PetCheckout_GUI.ClearTicket();
-				frame.dispose();
+				frmPetCashout.dispose();
 			}
 		});
 		button_1.setFont(new Font("Dialog", Font.BOLD, 20));
 		button_1.setBounds(331, 445, 117, 47);
-		frame.getContentPane().add(button_1);
+		frmPetCashout.getContentPane().add(button_1);
 		
 		JButton button_2 = new JButton("Check");
 		button_2.addMouseListener(new MouseAdapter() {
@@ -118,72 +122,72 @@ public class PetCashout_GUI {
 			public void mouseClicked(MouseEvent e) {
 				PopulateMedicalRecords();								
 				PetCheckout_GUI.ClearTicket();
-				frame.dispose();
+				frmPetCashout.dispose();
 			}
 		});
 		button_2.setFont(new Font("Dialog", Font.BOLD, 20));
 		button_2.setBounds(469, 445, 117, 47);
-		frame.getContentPane().add(button_2);
+		frmPetCashout.getContentPane().add(button_2);
 		
 		JLabel label = new JLabel("Products");
 		label.setVerticalAlignment(SwingConstants.BOTTOM);
 		label.setFont(new Font("Dialog", Font.BOLD, 20));
 		label.setBounds(26, 41, 183, 25);
-		frame.getContentPane().add(label);
+		frmPetCashout.getContentPane().add(label);
 		
 		JLabel lblServices = new JLabel("Services");
 		lblServices.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblServices.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblServices.setBounds(430, 41, 183, 25);
-		frame.getContentPane().add(lblServices);
+		frmPetCashout.getContentPane().add(lblServices);
 		
 		JLabel label_2 = new JLabel("Total:");
 		label_2.setFont(new Font("Dialog", Font.BOLD, 20));
 		label_2.setBounds(82, 295, 70, 15);
-		frame.getContentPane().add(label_2);
+		frmPetCashout.getContentPane().add(label_2);
 		
 		JTextPane ProductTotal = new JTextPane();
 		ProductTotal.setFont(new Font("Dialog", Font.BOLD, 20));
 		ProductTotal.setText("0");
 		ProductTotal.setBackground(Color.LIGHT_GRAY);
 		ProductTotal.setBounds(170, 284, 117, 41);
-		frame.getContentPane().add(ProductTotal);
+		frmPetCashout.getContentPane().add(ProductTotal);
 		
 		JLabel label_3 = new JLabel("Total:");
 		label_3.setFont(new Font("Dialog", Font.BOLD, 20));
 		label_3.setBounds(492, 295, 70, 15);
-		frame.getContentPane().add(label_3);
+		frmPetCashout.getContentPane().add(label_3);
 		
 		JTextPane ServiceTotal = new JTextPane();
 		ServiceTotal.setFont(new Font("Dialog", Font.BOLD, 20));
 		ServiceTotal.setText("0");
 		ServiceTotal.setBackground(Color.LIGHT_GRAY);
 		ServiceTotal.setBounds(580, 284, 106, 41);
-		frame.getContentPane().add(ServiceTotal);
+		frmPetCashout.getContentPane().add(ServiceTotal);
 		
 		JLabel lblGrandTotal = new JLabel("Grand Total:");
 		lblGrandTotal.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblGrandTotal.setBounds(216, 384, 130, 15);
-		frame.getContentPane().add(lblGrandTotal);
+		frmPetCashout.getContentPane().add(lblGrandTotal);
 		
 		JTextPane GrandTotal = new JTextPane();
 		GrandTotal.setFont(new Font("Dialog", Font.BOLD, 20));
 		GrandTotal.setText("0");
 		GrandTotal.setBackground(Color.LIGHT_GRAY);
 		GrandTotal.setBounds(364, 373, 84, 41);
-		frame.getContentPane().add(GrandTotal);
+		frmPetCashout.getContentPane().add(GrandTotal);
 		
 		JButton button_3 = new JButton("Back");
 		button_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				PetCheckout_GUI.run();
-				frame.dispose();
+				frmPetCashout.dispose();
 			}
 		});
-		button_3.setFont(new Font("Tahoma", Font.BOLD, 20));
+		button_3.setFont(new Font("Tahoma", Font.BOLD, 15));
 		button_3.setBounds(10, 461, 117, 31);
-		frame.getContentPane().add(button_3);
+		frmPetCashout.getContentPane().add(button_3);
 		
 		PopulateTickets();
 		GetTotal();

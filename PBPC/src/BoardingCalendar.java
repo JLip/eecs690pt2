@@ -76,10 +76,12 @@ public static void run() {
 	        
 	        int row = table.getSelectedRow();
 	        int column = table.getSelectedColumn();
-	        int day = (int) table.getValueAt(row, column);
-	        dayItem pass = days[day-1];
-	        
-	        DayDisplay.run(pass);
+	        if(table.getValueAt(row, column) != null){
+		        int day = (int) table.getValueAt(row, column);
+		        dayItem pass = days[day-1];
+		        
+		        DayDisplay.run(pass);
+	        }
 	    }
 	}
 	

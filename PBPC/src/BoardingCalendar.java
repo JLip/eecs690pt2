@@ -13,6 +13,8 @@ import java.awt.Toolkit;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -57,44 +59,31 @@ public static void run() {
 		initialize();
 	}
 	
-	public static dayItem[] days = new dayItem[31];
-	
-	public class dayItem{
-		String ken11 = "";
-		String ken12 = "";
-		String ken13 = "";
-		String ken14 = "";
-		String ken15 = "";
-		String ken16 = "";
 
-		String ken21 = "";
-		String ken22 = "";
-		String ken23 = "";
-		String ken24 = "";
-		String ken25 = "";
-		String ken26 = "";
-		String ken27 = "";
-		String ken28 = "";
-		
-		boolean isFull(){
-			if(ken11 != "" && ken12 != "" && ken13 != "" && ken14 != "" && ken15 != "" && ken16 != ""
-					 && ken21 != "" && ken22 != "" && ken23 != "" && ken24 != ""
-					 && ken25 != "" && ken26 != "" && ken27 != "" && ken28 != ""){
-				return true;
-			}
-			return false;
-		}
-		boolean isEmpty(){
-			if(ken11 == "" && ken12 == "" && ken13 == "" && ken14 == "" && ken15 == "" && ken16 == ""
-					 && ken21 == "" && ken22 == "" && ken23 == "" && ken24 == ""
-					 && ken25 == "" && ken26 == "" && ken27 == "" && ken28 == ""){
-				return true;
-			}
-			return false;
-		}
+//TODO:		Test this listener
+	public class SelectionListener implements ListSelectionListener {
+	    JTable table;
+
+	    // It is necessary to keep the table since it is not possible
+	    // to determine the table from the event's source
+	    SelectionListener(JTable table) {
+	        this.table = table;
+	    }
+	    public void valueChanged(ListSelectionEvent e) {
+	        if (e.getValueIsAdjusting()) {
+	            // The mouse button has not yet been released
+	        }
+	        
+	        int row = table.getSelectedRow();
+	        int column = table.getSelectedColumn();
+	        int day = (int) table.getValueAt(row, column);
+	        dayItem pass = days[day-1];
+	        
+	        DayDisplay.run(pass);
+	    }
 	}
-
-
+	
+	public static dayItem[] days = new dayItem[31];
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -141,12 +130,11 @@ public static void run() {
 		//Single cell selection
 		tblCalendar.setCellSelectionEnabled(true);
 		tblCalendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-		/* TODO
-		mouseclick event on date
-			popup with labels for each kennel
-				label with name of pet in each kennel, if applicable
-		*/
+		
+		SelectionListener listener = new SelectionListener(tblCalendar);
+		tblCalendar.getSelectionModel().addListSelectionListener(listener);
+		tblCalendar.getColumnModel().getSelectionModel()
+		    .addListSelectionListener(listener);
 
 		//Set row/column count
 		tblCalendar.setRowHeight(69);
@@ -354,7 +342,7 @@ public static void run() {
 		public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
 			super.getTableCellRendererComponent(table, value, selected, focused, row, column);
 
-			/*TODO
+			/*TODO Verify date coloration
 			int[] kennels = {11, 12, 13, 14, 15, 16, 21, 22, 23, 24, 25, 26, 27, 28};
 			for each date in the month:
 				for( int i = 0; i < kennels.length; i++){
@@ -371,9 +359,23 @@ public static void run() {
 				setBackground(new Color(255, 255, 255));
 //			}
 			if (value != null){
-				if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
-					setBackground(new Color(220, 220, 255));
+				int day = Integer.parseInt(value.toString());
+				if (day == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
+					if(days[day-1].isEmpty())
+						setBackground(new Color(220, 220, 255));
+					else if(days[day-1].isFull())
+						setBackground(new Color(245, 210, 210));
+					else
+						setBackground(new Color(210, 245, 210));
+						
 				}
+				else if (days[day-1].isEmpty())
+					setBackground(new Color(255, 255, 255));
+				else if (days[day-1].isFull())
+					setBackground(new Color(255, 220, 220));
+				else
+					setBackground(new Color(220, 255, 220));
+					
 			}
 			setBorder(null);
 			setForeground(Color.black);

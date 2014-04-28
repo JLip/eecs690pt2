@@ -412,14 +412,9 @@ public class Pet_Record_View {
 					JOptionPane.showMessageDialog(null,Name + " is due for Distemper shot!");
 				}
 				
-				
-				
-				
-				
-				
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+			
 			}
 			
 			
@@ -429,33 +424,7 @@ public class Pet_Record_View {
 			e.printStackTrace();
 		}
 		Connection.Close();
-		
-		
-		/*
-		commandText = "SELECT * FROM MedicalRecords WHERE PETID="+iD+";";
-		rs = SQL.ExecuteResultSet(commandText);
-		try{
-			while(rs.next()){
-				Rabies = rs.getDate("Rabies");
-				if(rs.wasNull()) Rabies = new Date(0L);
-				Distemper = rs.getDate("Distemper");
-				if(rs.wasNull()) Distemper = new Date(0L);
-				Bordetella = rs.getDate("Bordetella");
-				
-				if(rs.wasNull()) Bordetella = new Date(0L);
-				PreVisit = rs.getDate("PreVisit");
-				if(rs.wasNull()) PreVisit = new Date(0L);
-				Prescriptions = rs.getString("Prescriptions");
-				if(rs.wasNull()) Prescriptions = "NONE";
-				
-			}
 			
-			rs.close();
-		} catch (SQLException e){
-			e.printStackTrace();
-		}
-		*/
-	
 	}
 
 	protected void populateFields() {

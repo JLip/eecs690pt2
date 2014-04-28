@@ -124,6 +124,7 @@ public class New_Appointment {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					AddAppToCal();
+					Connection.Close();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -219,6 +220,7 @@ public class New_Appointment {
 				btnDeleteApp.setEnabled(false);
 			}
 			public void removeSelectedApp() {
+				Connection.Connect();
 				appItem tempApp = apps.get(txtApps.getSelectedIndex());
 				java.sql.Date convDate = new java.sql.Date(tempApp.AppDate.getTime());
 				String commandText = "DELETE FROM Appointments WHERE PetID=" +tempApp.ID +
@@ -226,10 +228,12 @@ public class New_Appointment {
 						+ tempApp.StartTime +
 						" AND ExamRoom=" + tempApp.ExamRoom +
 						" AND Date='"+ convDate+"';";
-				SQL.ExecuteQuery(commandText);
+				
+				SQL.UpdateResultSet(commandText);
 				
 				apps.clear();
 				getAppsForDate(tempApp.AppDate);
+				Connection.Close();
 				
 			}
 		});
@@ -315,6 +319,7 @@ public class New_Appointment {
 			java.sql.Date convDate = new java.sql.Date(AppointmentDate.getDate().getTime());
 			if(tme >= 0 &&  tme < 2400){
 			//Add appointment to calendar
+				Connection.Connect();
 				String commandText = "SELECT * FROM Appointments WHERE Date='"+convDate +"' AND StartTime BETWEEN "+
 							(tme - 100) + " AND " + (tme + 100) + ";";
 				ResultSet rs = SQL.ExecuteResultSet(commandText);
@@ -332,6 +337,7 @@ public class New_Appointment {
 									+"("+tempPet.ID +", "+txtTime.getText()+", "+ ownerID+ ", "+ parseRoomInt() +", '"+convDate 
 									+"', '" + (String)serviceSpin.getValue()+"')"+";";
 						SQL.UpdateResultSet(commandText);
+						Connection.Close();
 					}
 				}
 				
@@ -403,6 +409,7 @@ public class New_Appointment {
 
 	@SuppressWarnings({ "rawtypes", "unchecked", "serial" })
 	protected void getAppsForDate(Date date) {
+
 		if(date != null){
 			Connection.Connect();
 			apps.clear();
@@ -424,7 +431,7 @@ public class New_Appointment {
 		        	apps.add(tempItem);
 		        }
 		        rs.close();
-		        
+		        Connection.Close();
 		      } catch ( Exception e ) {
 		        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		        JOptionPane.showMessageDialog(null,  e.getClass().getName() + ": " + e.getMessage() );	
@@ -442,9 +449,11 @@ public class New_Appointment {
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
+					Connection.Close();
 					return appInfo;
 				}
 				private String printInfo(appItem appItem) throws SQLException {
+					Connection.Connect();
 					//Print line of appItem info
 					int	hours = appItem.StartTime / 100;
 					int minutes = appItem.StartTime % 100;
@@ -456,7 +465,7 @@ public class New_Appointment {
 						name = rs.getString("Name");
 						if(rs.wasNull()) name = "N/A";
 					}
-					
+					Connection.Close();
 					String finale = "Room: " + parseRoom(appItem.ExamRoom) + " " + hours + ":" + minutes + " for " + name;
 					return finale;
 				}

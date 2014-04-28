@@ -48,7 +48,7 @@ public class New_Appointment {
 	private JSpinner serviceSpin;
 	private JSpinner roomSpin;
 	@SuppressWarnings("rawtypes")
-	private JList txtApps;
+	public JList txtApps;
 	public Vector<appItem> apps = new Vector<appItem>();
 	public Vector<petItem> pets = new Vector<petItem>();
 	
@@ -172,6 +172,11 @@ public class New_Appointment {
 		frmNewAppointment.getContentPane().add(appScroll);
 		
 		txtApps = new JList();
+		txtApps.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				btnDeleteApp.setEnabled(true);
+			}
+		});
 		txtApps.setModel(new AbstractListModel() {
 			public int getSize() {
 				return apps.size();
@@ -183,6 +188,7 @@ public class New_Appointment {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
+				System.out.println("Returning appInfo = " + appInfo);
 				return appInfo;
 			}
 			private String printInfo(appItem appItem) throws SQLException {
@@ -211,6 +217,20 @@ public class New_Appointment {
 			public void mouseClicked(MouseEvent arg0) {
 				removeSelectedApp();
 				btnDeleteApp.setEnabled(false);
+			}
+			public void removeSelectedApp() {
+				appItem tempApp = apps.get(txtApps.getSelectedIndex());
+				java.sql.Date convDate = new java.sql.Date(tempApp.AppDate.getTime());
+				String commandText = "DELETE FROM Appointments WHERE PetID=" +tempApp.ID +
+						" AND StartTime=" 
+						+ tempApp.StartTime +
+						" AND ExamRoom=" + tempApp.ExamRoom +
+						" AND Date='"+ convDate+"';";
+				SQL.ExecuteQuery(commandText);
+				
+				apps.clear();
+				getAppsForDate(tempApp.AppDate);
+				
 			}
 		});
 		btnDeleteApp.setEnabled(false);
@@ -381,14 +401,17 @@ public class New_Appointment {
 
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked", "serial" })
 	protected void getAppsForDate(Date date) {
 		if(date != null){
 			Connection.Connect();
+			apps.clear();
+			
 			int ER = -1;
 			int ST = -1;
 			int id = -1;
 			java.sql.Date convDate = new java.sql.Date(date.getTime());
-			String commandStr = "SELECT * FROM Appointments WHERE Date='"+ convDate +"' ORDER BY StartTime;";
+			String commandStr = "SELECT * FROM Appointments WHERE DATE(Date)='"+ convDate +"' ORDER BY StartTime;";
 
 		    try {
 		        ResultSet rs = SQL.ExecuteResultSet(commandStr);
@@ -408,25 +431,42 @@ public class New_Appointment {
 		        e.printStackTrace();
 		        //System.exit(0);
 		      }
+		    txtApps.setModel(new AbstractListModel() {
+				public int getSize() {
+					return apps.size();
+				}
+				public Object getElementAt(int index) {
+					String appInfo = "ERROR";
+					try {
+						appInfo = printInfo(apps.get(index));
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+					return appInfo;
+				}
+				private String printInfo(appItem appItem) throws SQLException {
+					//Print line of appItem info
+					int	hours = appItem.StartTime / 100;
+					int minutes = appItem.StartTime % 100;
+					String name = "N/A";
+					String commandText = "SELECT Name FROM PetRecord WHERE PetID ="+ appItem.ID + ";";
+					ResultSet rs = SQL.ExecuteResultSet(commandText);
+					
+					if(rs.next()){
+						name = rs.getString("Name");
+						if(rs.wasNull()) name = "N/A";
+					}
+					
+					String finale = "Room: " + parseRoom(appItem.ExamRoom) + " " + hours + ":" + minutes + " for " + name;
+					return finale;
+				}
+			});
 		}
 		else {
 			//TODO set txtApps to empty
 		}
 	}
 
-
-
-	protected void removeSelectedApp() {
-		appItem tempApp = apps.get(txtApps.getSelectedIndex());
-		java.sql.Date convDate = new java.sql.Date(tempApp.AppDate.getTime());
-		String commandText = "DELETE FROM Appointments WHERE PetID=" +tempApp.ID +", StartTime=" 
-				+ tempApp.StartTime + ", ExamRoom=" + tempApp.ExamRoom + ", Date='"+ convDate+"';";
-		SQL.ExecuteQuery(commandText);
-		
-		apps.clear();
-		getAppsForDate(tempApp.AppDate);
-		
-	}
 	
 	public class petItem{
 		public String Name = "";

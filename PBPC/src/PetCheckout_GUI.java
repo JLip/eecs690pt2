@@ -27,6 +27,7 @@ import javax.swing.JButton;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 
 public class PetCheckout_GUI {
@@ -66,8 +67,10 @@ public class PetCheckout_GUI {
 	 */
 	private void initialize() {
 		frmPetCheckout = new JFrame();
+		frmPetCheckout.getContentPane().setBackground(Color.WHITE);
+		frmPetCheckout.setIconImage(Toolkit.getDefaultToolkit().getImage(PetCheckout_GUI.class.getResource("/General_Images/GI_icon.png")));
 		frmPetCheckout.setTitle("Pet Checkout");
-		frmPetCheckout.setBounds(100, 100, 594, 657);
+		frmPetCheckout.setBounds(100, 100, 800, 600);
 		frmPetCheckout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPetCheckout.getContentPane().setLayout(null);
 		
@@ -86,6 +89,7 @@ public class PetCheckout_GUI {
 		frmPetCheckout.getContentPane().add(label);
 		
 		JButton btnFelineServices = new JButton("Services");
+		btnFelineServices.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnFelineServices.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -103,10 +107,11 @@ public class PetCheckout_GUI {
 				
 			}
 		});
-		btnFelineServices.setBounds(310, 50, 112, 37);
+		btnFelineServices.setBounds(497, 297, 172, 56);
 		frmPetCheckout.getContentPane().add(btnFelineServices);
 		
 		JButton btnImmunizations = new JButton("Immunizations");
+		btnImmunizations.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnImmunizations.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -121,10 +126,11 @@ public class PetCheckout_GUI {
 				Immunizations.run();
 			}
 		});
-		btnImmunizations.setBounds(442, 50, 112, 37);
+		btnImmunizations.setBounds(308, 297, 172, 56);
 		frmPetCheckout.getContentPane().add(btnImmunizations);
 		
 		JButton btnBoarding = new JButton("Boarding");
+		btnBoarding.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnBoarding.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -139,21 +145,21 @@ public class PetCheckout_GUI {
 				Checkout_Boarding.run();
 			}
 		});
-		btnBoarding.setBounds(310, 98, 112, 37);
+		btnBoarding.setBounds(114, 297, 172, 56);
 		frmPetCheckout.getContentPane().add(btnBoarding);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportBorder(new LineBorder(new Color(0, 0, 0), 3));
-		scrollPane.setBounds(10, 316, 245, 239);
+		scrollPane.setBounds(529, 49, 245, 214);
 		frmPetCheckout.getContentPane().add(scrollPane);
 		
 		ticketList = new JList<Tickets>();
+		scrollPane.setRowHeaderView(ticketList);
 		ticketList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.setViewportView(ticketList);
 		
 		JLabel lblTicket = new JLabel("Ticket");
 		lblTicket.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblTicket.setBounds(10, 268, 218, 37);
+		lblTicket.setBounds(529, 11, 218, 37);
 		frmPetCheckout.getContentPane().add(lblTicket);
 		
 		JButton btnBack = new JButton("Back");
@@ -185,6 +191,7 @@ public class PetCheckout_GUI {
 		frmPetCheckout.getContentPane().add(btnCashout);
 		
 		JButton btnFelineProducts = new JButton("Feline Products");
+		btnFelineProducts.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnFelineProducts.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -199,10 +206,11 @@ public class PetCheckout_GUI {
 				FelineProducts.run();
 			}
 		});
-		btnFelineProducts.setBounds(310, 157, 112, 37);
+		btnFelineProducts.setBounds(191, 381, 172, 56);
 		frmPetCheckout.getContentPane().add(btnFelineProducts);
 		
 		JButton btnCanineProducts = new JButton("Canine Products");
+		btnCanineProducts.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnCanineProducts.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -217,7 +225,7 @@ public class PetCheckout_GUI {
 				CanineProducts.run();
 			}
 		});
-		btnCanineProducts.setBounds(452, 157, 116, 37);
+		btnCanineProducts.setBounds(422, 381, 172, 56);
 		frmPetCheckout.getContentPane().add(btnCanineProducts);
 		
 		JButton button = new JButton("Remove");
@@ -230,6 +238,18 @@ public class PetCheckout_GUI {
 		button.setFont(new Font("Tahoma", Font.BOLD, 11));
 		button.setBounds(162, 566, 89, 31);
 		frmPetCheckout.getContentPane().add(button);
+		
+		JButton btnBackToClients = new JButton("Back to Main Menu");
+		btnBackToClients.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				frmPetCheckout.dispose();
+			}
+		});
+		btnBackToClients.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnBackToClients.setBounds(22, 510, 243, 41);
+		frmPetCheckout.getContentPane().add(btnBackToClients);
 		
 		PopulatePets();
 		PopulateTicket();

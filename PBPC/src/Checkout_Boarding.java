@@ -10,6 +10,8 @@ import javax.swing.JButton;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
+import java.awt.Color;
 
 
 public class Checkout_Boarding {
@@ -45,16 +47,19 @@ public class Checkout_Boarding {
 	 */
 	private void initialize() {
 		frmCheckoutBoarding = new JFrame();
-		frmCheckoutBoarding.setBounds(100, 100, 308, 224);
+		frmCheckoutBoarding.getContentPane().setBackground(Color.WHITE);
+		frmCheckoutBoarding.setIconImage(Toolkit.getDefaultToolkit().getImage(Checkout_Boarding.class.getResource("/General_Images/GI_icon.png")));
+		frmCheckoutBoarding.setBounds(100, 100, 351, 288);
 		frmCheckoutBoarding.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCheckoutBoarding.getContentPane().setLayout(null);
 		
 		JLabel Boarding = new JLabel("Boarding");
 		Boarding.setFont(new Font("Tahoma", Font.BOLD, 15));
-		Boarding.setBounds(88, 11, 82, 14);
+		Boarding.setBounds(130, 11, 82, 14);
 		frmCheckoutBoarding.getContentPane().add(Boarding);
 		
 		JButton btnDailyRate = new JButton("Daily Rate");
+		btnDailyRate.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnDailyRate.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -94,10 +99,11 @@ public class Checkout_Boarding {
 				
 			}
 		});
-		btnDailyRate.setBounds(60, 50, 139, 23);
+		btnDailyRate.setBounds(76, 49, 181, 31);
 		frmCheckoutBoarding.getContentPane().add(btnDailyRate);
 		
 		JButton btnBathinggrooming = new JButton("Bathing/Grooming");
+		btnBathinggrooming.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnBathinggrooming.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -118,10 +124,11 @@ public class Checkout_Boarding {
 				frmCheckoutBoarding.dispose();
 			}
 		});
-		btnBathinggrooming.setBounds(60, 91, 139, 23);
+		btnBathinggrooming.setBounds(76, 91, 181, 31);
 		frmCheckoutBoarding.getContentPane().add(btnBathinggrooming);
 		
 		JButton btnNewButton = new JButton("Additional Play Time");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -147,7 +154,18 @@ public class Checkout_Boarding {
 				
 			}
 		});
-		btnNewButton.setBounds(60, 137, 139, 23);
+		btnNewButton.setBounds(76, 138, 181, 31);
 		frmCheckoutBoarding.getContentPane().add(btnNewButton);
+		
+		JButton button = new JButton("Back");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				frmCheckoutBoarding.dispose();
+			}
+		});
+		button.setBounds(123, 208, 89, 31);
+		frmCheckoutBoarding.getContentPane().add(button);
 	}
 }

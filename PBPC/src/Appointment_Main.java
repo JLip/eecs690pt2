@@ -229,80 +229,6 @@ public class Appointment_Main {
 		textSat3.setBounds(652, 295, 82, 64);
 		frmAppointmentMain.getContentPane().add(textSat3);
 		
-		JButton btnViewMon = new JButton("View Day");
-		btnViewMon.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
-				getDayView(1);
-			}
-
-
-		});
-		btnViewMon.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnViewMon.setBounds(115, 400, 89, 31);
-		frmAppointmentMain.getContentPane().add(btnViewMon);
-		
-		JButton btnViewTue = new JButton("View Day");
-		btnViewTue.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				getDayView(2);
-			}
-		});
-		btnViewTue.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnViewTue.setBounds(227, 400, 89, 31);
-		frmAppointmentMain.getContentPane().add(btnViewTue);
-		
-		JButton btnViewWed = new JButton("View Day");
-		btnViewWed.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				getDayView(3);
-			}
-		});
-		btnViewWed.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnViewWed.setBounds(334, 400, 89, 31);
-		frmAppointmentMain.getContentPane().add(btnViewWed);
-		
-		JButton btnViewThu = new JButton("View Day");
-		btnViewThu.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				getDayView(4);
-			}
-		});
-		btnViewThu.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnViewThu.setBounds(442, 400, 89, 31);
-		frmAppointmentMain.getContentPane().add(btnViewThu);
-		
-		JButton btnViewFri = new JButton("View Day");
-		btnViewFri.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				getDayView(5);
-			}
-		});
-		btnViewFri.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnViewFri.setBounds(544, 400, 89, 31);
-		frmAppointmentMain.getContentPane().add(btnViewFri);
-		
-		JButton btnViewSat = new JButton("View Day");
-		btnViewSat.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				getDayView(6);
-			}
-		});
-		btnViewSat.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnViewSat.setBounds(652, 400, 89, 31);
-		frmAppointmentMain.getContentPane().add(btnViewSat);
-		
 		
 		frmAppointmentMain.setTitle("Appointments");
 		frmAppointmentMain.setBackground(Color.WHITE);
@@ -335,15 +261,6 @@ public class Appointment_Main {
 		//Pull appointments for other dates of the week depending on what the current date is
 		
 		
-		
-	}
-
-
-	protected void getDayView(int i) {
-		// TODO Auto-generated method stub
-		//Based on th day being passed in
-		//1 == mon, 2 == tues, etc
-		//Generate a view from the appointment_Day_View screen of that day's appointments
 		
 	}
 }

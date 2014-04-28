@@ -260,7 +260,7 @@ public class PetCheckout_GUI {
 			}
 		});
 		Cashout.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Cashout.setBounds(426, 510, 243, 41);
+		Cashout.setBounds(514, 510, 243, 41);
 		frmPetCheckout.getContentPane().add(Cashout);
 		
 		JButton btnRemove = new JButton("Remove");

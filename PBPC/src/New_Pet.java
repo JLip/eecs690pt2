@@ -75,7 +75,7 @@ public static void run() {
 		frmNewPet.setTitle("New Pet");
 		frmNewPet.setIconImage(Toolkit.getDefaultToolkit().getImage(New_Pet.class.getResource("/General_Images/GI_icon.png")));
 		frmNewPet.getContentPane().setBackground(Color.WHITE);
-		frmNewPet.setBounds(100, 100, 634, 610);
+		frmNewPet.setBounds(100, 100, 800, 600);
 		frmNewPet.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNewPet.getContentPane().setLayout(null);
 		
@@ -83,64 +83,64 @@ public static void run() {
 		
 		txt_PetName = new JTextField();
 		txt_PetName.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txt_PetName.setBounds(268, 28, 130, 33);
+		txt_PetName.setBounds(413, 26, 130, 33);
 		frmNewPet.getContentPane().add(txt_PetName);
 		txt_PetName.setColumns(10);
 		
 		txt_Breed = new JTextField();
 		txt_Breed.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txt_Breed.setColumns(10);
-		txt_Breed.setBounds(268, 173, 130, 33);
+		txt_Breed.setBounds(413, 171, 130, 33);
 		frmNewPet.getContentPane().add(txt_Breed);
 		
 		rdbtnDog = new JRadioButton("Dog");
 		rdbtnDog.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnDog.setSelected(true);
 		buttonGroup.add(rdbtnDog);
-		rdbtnDog.setBounds(255, 83, 51, 23);
+		rdbtnDog.setBounds(407, 83, 51, 23);
 		frmNewPet.getContentPane().add(rdbtnDog);
 		
 		rdbtnCat = new JRadioButton("Cat");
 		rdbtnCat.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		buttonGroup.add(rdbtnCat);
-		rdbtnCat.setBounds(334, 83, 51, 23);
+		rdbtnCat.setBounds(492, 83, 51, 23);
 		frmNewPet.getContentPane().add(rdbtnCat);
 		
 		rdbtnMale = new JRadioButton("Male");
 		rdbtnMale.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnMale.setSelected(true);
 		buttonGroup_1.add(rdbtnMale);
-		rdbtnMale.setBounds(255, 129, 64, 23);
+		rdbtnMale.setBounds(394, 129, 64, 23);
 		frmNewPet.getContentPane().add(rdbtnMale);
 		
 		JRadioButton rdbtnFemale = new JRadioButton("Female");
 		rdbtnFemale.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		buttonGroup_1.add(rdbtnFemale);
-		rdbtnFemale.setBounds(334, 129, 77, 23);
+		rdbtnFemale.setBounds(466, 129, 77, 23);
 		frmNewPet.getContentPane().add(rdbtnFemale);
 		
 		combo_size = new JComboBox();
 		combo_size.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		combo_size.setModel(new DefaultComboBoxModel(new String[] {"Small", "Medium", "Large"}));
-		combo_size.setBounds(268, 220, 130, 33);
+		combo_size.setBounds(413, 220, 130, 33);
 		frmNewPet.getContentPane().add(combo_size);
 		
 		txt_Color = new JTextField();
 		txt_Color.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txt_Color.setBounds(268, 308, 130, 33);
+		txt_Color.setBounds(413, 308, 130, 33);
 		frmNewPet.getContentPane().add(txt_Color);
 		txt_Color.setColumns(10);
 		
 		DOB = new JDateChooser();
 		DOB.setToolTipText("Date of Birth");
-		DOB.setBounds(268, 359, 130, 33);
+		DOB.setBounds(413, 364, 130, 33);
 		frmNewPet.getContentPane().add(DOB);
 		DOB.setLocale(Locale.US);
 		
 		txt_Comments = new JTextPane();
 		txt_Comments.setBackground(Color.LIGHT_GRAY);
 		txt_Comments.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		txt_Comments.setBounds(266, 420, 191, 85);
+		txt_Comments.setBounds(352, 427, 191, 85);
 		frmNewPet.getContentPane().add(txt_Comments);
 		
 		JButton btnOkay = new JButton("Submit");
@@ -151,47 +151,47 @@ public static void run() {
 				CheckValues();
 			}
 		});
-		btnOkay.setBounds(505, 492, 103, 41);
+		btnOkay.setBounds(651, 492, 103, 41);
 		frmNewPet.getContentPane().add(btnOkay);
 		
 		JLabel lblName = new JLabel("Name");
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblName.setBounds(163, 35, 46, 14);
+		lblName.setBounds(273, 35, 46, 14);
 		frmNewPet.getContentPane().add(lblName);
 		
 		JLabel lblAnimal = new JLabel("Animal");
 		lblAnimal.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblAnimal.setBounds(163, 87, 46, 14);
+		lblAnimal.setBounds(273, 87, 46, 14);
 		frmNewPet.getContentPane().add(lblAnimal);
 		
 		JLabel lblSex = new JLabel("Sex");
 		lblSex.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblSex.setBounds(163, 133, 46, 14);
+		lblSex.setBounds(273, 133, 46, 14);
 		frmNewPet.getContentPane().add(lblSex);
 		
 		JLabel lblBreed = new JLabel("Breed");
 		lblBreed.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblBreed.setBounds(163, 180, 46, 14);
+		lblBreed.setBounds(273, 180, 46, 14);
 		frmNewPet.getContentPane().add(lblBreed);
 		
 		JLabel lblSize = new JLabel("Size");
 		lblSize.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblSize.setBounds(163, 229, 46, 14);
+		lblSize.setBounds(273, 229, 46, 14);
 		frmNewPet.getContentPane().add(lblSize);
 		
 		JLabel lblColor = new JLabel("Color");
 		lblColor.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblColor.setBounds(163, 317, 46, 14);
+		lblColor.setBounds(273, 317, 46, 14);
 		frmNewPet.getContentPane().add(lblColor);
 		
 		JLabel lblDateOfBirth = new JLabel("Date of Birth");
 		lblDateOfBirth.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblDateOfBirth.setBounds(163, 368, 95, 14);
+		lblDateOfBirth.setBounds(273, 364, 95, 14);
 		frmNewPet.getContentPane().add(lblDateOfBirth);
 		
 		JLabel lblComments = new JLabel("Comments");
 		lblComments.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblComments.setBounds(163, 427, 75, 14);
+		lblComments.setBounds(244, 427, 75, 14);
 		frmNewPet.getContentPane().add(lblComments);
 		
 		JButton btnMainMenu = new JButton("Main Menu");
@@ -203,18 +203,18 @@ public static void run() {
 			}
 		});
 		btnMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnMainMenu.setBounds(10, 492, 150, 41);
+		btnMainMenu.setBounds(23, 492, 150, 41);
 		frmNewPet.getContentPane().add(btnMainMenu);
 		
 		JLabel lblWeight = new JLabel("Weight");
 		lblWeight.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblWeight.setBounds(163, 268, 46, 24);
+		lblWeight.setBounds(273, 268, 46, 24);
 		frmNewPet.getContentPane().add(lblWeight);
 		
 		txt_Weight = new JTextField();
 		txt_Weight.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txt_Weight.setColumns(10);
-		txt_Weight.setBounds(268, 264, 130, 33);
+		txt_Weight.setBounds(413, 264, 130, 33);
 		frmNewPet.getContentPane().add(txt_Weight);
 	}
 	

@@ -280,6 +280,7 @@ public class Pet_Record_View {
 	}
 
 	private void pullFromDB(int iD) {
+		Connection.Connect();
 		//Pull Pet info from the DB and update lbl
 		SimpleDateFormat DateForm = new SimpleDateFormat("YYYY-MM-DD");
 		String commandText = "SELECT * FROM PetRecord WHERE PetID="+ iD+";";

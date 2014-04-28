@@ -78,14 +78,14 @@ public static void run() {
 	        int column = table.getSelectedColumn();
 	        if(table.getValueAt(row, column) != null){
 		        int day = (int) table.getValueAt(row, column);
-		        dayItem pass = days[day-1];
+		        dayItem pass = days[day];
 		        
 		        DayDisplay.run(pass);
 	        }
 	    }
 	}
 	
-	public static dayItem[] days = new dayItem[31];
+	public static dayItem[] days = new dayItem[40];
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -294,34 +294,34 @@ public static void run() {
 						}
 
 						if( kennel == 11)
-							days[i-1].ken11 = name;
+							days[i].ken11 = name;
 						else if( kennel == 12)
-							days[i-1].ken12 = name;
+							days[i].ken12 = name;
 						else if( kennel == 13)
-							days[i-1].ken13 = name;
+							days[i].ken13 = name;
 						else if( kennel == 14)
-							days[i-1].ken14 = name;
+							days[i].ken14 = name;
 						else if( kennel == 15)
-							days[i-1].ken12 = name;
+							days[i].ken15 = name;
 						else if( kennel == 16)
-							days[i-1].ken12 = name;
+							days[i].ken16 = name;
 						
 						else if( kennel == 21)
-							days[i-1].ken21 = name;
+							days[i].ken21 = name;
 						else if( kennel == 22)
-							days[i-1].ken22 = name;
+							days[i].ken22 = name;
 						else if( kennel == 23)
-							days[i-1].ken23 = name;
+							days[i].ken23 = name;
 						else if( kennel == 24)
-							days[i-1].ken24 = name;
+							days[i].ken24 = name;
 						else if( kennel == 25)
-							days[i-1].ken25 = name;
+							days[i].ken25 = name;
 						else if( kennel == 26)
-							days[i-1].ken26 = name;
+							days[i].ken26 = name;
 						else if( kennel == 27)
-							days[i-1].ken27 = name;
+							days[i].ken27 = name;
 						else
-							days[i-1].ken28 = name;
+							days[i].ken28 = name;
 					}
 				}
 			}
@@ -335,6 +335,7 @@ public static void run() {
 			int column  =  (i+som-2)%7;
 			mtblCalendar.setValueAt(i, row, column);
 		}
+//		System.out.println("Calendar values set");
 
 		//Apply renderers
 		tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
@@ -354,29 +355,29 @@ public static void run() {
 				if date.isFull
 					turn date red
 	*/
-/*			if (column == 0 || column == 6){ //Week-end
-				setBackground(new Color(255, 220, 220));
-			}
-			else{ //Week */
 				setBackground(new Color(255, 255, 255));
-//			}
+
 			if (value != null){
 				int day = Integer.parseInt(value.toString());
+//				System.out.println("Day " + day);
+//				boolean full = days[day].isFull();
+//				boolean empty = days[day].isEmpty();
 				if (day == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
-					if(days[day-1].isEmpty())
+//					System.out.println(" is the current day");
+//					if(empty)
 						setBackground(new Color(220, 220, 255));
-					else if(days[day-1].isFull())
+/*					else if(full)
 						setBackground(new Color(245, 210, 210));
 					else
-						setBackground(new Color(210, 245, 210));
+						setBackground(new Color(210, 245, 210));*/
 						
 				}
-				else if (days[day-1].isEmpty())
+/*				else if (empty)
 					setBackground(new Color(255, 255, 255));
-				else if (days[day-1].isFull())
+				else if (full)
 					setBackground(new Color(255, 220, 220));
 				else
-					setBackground(new Color(220, 255, 220));
+					setBackground(new Color(220, 255, 220));*/
 					
 			}
 			setBorder(null);

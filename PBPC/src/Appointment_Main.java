@@ -7,13 +7,20 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 
 public class Appointment_Main {
 
+	
+	JTextArea currentDateField;
 	private JFrame frmAppointmentMain;
 
 	/**
@@ -295,11 +302,40 @@ public class Appointment_Main {
 		btnViewSat.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnViewSat.setBounds(652, 400, 89, 31);
 		frmAppointmentMain.getContentPane().add(btnViewSat);
+		
+		
 		frmAppointmentMain.setTitle("Appointments");
 		frmAppointmentMain.setBackground(Color.WHITE);
 		frmAppointmentMain.setIconImage(Toolkit.getDefaultToolkit().getImage(Appointment_Main.class.getResource("/General_Images/GI_icon.png")));
 		frmAppointmentMain.setBounds(100, 100, 800, 600);
 		frmAppointmentMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		//loadAppointments();
+		
+	}
+
+
+	private void loadAppointments() {
+		// TODO Auto-generated method stub
+		
+		//Get the current date.		
+		 Calendar c = new GregorianCalendar();
+		 c.set(Calendar.HOUR_OF_DAY, 0);
+		 c.set(Calendar.MINUTE, 0);
+		 c.set(Calendar.SECOND, 0);
+		 java.util.Date current_date = c.getTime(); 
+		 
+		//We'll want to pull appointments from the database for the current date
+		 String commandText = "SELECT * FROM Appointments WHERE Date='"+ current_date + ";";
+		 
+		 
+		 //Set text within the appropriate text box with the correct appointments made and remaining info
+		    
+		//Pull appointments for other dates of the week depending on what the current date is
+		
+		
+		
 	}
 
 

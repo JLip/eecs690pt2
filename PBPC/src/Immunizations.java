@@ -6,6 +6,8 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 
 public class Immunizations {
@@ -40,6 +42,8 @@ public class Immunizations {
 	 */
 	private void initialize() {
 		frmImmunizations = new JFrame();
+		frmImmunizations.setIconImage(Toolkit.getDefaultToolkit().getImage(Immunizations.class.getResource("/General_Images/GI_icon.png")));
+		frmImmunizations.getContentPane().setBackground(Color.WHITE);
 		frmImmunizations.setTitle("Immunizations");
 		frmImmunizations.setBounds(100, 100, 311, 277);
 		frmImmunizations.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,7 +73,7 @@ public class Immunizations {
 				frmImmunizations.dispose();
 			}
 		});
-		btnRabies.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnRabies.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnRabies.setBounds(57, 52, 179, 31);
 		frmImmunizations.getContentPane().add(btnRabies);
 		
@@ -92,7 +96,7 @@ public class Immunizations {
 				frmImmunizations.dispose();
 			}
 		});
-		btnDistemper.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnDistemper.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnDistemper.setBounds(57, 99, 179, 31);
 		frmImmunizations.getContentPane().add(btnDistemper);
 		
@@ -116,7 +120,7 @@ public class Immunizations {
 				
 			}
 		});
-		btnBordatella.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnBordatella.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnBordatella.setBounds(57, 152, 179, 31);
 		frmImmunizations.getContentPane().add(btnBordatella);
 		
@@ -127,7 +131,7 @@ public class Immunizations {
 				frmImmunizations.dispose();
 			}
 		});
-		btnBack.setBounds(94, 197, 89, 31);
+		btnBack.setBounds(105, 197, 89, 31);
 		frmImmunizations.getContentPane().add(btnBack);
 	}
 }

@@ -53,7 +53,7 @@ public class Services {
 		frmServices.getContentPane().setLayout(null);
 		
 		JButton btnOfficeVisit = new JButton("Office Visit");
-		btnOfficeVisit.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnOfficeVisit.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnOfficeVisit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -106,6 +106,7 @@ public class Services {
 		frmServices.getContentPane().add(btnOfficeVisit);
 		
 		JButton btnSpayNeuter = new JButton("Spay/Neuter");
+		btnSpayNeuter.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnSpayNeuter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(PetCheckout_GUI.Cat())
@@ -128,6 +129,7 @@ public class Services {
 		frmServices.getContentPane().add(btnSpayNeuter);
 		
 		JButton btnMicroChipping = new JButton("Microchipping");
+		btnMicroChipping.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnMicroChipping.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -143,6 +145,7 @@ public class Services {
 		frmServices.getContentPane().add(btnMicroChipping);
 		
 		JButton btnLabWork = new JButton("Lab Work");
+		btnLabWork.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnLabWork.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -171,6 +174,7 @@ public class Services {
 		frmServices.getContentPane().add(btnLabWork);
 		
 		JButton btnHeartworm = new JButton("Heartworm Testing");
+		btnHeartworm.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnHeartworm.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -186,6 +190,7 @@ public class Services {
 		frmServices.getContentPane().add(btnHeartworm);
 		
 		JButton btnDentalCleaning = new JButton("Dental Cleaning");
+		btnDentalCleaning.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnDentalCleaning.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -229,6 +234,7 @@ public class Services {
 		frmServices.getContentPane().add(button);
 		
 		JButton btnXray = new JButton("X-Ray");
+		btnXray.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnXray.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

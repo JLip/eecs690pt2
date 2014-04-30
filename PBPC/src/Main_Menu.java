@@ -98,7 +98,7 @@ public class Main_Menu {
 			}
 		});
 		btnNewClient.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewClient.setBounds(412, 211, 187, 118);
+		btnNewClient.setBounds(431, 211, 187, 118);
 		frmMainMenu.getContentPane().add(btnNewClient);
 		
 		JButton btnExsistingClient = new JButton("Exsisting Client");
@@ -163,7 +163,7 @@ public class Main_Menu {
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(Main_Menu.class.getResource("/General_Images/Logo.jpg")));
-		lblNewLabel.setBounds(223, 25, 303, 136);
+		lblNewLabel.setBounds(237, 25, 303, 136);
 		frmMainMenu.getContentPane().add(lblNewLabel);
 		
 		
